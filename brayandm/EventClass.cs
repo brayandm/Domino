@@ -3,41 +3,62 @@ class <EventName> : Event
 {
     public <EventName>()
     {
-        this.Type = <Type>;
-        this.Description = <Description>;
+        this.Type = "<Type>";
+        this.Description = "<Description>";
     }
 
     public override void Start()
     {
-        <Code>
+        ... Code
+    }
+}
+
+class <ComplexEventName> : ComplexEvent
+{
+    public <ComplexEventName>()
+    {
+        this.Type = "<Type>";
+        this.Description = "<Description>";
+
+        Event event0 = new <EventName0>();
+        Event event1 = new <EventName1>();
+        Event event2 = new <EventName2>();
+        Event event3 = new <EventName3>();
+        ... More Events
+
+        this.Origin = event0;
+
+        this.Ends.Add(event1);
+        this.Ends.Add(event2);
+        this.Ends.Add(event3);
+        ... More Ends
+
+        AddEdge(event0, event1, function1);
+        AddEdge(event0, event2, function2);
+        AddEdge(event0, event3, function3);
+        ... More Edges
     }
 }
 */
 
 abstract class Event
 {
-    public string Type = "No Type";
+    public string Type = "<Type>";
 
-    public string Description = "No Description";
+    public string Description = "<Description>";
 
     public abstract void Start();
 }
 
 abstract class ComplexEvent : Event
 {
-    public Event Origin;
+    protected Event? Origin;
     
-    public HashSet<Event> Ends;
+    protected HashSet<Event> Ends = new HashSet<Event>();
 
-    public Dictionary<Event,List<Tuple<Event,Func<bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<bool>>>>();
+    Dictionary<Event,List<Tuple<Event,Func<bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<bool>>>>();
 
-    public ComplexEvent(Event origin, List<Event> ends)
-    {
-        this.Origin = origin;
-        this.Ends = ends.ToHashSet();
-    }
-
-    public void AddEdge(Event eventA, Event eventB, Func<bool> function)
+    protected void AddEdge(Event eventA, Event eventB, Func<bool> function)
     {
         if(!this.AdyList.ContainsKey(eventA))
         {
@@ -51,18 +72,21 @@ abstract class ComplexEvent : Event
     {
         eventFather.Start();
 
-        if(Ends.Contains(eventFather))
+        if(this.Ends.Contains(eventFather))
         {
             return true;
         }
 
-        foreach(Tuple<Event,Func<bool>> eventChild in AdyList[eventFather])
+        if(this.AdyList.ContainsKey(eventFather))
         {
-            if(eventChild.Item2())
+            foreach(Tuple<Event,Func<bool>> eventChild in this.AdyList[eventFather])
             {
-                if(StartAt(eventChild.Item1))
+                if(eventChild.Item2())
                 {
-                    return true;
+                    if(this.StartAt(eventChild.Item1))
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -72,6 +96,9 @@ abstract class ComplexEvent : Event
 
     public override void Start()
     {
-        StartAt(this.Origin);
+        if(this.Origin is Event)
+        {
+            this.StartAt(this.Origin);
+        }
     }
 }
