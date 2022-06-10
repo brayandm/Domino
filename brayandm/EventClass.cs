@@ -1,3 +1,19 @@
+/*
+class <EventName> : Event
+{
+    public <EventName>()
+    {
+        this.Type = <Type>;
+        this.Description = <Description>;
+    }
+
+    public override void Start()
+    {
+        <Code>
+    }
+}
+*/
+
 abstract class Event
 {
     public string Type = "No Type";
