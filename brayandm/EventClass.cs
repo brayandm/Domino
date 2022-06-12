@@ -52,7 +52,7 @@ abstract class Event
 
 abstract class ComplexEvent : Event
 {
-    protected Event? Origin;
+    protected Event? Origin = null;
     
     protected HashSet<Event> Ends = new HashSet<Event>();
 
