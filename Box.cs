@@ -8,12 +8,9 @@ class Box
         this.Tokens.RemoveAll(x => !filterTokenRules.Apply(x));
     }
 
-    Token? TakeAt(int pos)
+    Token TakeAt(int pos)
     {
-        if(pos < 0 || pos >= this.Tokens.Count)
-        {
-            return null;
-        }
+        System.Diagnostics.Debug.Assert(0 <= pos && pos < this.Tokens.Count);
         
         Token token = this.Tokens[pos];
 
@@ -22,32 +19,26 @@ class Box
         return token;
     }
 
-    Token? TakeRandom()
+    Token TakeRandom()
     {
         return TakeAt(new Random().Next(this.Tokens.Count));
     }
 
-    Token? TakeLast()
+    Token TakeLast()
     {
         return TakeAt(this.Tokens.Count - 1);
     }
 
-    public Token? Take()
+    public Token Take()
     {
-        if(this.Tokens.Count == 0)
-        {
-            return null;
-        }
+        System.Diagnostics.Debug.Assert(this.Tokens.Count != 0);
 
         return TakeRandom();
     }
 
-    public List<Token>? Take(int n)
+    public List<Token> Take(int n)
     {
-        if(n < 0 || n > this.Tokens.Count)
-        {
-            return null;
-        }
+        System.Diagnostics.Debug.Assert(0 <= n && n <= this.Tokens.Count);
 
         List<Token> tokens = new List<Token>();
 
