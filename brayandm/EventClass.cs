@@ -1,12 +1,6 @@
 /*
 class <EventName> : Event
 {
-    public <EventName>()
-    {
-        this.Type = "<Type>";
-        this.Description = "<Description>";
-    }
-
     public override void Start()
     {
         ... Code
@@ -17,9 +11,6 @@ class <ComplexEventName> : ComplexEvent
 {
     public <ComplexEventName>()
     {
-        this.Type = "<Type>";
-        this.Description = "<Description>";
-
         Event event0 = new <EventName0>();
         Event event1 = new <EventName1>();
         Event event2 = new <EventName2>();
@@ -43,10 +34,6 @@ class <ComplexEventName> : ComplexEvent
 
 abstract class Event
 {
-    public string Type = "<Type>";
-
-    public string Description = "<Description>";
-
     public abstract void Start();
 }
 
