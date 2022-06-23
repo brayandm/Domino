@@ -43,7 +43,7 @@ abstract class ComplexEvent : Event
     
     protected HashSet<Event> Ends = new HashSet<Event>();
 
-    Dictionary<Event,List<Tuple<Event,Func<bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<bool>>>>();
+    private Dictionary<Event,List<Tuple<Event,Func<bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<bool>>>>();
 
     protected void AddEdge(Event eventA, Event eventB, Func<bool> function)
     {
@@ -55,7 +55,7 @@ abstract class ComplexEvent : Event
         this.AdyList[eventA].Add(new Tuple<Event,Func<bool>>(eventB, function));
     }
 
-    bool StartAt(Event eventFather)
+    private bool StartAt(Event eventFather)
     {
         eventFather.Start();
 

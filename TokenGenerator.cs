@@ -31,7 +31,7 @@ class ClassicTokenGenerator : ITokenGenerator
         return TokenGeneration.KTimesTokens(AllPair(faceGenerator.Faces), k);
     }
 
-    List<Token> AllPair(List<IFace> faces)
+    private List<Token> AllPair(List<IFace> faces)
     {
         List<Token> tokens = new List<Token>();
 
@@ -62,7 +62,7 @@ class CycleTokenGenerator : ITokenGenerator
         return TokenGeneration.KTimesTokens(CyclePair(faceGenerator.Faces), k);
     }
 
-    List<Token> CyclePair(List<IFace> faces)
+    private List<Token> CyclePair(List<IFace> faces)
     {
         List<Token> tokens = new List<Token>();
 
