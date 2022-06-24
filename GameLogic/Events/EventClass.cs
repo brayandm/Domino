@@ -1,7 +1,7 @@
 /*
 class <EventName> : Event
 {
-    public override void Start(Game game)
+    public override void Action(Game game)
     {
         ... Code
     }
@@ -34,7 +34,12 @@ class <ComplexEventName> : ComplexEvent
 
 abstract class Event
 {
-    public abstract void Start(Game game);
+    public abstract void Action(Game game);
+
+    public void Start(Game game)
+    {
+        Action(game);
+    }
 }
 
 abstract class ComplexEvent : Event
@@ -81,7 +86,7 @@ abstract class ComplexEvent : Event
         return false;
     }
 
-    public override void Start(Game game)
+    public override void Action(Game game)
     {
         if(this.Origin is Event)
         {
