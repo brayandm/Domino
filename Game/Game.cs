@@ -193,4 +193,9 @@ class Game
             }
         }
     }
+
+    public void DistributeTokens(ITokenDealer tokenDealer)
+    {
+        tokenDealer.Distribute(this._box, this._boards);
+    }
 }
