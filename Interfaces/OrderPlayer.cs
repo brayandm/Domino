@@ -2,6 +2,8 @@ using System.Diagnostics;
 
 interface IOrderPlayer : IBaseInterface
 {
+    void Init(List<Player> players);
+
     void NextPlayer();
 
     Player CurrentPlayer();
@@ -13,7 +15,7 @@ class ClassicOrderPlayer : IOrderPlayer
 
     private int _currentPlayer;
 
-    public ClassicOrderPlayer(List<Player> players)
+    public void Init(List<Player> players)
     {
         Debug.Assert(players.Count != 0);
         this._players = players;
