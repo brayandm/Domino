@@ -7,6 +7,11 @@ struct Token : IComparable
         this.Faces = new Tuple<IFace, IFace>(a, b);
     }
 
+    public new string ToString()
+    {
+        return "[" + Faces.Item1.Id + ", " + Faces.Item2.Id + "]";
+    }
+
     public void Rotate()
     {
         this.Faces = new Tuple<IFace, IFace>(this.Faces.Item2, this.Faces.Item1);
