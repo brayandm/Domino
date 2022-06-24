@@ -145,4 +145,52 @@ class Game
         
         return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Middle);
     }
+
+    public void PlayToken(ProtectedToken protectedToken, Position position)
+    {
+        Token token = protectedToken.GetTokenWithoutVisibility();
+
+        foreach(Board board in _boards)
+        {
+            if(board.Contains(protectedToken))
+            {
+                if(position == Position.Left)
+                {
+                    if(_table.LeftFace is IFace)
+                    {
+                        if(token.Faces.Item1.Id == ((IFace)_table.LeftFace).Id)
+                        {
+                            protectedToken.Rotate();
+                        }
+
+                        Debug.Assert(token.Faces.Item2.Id == ((IFace)_table.LeftFace).Id);
+
+                        this._table.Put(protectedToken, false);
+                    }
+                }
+
+                if(position == Position.Middle)
+                {
+                    this._table.Put(protectedToken, false);
+                }
+
+                if(position == Position.Right)
+                {
+                    if(_table.RightFace is IFace)
+                    {
+                        if(token.Faces.Item2.Id == ((IFace)_table.RightFace).Id)
+                        {
+                            protectedToken.Rotate();
+                        }
+
+                        Debug.Assert(token.Faces.Item1.Id == ((IFace)_table.RightFace).Id);
+
+                        this._table.Put(protectedToken, true);
+                    }
+                }
+
+                board.Remove(protectedToken);
+            }
+        }
+    }
 }
