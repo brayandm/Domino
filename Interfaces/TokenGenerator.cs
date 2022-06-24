@@ -1,4 +1,4 @@
-interface ITokenGenerator
+interface ITokenGenerator : BaseInterface
 {
     List<Token> Generate(IFaceGenerator faceGenerator);
     List<Token> Generate(IFaceGenerator faceGenerator, int k);

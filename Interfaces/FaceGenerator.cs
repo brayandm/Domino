@@ -1,4 +1,4 @@
-interface IFaceGenerator
+interface IFaceGenerator : BaseInterface
 {
     List<IFace> Faces {get;}
 }
