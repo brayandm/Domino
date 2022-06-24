@@ -1,20 +1,20 @@
 class ProtectedToken : IComparable
 {
-    private Token Token;
+    private Token _token;
 
-    private HashSet<Player> Visibles;
+    private HashSet<Player> _visibles;
 
     public ProtectedToken(Token token)
     {
-        this.Token = token;
-        this.Visibles = new HashSet<Player>();
+        this._token = token;
+        this._visibles = new HashSet<Player>();
     }
 
     public void Watch(Player player)
     {
         if(!IsVisible(player)) 
         {
-            this.Visibles.Add(player);
+            this._visibles.Add(player);
         }
     }
     
@@ -22,23 +22,23 @@ class ProtectedToken : IComparable
     {
         if(IsVisible(player)) 
         {
-            this.Visibles.Remove(player);
+            this._visibles.Remove(player);
         }
     }
     
     public bool IsVisible(Player player)
     {
-        return this.Visibles.Contains(player);
+        return this._visibles.Contains(player);
     }
 
     public Token? GetToken(Player player)
     {
-        return IsVisible(player) ? this.Token : null;
+        return IsVisible(player) ? this._token : null;
     }
 
     public Token GetTokenWithoutVisibility()
     {
-        return this.Token;
+        return this._token;
     }
 
     public int CompareTo(object? obj)
@@ -48,7 +48,7 @@ class ProtectedToken : IComparable
             return -1;
         }
 
-        return this.Token.CompareTo(((ProtectedToken)obj).Token);
+        return this._token.CompareTo(((ProtectedToken)obj)._token);
     }
 }
 

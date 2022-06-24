@@ -2,25 +2,25 @@ using System.Diagnostics;
 
 class DependencyContainer
 {
-    private Dictionary<Type, Type> Default = new Dictionary<Type, Type>();
+    private Dictionary<Type, Type> _default = new Dictionary<Type, Type>();
 
     public void SetDefault(Type typeA, Type typeB)
     {
-        if(!Default.ContainsKey(typeA))
+        if(!_default.ContainsKey(typeA))
         {
-            Default.Add(typeA, typeB);
+            _default.Add(typeA, typeB);
         }
         else
         {
-            Default[typeA] = typeB;
+            _default[typeA] = typeB;
         }
     }
 
     public Type GetDefault(Type type)
     {
-        Debug.Assert(Default.ContainsKey(type));
+        Debug.Assert(_default.ContainsKey(type));
 
-        return Default[type];
+        return _default[type];
     }
 
     public List<Type> GetSubInterfaces(Type type)

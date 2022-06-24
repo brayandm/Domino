@@ -2,45 +2,45 @@ using System.Diagnostics;
 
 class Box
 {
-    private List<Token> Tokens;
+    private List<Token> _tokens;
     
     public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRules filterTokenRules)
     {
-        this.Tokens = tokenGenerator.Generate(faceGenerator);
-        this.Tokens.RemoveAll(x => !filterTokenRules.Apply(x));
+        this._tokens = tokenGenerator.Generate(faceGenerator);
+        this._tokens.RemoveAll(x => !filterTokenRules.Apply(x));
     }
 
     private Token TakeAt(int pos)
     {
-        Debug.Assert(0 <= pos && pos < this.Tokens.Count);
+        Debug.Assert(0 <= pos && pos < this._tokens.Count);
         
-        Token token = this.Tokens[pos];
+        Token token = this._tokens[pos];
 
-        this.Tokens.RemoveAt(pos);
+        this._tokens.RemoveAt(pos);
 
         return token;
     }
 
     private Token TakeRandom()
     {
-        return TakeAt(new Random().Next(this.Tokens.Count));
+        return TakeAt(new Random().Next(this._tokens.Count));
     }
 
     private Token TakeLast()
     {
-        return TakeAt(this.Tokens.Count - 1);
+        return TakeAt(this._tokens.Count - 1);
     }
 
     public Token Take()
     {
-        Debug.Assert(this.Tokens.Count != 0);
+        Debug.Assert(this._tokens.Count != 0);
 
         return TakeRandom();
     }
 
     public List<Token> Take(int n)
     {
-        Debug.Assert(0 <= n && n <= this.Tokens.Count);
+        Debug.Assert(0 <= n && n <= this._tokens.Count);
 
         List<Token> tokens = new List<Token>();
 
@@ -59,19 +59,19 @@ class Box
 
     private void PutAt(Token token, int pos)
     {
-        pos = Math.Max(0, Math.Min(this.Tokens.Count, pos));
+        pos = Math.Max(0, Math.Min(this._tokens.Count, pos));
 
-        this.Tokens.Insert(pos, token);
+        this._tokens.Insert(pos, token);
     }
 
     private void PutRandom(Token token)
     {
-        PutAt(token, new Random().Next(this.Tokens.Count + 1));
+        PutAt(token, new Random().Next(this._tokens.Count + 1));
     }
 
     private void PutLast(Token token)
     {
-        PutAt(token, this.Tokens.Count);
+        PutAt(token, this._tokens.Count);
     }
 
     public void Put(Token token)
@@ -89,16 +89,16 @@ class Box
 
     private void Swap(int posA, int posB)
     {
-        Token tokenC = this.Tokens[posA];
-        this.Tokens[posA] = this.Tokens[posB];
-        this.Tokens[posB] = tokenC;
+        Token tokenC = this._tokens[posA];
+        this._tokens[posA] = this._tokens[posB];
+        this._tokens[posB] = tokenC;
     }
 
     private void Shuffle()
     {
-        for(int i = 0 ; i < this.Tokens.Count ; i++)
+        for(int i = 0 ; i < this._tokens.Count ; i++)
         {
-            Swap(i, new Random().Next(i, this.Tokens.Count));
+            Swap(i, new Random().Next(i, this._tokens.Count));
         }
     }
 }
