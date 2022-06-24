@@ -1,0 +1,4 @@
+interface IGraphicinterface
+{
+    void Update();
+}

@@ -36,9 +36,11 @@ abstract class Event
 {
     public abstract void Action(Game game);
 
-    public void Start(Game game)
+    public void Start(Game game, IGraphicinterface graphicinterface)
     {
         Action(game);
+
+        graphicinterface.Update();
     }
 }
 
@@ -60,9 +62,9 @@ abstract class ComplexEvent : Event
         this.AdyList[eventA].Add(new Tuple<Event,Func<bool>>(eventB, function));
     }
 
-    private bool StartAt(Event eventFather, Game game)
+    private bool StartAt(Event eventFather, Game game, IGraphicinterface graphicinterface)
     {
-        eventFather.Start(game);
+        eventFather.Start(game, graphicinterface);
 
         if(this.Ends.Contains(eventFather))
         {
@@ -75,7 +77,7 @@ abstract class ComplexEvent : Event
             {
                 if(eventChild.Item2())
                 {
-                    if(this.StartAt(eventChild.Item1, game))
+                    if(this.StartAt(eventChild.Item1, game, graphicinterface))
                     {
                         return true;
                     }
@@ -86,11 +88,13 @@ abstract class ComplexEvent : Event
         return false;
     }
 
-    public override void Action(Game game)
+    public override void Action(Game game){}
+
+    public new void Start(Game game, IGraphicinterface graphicinterface)
     {
         if(this.Origin is Event)
         {
-            this.StartAt(this.Origin, game);
+            this.StartAt(this.Origin, game, graphicinterface);
         }
     }
 }
