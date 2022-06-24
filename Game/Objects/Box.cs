@@ -2,86 +2,91 @@ using System.Diagnostics;
 
 class Box
 {
-    private List<Token> _tokens;
+    private List<ProtectedToken> _tokens = new List<ProtectedToken>();
     
     public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRules filterTokenRules)
     {
-        this._tokens = tokenGenerator.Generate(faceGenerator);
-        this._tokens.RemoveAll(x => !filterTokenRules.Apply(x));
+        List<Token> tokens = tokenGenerator.Generate(faceGenerator);
+        tokens.RemoveAll(x => !filterTokenRules.Apply(x));
+        
+        foreach(Token token in tokens)
+        {
+            _tokens.Add(new ProtectedToken(token));
+        }
     }
 
-    private Token TakeAt(int pos)
+    private ProtectedToken TakeAt(int pos)
     {
         Debug.Assert(0 <= pos && pos < this._tokens.Count);
         
-        Token token = this._tokens[pos];
+        ProtectedToken token = this._tokens[pos];
 
         this._tokens.RemoveAt(pos);
 
         return token;
     }
 
-    private Token TakeRandom()
+    private ProtectedToken TakeRandom()
     {
         return TakeAt(new Random().Next(this._tokens.Count));
     }
 
-    private Token TakeLast()
+    private ProtectedToken TakeLast()
     {
         return TakeAt(this._tokens.Count - 1);
     }
 
-    public Token Take()
+    public ProtectedToken Take()
     {
         Debug.Assert(this._tokens.Count != 0);
 
         return TakeRandom();
     }
 
-    public List<Token> Take(int n)
+    public List<ProtectedToken> Take(int n)
     {
         Debug.Assert(0 <= n && n <= this._tokens.Count);
 
-        List<Token> tokens = new List<Token>();
+        List<ProtectedToken> tokens = new List<ProtectedToken>();
 
         for(int i = 0 ; i < n ; i++)
         {
-            Token? token = TakeRandom();
+            ProtectedToken? token = TakeRandom();
 
-            if(token is Token)
+            if(token is ProtectedToken)
             {
-                tokens.Add((Token)token);
+                tokens.Add((ProtectedToken)token);
             }
         }
 
         return tokens;
     }
 
-    private void PutAt(Token token, int pos)
+    private void PutAt(ProtectedToken token, int pos)
     {
         pos = Math.Max(0, Math.Min(this._tokens.Count, pos));
 
         this._tokens.Insert(pos, token);
     }
 
-    private void PutRandom(Token token)
+    private void PutRandom(ProtectedToken token)
     {
         PutAt(token, new Random().Next(this._tokens.Count + 1));
     }
 
-    private void PutLast(Token token)
+    private void PutLast(ProtectedToken token)
     {
         PutAt(token, this._tokens.Count);
     }
 
-    public void Put(Token token)
+    public void Put(ProtectedToken token)
     {
         PutRandom(token);
     }
 
-    public void Put(List<Token> tokens)
+    public void Put(List<ProtectedToken> tokens)
     {
-        foreach(Token token in tokens)
+        foreach(ProtectedToken token in tokens)
         {
             PutRandom(token);
         }
@@ -89,7 +94,7 @@ class Box
 
     private void Swap(int posA, int posB)
     {
-        Token tokenC = this._tokens[posA];
+        ProtectedToken tokenC = this._tokens[posA];
         this._tokens[posA] = this._tokens[posB];
         this._tokens[posB] = tokenC;
     }
