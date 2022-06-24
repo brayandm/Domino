@@ -27,6 +27,30 @@ class Table
         }
     }
 
+    public IFace? LeftFace
+    {
+        get 
+        {
+            Tuple<IFace, IFace>? availableFaces = this.AvailableFaces;
+
+            if(availableFaces == null)return null;
+
+            return availableFaces.Item1;
+        }
+    }
+
+    public IFace? RightFace
+    {
+        get 
+        {
+            Tuple<IFace, IFace>? availableFaces = this.AvailableFaces;
+
+            if(availableFaces == null)return null;
+
+            return availableFaces.Item2;
+        }
+    }
+
     public new string ToString
     { 
         get 
