@@ -1,4 +1,4 @@
-interface BaseInterface
+interface IBaseInterface
 {
 
 }

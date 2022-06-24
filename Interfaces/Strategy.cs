@@ -1,4 +1,4 @@
-interface IStrategy : BaseInterface
+interface IStrategy : IBaseInterface
 {
 
 }
