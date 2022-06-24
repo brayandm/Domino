@@ -2,5 +2,6 @@ enum Position
 {
     Left,
     Middle,
-    Right
+    Right,
+    Pass
 }
