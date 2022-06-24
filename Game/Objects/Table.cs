@@ -6,6 +6,9 @@ class Table
 
     private string _string;
 
+    public int Count { get { return this._tokens.Count; } }
+
+
     public Tuple<IFace, IFace>? AvailableFaces
     { 
         get 
@@ -15,10 +18,10 @@ class Table
                 return null;
             }
 
-            Token t1 = (Token)this._tokens.First.Value.GetTokenWithoutVisibility();
-            Token t2 = (Token)this._tokens.Last.Value.GetTokenWithoutVisibility();
+            Token tokenLeft = (Token)this._tokens.First.Value.GetTokenWithoutVisibility();
+            Token tokenRight = (Token)this._tokens.Last.Value.GetTokenWithoutVisibility();
 
-            return new Tuple<IFace, IFace>(t1.Faces.Item1, t2.Faces.Item2);
+            return new Tuple<IFace, IFace>(tokenLeft.Faces.Item1, tokenRight.Faces.Item2);
         }
     }
 
