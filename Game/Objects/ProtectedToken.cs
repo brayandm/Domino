@@ -10,6 +10,11 @@ class ProtectedToken : IComparable
         this._visibles = new HashSet<Player>();
     }
 
+    public void Rotate()
+    {
+        this._token.Rotate();
+    }
+
     public void Watch(Player player)
     {
         if(!IsVisible(player)) 
