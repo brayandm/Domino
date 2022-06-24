@@ -8,6 +8,8 @@ class Table
 
     public int Count { get { return this._tokens.Count; } }
 
+    public bool Empty { get { return this._tokens.Count == 0; } }
+
 
     public Tuple<IFace, IFace>? AvailableFaces
     { 
