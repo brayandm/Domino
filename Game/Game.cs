@@ -198,4 +198,14 @@ class Game
     {
         tokenDealer.Distribute(this._box, this._boards);
     }
+
+    public int GetNumberOfContiguousPassedTurns()
+    {
+        return this._history.GetPassTurns();
+    }
+
+    public int GetNumberOfPlayers()
+    {
+        return this._playerInfo.Players.Count;
+    }
 }
