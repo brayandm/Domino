@@ -12,6 +12,11 @@ struct Token : IComparable
         this.Faces = new Tuple<IFace, IFace>(this.Faces.Item2, this.Faces.Item1);
     }
 
+    public int GetTotalValue()
+    {
+        return Faces.Item1.Value + Faces.Item2.Value;
+    }
+
     public int CompareTo(object? obj)
     {
         if(obj == null || obj.GetType() != this.GetType())
@@ -19,9 +24,9 @@ struct Token : IComparable
             return -1;
         }
 
-        int a = this.Faces.Item1.Value + this.Faces.Item2.Value;
+        int a = this.GetTotalValue();
 
-        int b = ((Token)obj).Faces.Item1.Value + ((Token)obj).Faces.Item2.Value;
+        int b = ((Token)obj).GetTotalValue();
 
         return a.CompareTo(b);
     }
