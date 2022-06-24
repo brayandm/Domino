@@ -1,4 +1,6 @@
-﻿class Table
+﻿using System.Diagnostics;
+
+class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 
@@ -20,6 +22,23 @@
         }
     }
 
+    public new string ToString
+    { 
+        get 
+        {
+            string text = "";
+
+            foreach(ProtectedToken token in _tokens)
+            {
+                text += token.GetTokenWithoutVisibility().ToString() + " ";
+            }
+
+            text.Remove(text.Length-1);
+
+            return text;
+        }
+    }
+
     public Table()
     {
         this._tokens = new LinkedList<ProtectedToken>();
@@ -30,17 +49,17 @@
     {
         if(this.AvailableFaces == null)
         {
-            this._string = token.GetTokenWithoutVisibility().ToString();
+            this._tokens.AddFirst(token);
         }
-        else if(atLast)
+        else if(!atLast)
         { 
-            this._tokens.AddLast(token); 
-            this._string = this._string + " " + token.GetTokenWithoutVisibility().ToString(); 
+            Debug.Assert(token.GetTokenWithoutVisibility().Faces.Item2 == this.AvailableFaces.Item1);
+            this._tokens.AddFirst(token); 
         }
         else
         { 
-            this._tokens.AddFirst(token); 
-            this._string = token.GetTokenWithoutVisibility().ToString() + " " + this._string;
+            Debug.Assert(this.AvailableFaces.Item2 == token.GetTokenWithoutVisibility().Faces.Item1);
+            this._tokens.AddLast(token); 
         } 
     }
 }
