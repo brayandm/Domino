@@ -1,7 +1,7 @@
 /*
 class <EventName> : Event
 {
-    public override void Start()
+    public override void Start(Game game)
     {
         ... Code
     }
@@ -34,7 +34,7 @@ class <ComplexEventName> : ComplexEvent
 
 abstract class Event
 {
-    public abstract void Start();
+    public abstract void Start(Game game);
 }
 
 abstract class ComplexEvent : Event
@@ -55,9 +55,9 @@ abstract class ComplexEvent : Event
         this.AdyList[eventA].Add(new Tuple<Event,Func<bool>>(eventB, function));
     }
 
-    private bool StartAt(Event eventFather)
+    private bool StartAt(Event eventFather, Game game)
     {
-        eventFather.Start();
+        eventFather.Start(game);
 
         if(this.Ends.Contains(eventFather))
         {
@@ -70,7 +70,7 @@ abstract class ComplexEvent : Event
             {
                 if(eventChild.Item2())
                 {
-                    if(this.StartAt(eventChild.Item1))
+                    if(this.StartAt(eventChild.Item1, game))
                     {
                         return true;
                     }
@@ -81,11 +81,11 @@ abstract class ComplexEvent : Event
         return false;
     }
 
-    public override void Start()
+    public override void Start(Game game)
     {
         if(this.Origin is Event)
         {
-            this.StartAt(this.Origin);
+            this.StartAt(this.Origin, game);
         }
     }
 }
