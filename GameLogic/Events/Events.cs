@@ -2,7 +2,7 @@ class Events
 {
     private class PrintHelloWorld : Event
     {
-        public override void Start(Game game)
+        public override void Action(Game game)
         {
             System.Console.WriteLine("Hello World");
         }

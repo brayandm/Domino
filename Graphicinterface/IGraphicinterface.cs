@@ -1,4 +1,4 @@
 interface IGraphicinterface
 {
-    void Update();
+    void Update(Game game);
 }
