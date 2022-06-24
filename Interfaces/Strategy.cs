@@ -1,0 +1,4 @@
+interface IStrategy : BaseInterface
+{
+
+}
