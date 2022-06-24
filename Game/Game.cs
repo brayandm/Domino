@@ -44,31 +44,56 @@ class Game
         return visibleTokens;
     }
 
+    public bool MatchTokenWithFace(Token token, IFace face)
+    {
+        if(token.Faces.Item1.Id == face.Id || token.Faces.Item2.Id == face.Id)return true;
+        return false;
+    }
+
     public bool MatchTokenWithFaces(Token token, Tuple<IFace, IFace> faces)
     {
-        if(token.Faces.Item1.Id == faces.Item1.Id)return true;
-        if(token.Faces.Item1.Id == faces.Item2.Id)return true;
-        if(token.Faces.Item2.Id == faces.Item1.Id)return true;
-        if(token.Faces.Item2.Id == faces.Item2.Id)return true;
+        if(MatchTokenWithFace(token, faces.Item1) || MatchTokenWithFace(token, faces.Item2))return true;
         return false;
+    }
+
+    public bool MatchTokenWithLeftFace(Token token)
+    {
+        Tuple<IFace, IFace>? availableFaces = this._table.AvailableFaces;
+
+        if(availableFaces == null)
+        {
+            return true;
+        }
+
+        return MatchTokenWithFace(token, availableFaces.Item1);
+    }
+
+    public bool MatchTokenWithRightFace(Token token)
+    {
+        Tuple<IFace, IFace>? availableFaces = this._table.AvailableFaces;
+
+        if(availableFaces == null)
+        {
+            return true;
+        }
+
+        return MatchTokenWithFace(token, availableFaces.Item2);
+    }
+
+    public bool MatchTokenWithBothFaces(Token token)
+    {
+        return MatchTokenWithLeftFace(token) && MatchTokenWithRightFace(token);
     }
 
     public List<ProtectedToken> GetPlayerTokensPlayable(Player player)
     {
         Board board = this._playerInfo.PlayerBoard[player];
-
-        Tuple<IFace, IFace>? availableFaces = this._table.AvailableFaces;
-
-        if(availableFaces == null)
-        {
-            return GetBoardTokensVisibleForPlayer(player, board);
-        }
         
         List<ProtectedToken> tokens = new List<ProtectedToken>();
 
         foreach(ProtectedToken token in GetBoardTokensVisibleForPlayer(player, board))
         {
-            if(MatchTokenWithFaces(token.GetTokenWithoutVisibility(), availableFaces))
+            if(MatchTokenWithBothFaces(token.GetTokenWithoutVisibility()))
             {
                 tokens.Add(token);
             }
@@ -82,13 +107,13 @@ class Game
         return GetPlayerTokensPlayable(this._playerInfo.OrderPlayer.CurrentPlayer());
     }
 
-    public ProtectedToken? SelectCurrentPlayerMove()
+    public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove()
     {
         List<ProtectedToken> protectedTokens = GetCurrentPlayerTokensPlayable();
 
         if(protectedTokens.Count == 0)
         {
-            return null;
+            return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
         }
 
         Player player = this._playerInfo.OrderPlayer.CurrentPlayer();
@@ -104,6 +129,20 @@ class Game
 
         int index = player.Strategy.ChooseTokenIndex(tokens);
 
-        return protectedTokens[index];
+        ProtectedToken protectedTokenToPlay = protectedTokens[index];
+
+        Token tokenToPlay = protectedTokenToPlay.GetTokenWithoutVisibility();
+
+        if(!this._table.Empty && MatchTokenWithLeftFace(tokenToPlay))
+        {
+            return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Left);
+        }
+
+        if(!this._table.Empty && MatchTokenWithRightFace(tokenToPlay))
+        {
+            return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Right);
+        }
+        
+        return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Middle);
     }
 }
