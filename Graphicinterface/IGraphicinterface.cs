@@ -1,3 +1,5 @@
+using System.Threading;
+
 interface IGraphicinterface
 {
     void Main();
@@ -10,13 +12,13 @@ class ConsoleInterface : IGraphicinterface
 {
     public void Main()
     {
-
-
+        Console.WriteLine("Welcome to Domino game");
+        Thread.Sleep(5000);
     }
 
     public void NewGame()
     {
-
+        Console.WriteLine("The Domino game will be set with default configuration");
     }
 
     public void GameOver(Game game)
