@@ -10,6 +10,8 @@ class PlayerInfo
     {
         Debug.Assert(players.Count == boards.Count);
 
+        orderPlayer.Init(players);
+
         this.Players = players;
         this.OrderPlayer = orderPlayer;
         this.PlayerBoard = new Dictionary<Player, Board>();
