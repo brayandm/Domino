@@ -170,6 +170,7 @@ class Game
                         if(token.Faces.Item1.Id == ((IFace)_table.LeftFace).Id)
                         {
                             protectedToken.Rotate();
+                            token.Rotate();
                         }
 
                         Debug.Assert(token.Faces.Item2.Id == ((IFace)_table.LeftFace).Id);
@@ -190,6 +191,7 @@ class Game
                         if(token.Faces.Item2.Id == ((IFace)_table.RightFace).Id)
                         {
                             protectedToken.Rotate();
+                            token.Rotate();
                         }
 
                         Debug.Assert(token.Faces.Item1.Id == ((IFace)_table.RightFace).Id);
