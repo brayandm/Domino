@@ -2,21 +2,21 @@ using System.Diagnostics;
 
 class DependencyContainerOrganizer
 {
-    public DependencyContainer organizer;
+    public DependencyContainer Organizer;
 
     public DependencyContainerOrganizer()
     {
-        this.organizer = new DependencyContainer();
+        this.Organizer = new DependencyContainer();
 
-        List<Type> types = organizer.GetSubInterfaces(typeof(IBaseInterface));
+        List<Type> types = Organizer.GetSubInterfaces(typeof(IBaseInterface));
 
         foreach(Type type in types)
         {
-            List<Type> implementations = organizer.GetImplementations(type);
+            List<Type> implementations = Organizer.GetImplementations(type);
 
             Debug.Assert(implementations.Count > 0);
 
-            organizer.SetDefault(type, implementations.First());
+            Organizer.SetDefault(type, implementations.First());
         }
     }
 }
