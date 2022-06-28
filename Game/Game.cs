@@ -194,6 +194,31 @@ class Game
         }
     }
 
+    public void ProcessCurrentTurn()
+    {
+        Tuple<ProtectedToken?, Position> playerMove = SelectCurrentPlayerMove();
+
+        if(playerMove.Item2 == Position.Pass)
+        {
+            this._history.PassTurn();
+        }
+        else
+        {
+            this._history.ResetContiguousPassedTurns();
+            
+            Debug.Assert(playerMove.Item1 is ProtectedToken);
+            
+            if(playerMove.Item1 is ProtectedToken)
+            {
+                this.PlayToken((ProtectedToken)playerMove.Item1, playerMove.Item2);
+            }
+        }
+
+        Move move = new Move(this._playerInfo.OrderPlayer.CurrentPlayer(), playerMove.Item1, playerMove.Item2);
+
+        this._history.AddMove(move);
+    }
+
     public void DistributeTokens(ITokenDealer tokenDealer)
     {
         tokenDealer.Distribute(this._box, this._boards);
