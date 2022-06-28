@@ -14,6 +14,23 @@ class Board
         this._tokens = tokens;
     }
 
+    public new string ToString()
+    { 
+        string text = "";
+
+        foreach(ProtectedToken token in this._tokens)
+        {
+            text += token.GetTokenWithoutVisibility().ToString() + " ";
+        }
+
+        if(this._tokens.Count > 0)
+        {
+            text.Remove(text.Length-1);
+        }
+
+        return text;
+    }
+
     public List<ProtectedToken> GetTokens()
     {
         return this._tokens;
