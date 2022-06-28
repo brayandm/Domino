@@ -1,6 +1,6 @@
 interface IFaceGenerator : IBaseInterface
 {
-    List<IFace> Faces {get;}
+    List<IFace> GetFaces();
 }
 
 static class FaceColors
@@ -37,30 +37,26 @@ static class FaceInts
 
 class ColorFacesGenerator : IFaceGenerator
 {
-    public List<IFace> Faces {get;}
-
-    public ColorFacesGenerator() 
+    public List<IFace> GetFaces() 
     {
-        this.Faces = FaceColors.ColorsToFaces(FaceColors.Colors);
+        return FaceColors.ColorsToFaces(FaceColors.Colors);
     }
 
-    public ColorFacesGenerator(List<string> colors)
+    public List<IFace> GetFaces(List<string> colors)
     {
-        this.Faces = FaceColors.ColorsToFaces(colors);
+        return FaceColors.ColorsToFaces(colors);
     }
 }
 
 class IntFacesGenerator : IFaceGenerator
 {
-    public List<IFace> Faces {get;}
-
-    public IntFacesGenerator() 
+    public List<IFace> GetFaces() 
     {
-        this.Faces = FaceInts.IntFaces(10);
+        return FaceInts.IntFaces(10);
     }
 
-    public IntFacesGenerator(int n)
+    public List<IFace> GetFaces(int n)
     {
-        this.Faces = FaceInts.IntFaces(n);
+        return FaceInts.IntFaces(n);
     }
 }

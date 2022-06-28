@@ -23,12 +23,12 @@ class ClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(IFaceGenerator faceGenerator)
     {
-        return AllPair(faceGenerator.Faces);
+        return AllPair(faceGenerator.GetFaces());
     }
 
     public List<Token> Generate(IFaceGenerator faceGenerator, int k)
     {
-        return TokenGeneration.KTimesTokens(AllPair(faceGenerator.Faces), k);
+        return TokenGeneration.KTimesTokens(AllPair(faceGenerator.GetFaces()), k);
     }
 
     private List<Token> AllPair(List<IFace> faces)
@@ -54,12 +54,12 @@ class CycleTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(IFaceGenerator faceGenerator)
     {
-        return CyclePair(faceGenerator.Faces);
+        return CyclePair(faceGenerator.GetFaces());
     }
 
     public List<Token> Generate(IFaceGenerator faceGenerator, int k)
     {
-        return TokenGeneration.KTimesTokens(CyclePair(faceGenerator.Faces), k);
+        return TokenGeneration.KTimesTokens(CyclePair(faceGenerator.GetFaces()), k);
     }
 
     private List<Token> CyclePair(List<IFace> faces)
