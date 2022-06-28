@@ -81,7 +81,7 @@ class Game
 
     public bool MatchTokenWithBothFaces(Token token)
     {
-        return this.MatchTokenWithLeftFace(token) && this.MatchTokenWithRightFace(token);
+        return this.MatchTokenWithLeftFace(token) || this.MatchTokenWithRightFace(token);
     }
 
     public List<ProtectedToken> GetPlayerTokensPlayable(Player player)
