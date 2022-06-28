@@ -43,4 +43,13 @@ class DependencyContainer
 
         return obj;
     }
+
+    public object GetInstanceFromDefault(Type type, params object?[]? list)
+    {
+        object? obj = Activator.CreateInstance(this.GetDefault(type), list);
+
+        Debug.Assert(obj != null); 
+
+        return obj;
+    }
 }

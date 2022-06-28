@@ -4,8 +4,6 @@ class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 
-    private string _string;
-
     public int Count { get { return this._tokens.Count; } }
 
     public bool Empty { get { return this._tokens.Count == 0; } }
@@ -71,7 +69,6 @@ class Table
     public Table()
     {
         this._tokens = new LinkedList<ProtectedToken>();
-        this._string = "";
     }
 
     public void Put(ProtectedToken token, bool atLast)
