@@ -21,7 +21,6 @@ class Game
         }
 
         this._playerInfo = new PlayerInfo(players, _boards, orderPlayer);
-        this._boards = new List<Board>();
         this._box = new Box(tokenGenerator, faceGenerator, filterTokenRules);
         this._table = new Table();
         this._history = new History();
