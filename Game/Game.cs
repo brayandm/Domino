@@ -232,6 +232,8 @@ class Game
 
     public void DistributeTokens(ITokenDealer tokenDealer)
     {
+        this._history.Distributed();
+
         tokenDealer.Distribute(this._box, this._boards);
 
         foreach(Player player in this._playerInfo.Players)
@@ -286,6 +288,11 @@ class Game
     public Player GetCurrentPlayer()
     {
         return this._playerInfo.OrderPlayer.CurrentPlayer();
+    }
+
+    public List<Player> GetAllPlayers()
+    {
+        return this._playerInfo.Players;
     }
 
     public Board GetPlayerBoard(Player player)

@@ -4,6 +4,13 @@ class History
 
     private int _contiguousPassedTurns = 0;
 
+    private bool _isDistributed = false;
+
+    public void Distributed()
+    {
+        this._isDistributed = true;
+    }
+
     public void PassTurn()
     {
         this._contiguousPassedTurns++;
