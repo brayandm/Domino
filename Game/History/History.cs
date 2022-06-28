@@ -41,6 +41,16 @@ class History
         return this._moves;
     }
 
+    public Move? GetLastMove()
+    {
+        if(this._moves.Count == 0)
+        {
+            return null;
+        }
+        
+        return this._moves.Last();
+    }
+
     public IEnumerator<Move> GetEnumerator()
     {
         return (IEnumerator<Move>)this._moves;

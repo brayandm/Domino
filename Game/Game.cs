@@ -309,4 +309,9 @@ class Game
     {
         return this._history.IsDistributed();
     }
+
+    public Move? GetLastMove()
+    {
+        return this._history.GetLastMove();
+    }
 }
