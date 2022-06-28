@@ -76,16 +76,23 @@ class ConsoleInterface : IGraphicinterface
         {
             this._numberOfMoves++;   
 
+            Move? lastMove = game.GetLastMove();
+
             List<Player> players = game.GetAllPlayers();
 
             foreach(Player player in players)
             {
-                Console.WriteLine(player.Id + ":\n" + game.GetBoardString(game.GetPlayerBoard(player)) + "\n");
+                if(player == game.GetCurrentPlayer() && lastMove != null)
+                {
+                    Console.WriteLine(player.Id + ": (In Turn)\n" + game.GetBoardString(game.GetPlayerBoard(player)) + "\n");
+                }
+                else
+                {
+                    Console.WriteLine(player.Id + ":\n" + game.GetBoardString(game.GetPlayerBoard(player)) + "\n");
+                }
             }         
 
-            Console.Write("Table: ");
-
-            Move? lastMove = game.GetLastMove();
+            Console.Write("\nTable: ");
 
             if(lastMove == null)
             {
@@ -118,8 +125,9 @@ class ConsoleInterface : IGraphicinterface
             Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
+            Console.Write("\n");
         }
 
-        Thread.Sleep(10);
+        Thread.Sleep(1000);
     }
 }
