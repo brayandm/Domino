@@ -253,4 +253,29 @@ class Game
     {
         return this._history.GetNumberOfMoves();
     }
+
+    public string GetTableString()
+    {
+        return this._table.ToString();
+    }
+
+    public string GetBoardString(Board board)
+    {
+        return board.ToString();
+    }
+
+    public Player GetCurrentPlayer()
+    {
+        return this._playerInfo.OrderPlayer.CurrentPlayer();
+    }
+
+    public Board GetPlayerBoard(Player player)
+    {
+        return this._playerInfo.PlayerBoard[player];
+    }
+
+    public string GetCurrentPlayerBoardString()
+    {
+        return GetBoardString(this.GetPlayerBoard(this.GetCurrentPlayer()));
+    }
 }
