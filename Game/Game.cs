@@ -248,4 +248,9 @@ class Game
     {
         return this.PlayerPlayedAllTokens(this._playerInfo.OrderPlayer.CurrentPlayer());
     }
+
+    public int GetNumberOfMoves()
+    {
+        return this._history.GetNumberOfMoves();
+    }
 }

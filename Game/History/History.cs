@@ -33,4 +33,9 @@ class History
     {
         return (IEnumerator<Move>)this._moves;
     }
+
+    public int GetNumberOfMoves()
+    {
+        return this._moves.Count;
+    }
 }
