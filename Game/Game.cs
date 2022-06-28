@@ -145,8 +145,18 @@ class Game
         return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Middle);
     }
 
+    public void WatchAllPlayers(ProtectedToken token)
+    {
+        foreach(Player player in this._playerInfo.Players)
+        {
+            token.Watch(player);
+        }
+    }
+
     public void PlayToken(ProtectedToken protectedToken, Position position)
     {
+        this.WatchAllPlayers(protectedToken);
+        
         Token token = protectedToken.GetTokenWithoutVisibility();
 
         foreach(Board board in _boards)
@@ -221,6 +231,14 @@ class Game
     public void DistributeTokens(ITokenDealer tokenDealer)
     {
         tokenDealer.Distribute(this._box, this._boards);
+
+        foreach(Player player in this._playerInfo.Players)
+        {
+            foreach(ProtectedToken token in this.GetPlayerBoard(player).GetTokens())
+            {
+                token.Watch(player);
+            }
+        }
     }
 
     public int GetNumberOfContiguousPassedTurns()
