@@ -53,12 +53,7 @@ class Box
 
         for(int i = 0 ; i < n ; i++)
         {
-            ProtectedToken? token = TakeRandom();
-
-            if(token is ProtectedToken)
-            {
-                tokens.Add((ProtectedToken)token);
-            }
+            tokens.Add(TakeRandom());
         }
 
         return tokens;
