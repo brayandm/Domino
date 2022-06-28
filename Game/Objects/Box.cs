@@ -3,6 +3,8 @@ using System.Diagnostics;
 class Box
 {
     private List<ProtectedToken> _tokens = new List<ProtectedToken>();
+
+    public int Count { get { return this._tokens.Count; } }
     
     public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRules filterTokenRules)
     {
