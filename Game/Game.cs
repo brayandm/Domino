@@ -304,4 +304,9 @@ class Game
     {
         return GetBoardString(this.GetPlayerBoard(this.GetCurrentPlayer()));
     }
+
+    public bool IsDistributed()
+    {
+        return this._history.IsDistributed();
+    }
 }

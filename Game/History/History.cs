@@ -11,6 +11,11 @@ class History
         this._isDistributed = true;
     }
 
+    public bool IsDistributed()
+    {
+        return this._isDistributed;
+    }
+
     public void PassTurn()
     {
         this._contiguousPassedTurns++;
