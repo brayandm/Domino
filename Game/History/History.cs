@@ -2,19 +2,24 @@ class History
 {
     private List<Move> _moves = new List<Move>();
 
-    private int _passTurns = 0;
+    private int _contiguousPassedTurns = 0;
 
     public void PassTurn()
     {
-        this._passTurns++;
+        this._contiguousPassedTurns++;
     }
 
-    public int GetPassTurns()
+    public int GetContiguousPassedTurns()
     {
-        return this._passTurns;
+        return this._contiguousPassedTurns;
     }
 
-    public void Add(Move move)
+    public int ResetContiguousPassedTurns()
+    {
+        return this._contiguousPassedTurns = 0;
+    }
+
+    public void AddMove(Move move)
     {
         this._moves.Add(move);
     }

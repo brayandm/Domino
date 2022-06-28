@@ -50,16 +50,16 @@ abstract class ComplexEvent : Event
     
     protected HashSet<Event> Ends = new HashSet<Event>();
 
-    private Dictionary<Event,List<Tuple<Event,Func<bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<bool>>>>();
+    private Dictionary<Event, List<Tuple<Event, Func<Game, bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<Game, bool>>>>();
 
-    protected void AddEdge(Event eventA, Event eventB, Func<bool> function)
+    protected void AddEdge(Event eventA, Event eventB, Func<Game, bool> function)
     {
         if(!this.AdyList.ContainsKey(eventA))
         {
-            this.AdyList.Add(eventA, new List<Tuple<Event, Func<bool>>>());
+            this.AdyList.Add(eventA, new List<Tuple<Event, Func<Game, bool>>>());
         }
         
-        this.AdyList[eventA].Add(new Tuple<Event,Func<bool>>(eventB, function));
+        this.AdyList[eventA].Add(new Tuple<Event, Func<Game, bool>>(eventB, function));
     }
 
     private bool StartAt(Event eventFather, Game game, IGraphicinterface graphicinterface)
@@ -73,9 +73,9 @@ abstract class ComplexEvent : Event
 
         if(this.AdyList.ContainsKey(eventFather))
         {
-            foreach(Tuple<Event,Func<bool>> eventChild in this.AdyList[eventFather])
+            foreach(Tuple<Event, Func<Game, bool>> eventChild in this.AdyList[eventFather])
             {
-                if(eventChild.Item2())
+                if(eventChild.Item2(game))
                 {
                     if(this.StartAt(eventChild.Item1, game, graphicinterface))
                     {

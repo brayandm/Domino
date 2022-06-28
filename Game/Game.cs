@@ -201,7 +201,7 @@ class Game
 
     public int GetNumberOfContiguousPassedTurns()
     {
-        return this._history.GetPassTurns();
+        return this._history.GetContiguousPassedTurns();
     }
 
     public int GetNumberOfPlayers()
