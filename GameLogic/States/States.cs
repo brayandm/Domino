@@ -11,4 +11,9 @@ class States
             return false;
         }
     }
+
+    public bool Identity(Game game)
+    {
+        return true;
+    }
 }
