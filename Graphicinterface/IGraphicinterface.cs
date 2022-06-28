@@ -12,6 +12,11 @@ class ConsoleInterface : IGraphicinterface
 {
     private int _numberOfMoves = 0;
 
+    private void Clear()
+    {
+        this._numberOfMoves = 0;
+    }
+
     public void Main()
     {
         Console.WriteLine("Welcome to Domino game\n\n");
@@ -21,6 +26,8 @@ class ConsoleInterface : IGraphicinterface
 
     public void NewGame()
     {
+        this.Clear();
+
         Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IFaceGenerator), typeof(IntFacesGenerator));
@@ -39,17 +46,28 @@ class ConsoleInterface : IGraphicinterface
         {
             if(game.GetPlayerBoard(player).Count == 0)
             {
-                Console.WriteLine(player.Id + " has won");
+                Console.WriteLine(player.Id + " has won\n\n\n");
                 thereIsWinner = true;
             }
         }
 
         if(!thereIsWinner)
         {
-            Console.WriteLine("Nobody won");
+            Console.WriteLine("Nobody won\n\n\n");
         }
 
         Thread.Sleep(1000);
+
+        Console.WriteLine("Do you want to play a new Domino game Y/N?\n\n");
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        if(keyInfo.Key != ConsoleKey.Y)
+        {
+            Environment.Exit(0);
+        }
+
+        Console.Write("\n\n");
     }
 
     public void Update(Game game)
@@ -102,6 +120,6 @@ class ConsoleInterface : IGraphicinterface
             Console.Write("\n");
         }
 
-        Thread.Sleep(1000);
+        Thread.Sleep(10);
     }
 }
