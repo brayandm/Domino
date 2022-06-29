@@ -12,6 +12,11 @@ struct Token : IComparable
         return "[" + Faces.Item1.Id + ", " + Faces.Item2.Id + "]";
     }
 
+    public bool IsDouble()
+    {
+        return this.Faces.Item1.Id == this.Faces.Item2.Id;
+    }
+
     public void Rotate()
     {
         this.Faces = new Tuple<IFace, IFace>(this.Faces.Item2, this.Faces.Item1);
