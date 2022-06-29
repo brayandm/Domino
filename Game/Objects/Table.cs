@@ -88,4 +88,21 @@ class Table
             this._tokens.AddLast(token); 
         } 
     }
+
+    public List<ProtectedToken> GetProtectedTokens()
+    {
+        return this._tokens.ToList();
+    }
+
+    public List<Token> GetTokens()
+    {
+        List<Token> tokens = new List<Token>();
+
+        foreach(ProtectedToken token in this.GetProtectedTokens())
+        {
+            tokens.Add(token.GetTokenWithoutVisibility());
+        }
+
+        return tokens;
+    }
 }

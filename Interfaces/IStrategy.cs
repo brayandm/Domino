@@ -1,11 +1,11 @@
 interface IStrategy : IBaseInterface
 {
-    int ChooseTokenIndex(List<Token> tokens);
+    int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens);
 }
 
 class GreedyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> tokens)
+    public int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens)
     {
         if(tokens.Count == 0)return -1;
      
@@ -27,7 +27,7 @@ class GreedyStrategy : IStrategy
 
 class RandomStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> tokens)
+    public int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens)
     {
         if(tokens.Count == 0)return -1;
 
