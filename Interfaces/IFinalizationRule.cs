@@ -1,4 +1,4 @@
-interface IFinalizationRule : IBaseInterface
+interface IFinalizationRule : IBaseInterface, ISelector
 {
     bool IsGameOver(Game game);
 }

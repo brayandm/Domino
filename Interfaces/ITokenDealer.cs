@@ -1,4 +1,4 @@
-interface ITokenDealer : IBaseInterface
+interface ITokenDealer : IBaseInterface, ISelector
 {
     void Distribute(Box box, List<Board> boards);
 }

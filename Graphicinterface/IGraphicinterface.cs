@@ -1,6 +1,6 @@
 using System.Threading;
 
-interface IGraphicinterface
+interface IGraphicinterface : IBaseInterface
 {
     void Main();
     void NewGame();
@@ -44,7 +44,7 @@ class ConsoleInterface : IGraphicinterface
         }
         else
         {
-            List<Type> gameInterfaces = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(IBaseInterface));
+            List<Type> gameInterfaces = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(ISelector));
 
             foreach(Type gameInterface in gameInterfaces)
             {

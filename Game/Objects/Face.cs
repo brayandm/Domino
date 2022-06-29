@@ -1,4 +1,4 @@
-interface IFace
+interface IFace : IBaseInterface
 {
     string Id {get;}
     int Value {get;}
