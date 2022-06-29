@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface IOrderPlayer : IBaseInterface
+interface IOrderPlayer
 {
     void Init(List<Player> players);
 
