@@ -28,10 +28,55 @@ class ConsoleInterface : IGraphicinterface
     {
         this.Clear();
 
-        Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IFaceGenerator), typeof(IntFacesGenerator));
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenGenerator), typeof(ClassicTokenGenerator));
+        Console.WriteLine("Do you want to set the default configuration (Y/N)?\n\n");
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            Console.WriteLine("The Domino game will be set with default configuration\n\n");
+
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IFaceGenerator), typeof(IntFacesGenerator));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenGenerator), typeof(ClassicTokenGenerator));
+        }
+        else
+        {
+            List<Type> gameInterfaces = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(IBaseInterface));
+
+            foreach(Type gameInterface in gameInterfaces)
+            {
+                List<Type> implementations = DependencyContainerRegister.Register.Organizer.GetImplementations(gameInterface);
+
+                while(true)
+                {
+                    Console.WriteLine("Select the implementation for " + gameInterface + ":\n");
+
+                    for(int i = 0 ; i < implementations.Count ; i++)
+                    {
+                        Console.WriteLine((i+1) + " - " + implementations[i]);
+                    }
+
+                    Console.WriteLine("\n\n");
+
+                    int selection = Utils.GetIntFromConsoleKeyInfo(Console.ReadKey());
+
+                    Console.WriteLine("\n\n");
+
+                    if(1 <= selection && selection <= implementations.Count)
+                    {
+                        DependencyContainerRegister.Register.Organizer.SetDefault(gameInterface, implementations[selection-1]);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect selection, repeat it again\n\n");
+                    }
+                }
+            }
+        }
         
         Thread.Sleep(1000);
     }
@@ -58,16 +103,16 @@ class ConsoleInterface : IGraphicinterface
 
         Thread.Sleep(1000);
 
-        Console.WriteLine("Do you want to play a new Domino game Y/N?\n\n");
+        Console.WriteLine("Do you want to play a new Domino game (Y/N)?\n\n");
 
         ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
 
         if(keyInfo.Key != ConsoleKey.Y)
         {
             Environment.Exit(0);
         }
-
-        Console.Write("\n\n");
     }
 
     public void Update(Game game)

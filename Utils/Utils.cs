@@ -13,4 +13,9 @@ public static class Utils
         a = b;
         b = c;
     }
+
+    public static int GetIntFromConsoleKeyInfo(ConsoleKeyInfo keyInfo)
+    {
+        return (int)keyInfo.Key - 48;
+    }
 }

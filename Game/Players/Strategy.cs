@@ -1,4 +1,4 @@
-interface IStrategy : IBaseInterface
+interface IStrategy
 {
     int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens);
 }
