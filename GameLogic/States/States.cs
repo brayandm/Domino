@@ -17,6 +17,23 @@ class States
         }
     }
 
+    public static bool IsLastPlayerPassed(Game game)
+    {
+        if(game.GetNumberOfContiguousPassedTurns() != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool IsNotLastPlayerPassed(Game game)
+    {
+        return !IsLastPlayerPassed(game);
+    }
+
     public static bool CurrentPlayerPlayedAllTokens(Game game)
     {
         if(game.CurrentPlayerPlayedAllTokens() == true)
