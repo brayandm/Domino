@@ -179,8 +179,8 @@ class ConsoleInterface : IGraphicinterface
             Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
+            
+            Thread.Sleep(_time);
         }
-
-        Thread.Sleep(_time);
     }
 }
