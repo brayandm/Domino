@@ -48,7 +48,7 @@ class Events
         }
     }
 
-    private class ClassicGame : ComplexEvent
+    private class ClassicGame : ComplexEvent, IGame
     {
         public ClassicGame()
         {
@@ -72,7 +72,7 @@ class Events
         }
     }
 
-    private class PlayWhilePossibleGame : ComplexEvent
+    private class PlayWhilePossibleGame : ComplexEvent, IGame
     {
         public PlayWhilePossibleGame()
         {
@@ -101,9 +101,9 @@ class Events
     {
         public MainEvent()
         {
-            Event ClassicGame = new ClassicGame();
+            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGame));
         
-            this.Origin = ClassicGame;
+            this.Origin = game;
         }
     }
 }
