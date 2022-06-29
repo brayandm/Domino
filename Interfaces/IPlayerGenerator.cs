@@ -17,3 +17,16 @@ class ClassicFourGreedyPlayers : IPlayerGenerator
         return players;
     }
 }
+
+class TwoRandomPlayers : IPlayerGenerator
+{
+    public List<Player> GetPlayers()
+    {
+        List<Player> players = new List<Player>();
+
+        players.Add(new Player("Player1", "Carlos", new RandomStrategy()));
+        players.Add(new Player("Player2", "Maria", new RandomStrategy()));
+
+        return players;
+    }
+}
