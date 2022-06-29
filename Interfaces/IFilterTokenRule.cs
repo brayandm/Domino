@@ -1,9 +1,9 @@
-interface IFilterTokenRules : IBaseInterface
+interface IFilterTokenRule : IBaseInterface
 {
     bool Apply(Token token);
 }
 
-class WithoutDoblesFilterBoxRules : IFilterTokenRules
+class WithoutDoblesFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)
     {
@@ -11,7 +11,7 @@ class WithoutDoblesFilterBoxRules : IFilterTokenRules
     }
 }
 
-class NonFilterBoxRules : IFilterTokenRules
+class NonFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)
     {

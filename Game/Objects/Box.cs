@@ -6,10 +6,10 @@ class Box
 
     public int Count { get { return this._tokens.Count; } }
     
-    public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRules filterTokenRules)
+    public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRule filterTokenRule)
     {
         List<Token> tokens = tokenGenerator.Generate(faceGenerator);
-        tokens.RemoveAll(x => !filterTokenRules.Apply(x));
+        tokens.RemoveAll(x => !filterTokenRule.Apply(x));
         
         foreach(Token token in tokens)
         {

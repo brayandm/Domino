@@ -10,7 +10,7 @@ class Game
 
     private History _history;
 
-    public Game(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRules filterTokenRules, IPlayerGenerator playerGenerator, IOrderPlayer orderPlayer)
+    public Game(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRule filterTokenRule, IPlayerGenerator playerGenerator, IOrderPlayer orderPlayer)
     {
         List<Player> players = playerGenerator.GetPlayers();
         this._boards = new List<Board>();
@@ -21,7 +21,7 @@ class Game
         }
 
         this._playerInfo = new PlayerInfo(players, _boards, orderPlayer);
-        this._box = new Box(tokenGenerator, faceGenerator, filterTokenRules);
+        this._box = new Box(tokenGenerator, faceGenerator, filterTokenRule);
         this._table = new Table();
         this._history = new History();
     }

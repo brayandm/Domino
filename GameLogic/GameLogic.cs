@@ -12,11 +12,11 @@ class GameLogic
             
             ITokenGenerator tokenGenerator = (ITokenGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenGenerator));
             IFaceGenerator faceGenerator = (IFaceGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFaceGenerator));
-            IFilterTokenRules filterTokenRules = (IFilterTokenRules)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFilterTokenRules));
+            IFilterTokenRule filterTokenRule = (IFilterTokenRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFilterTokenRule));
             IPlayerGenerator playerGenerator = (IPlayerGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IPlayerGenerator));
             IOrderPlayer orderPlayer = (IOrderPlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayer));
 
-            Game game = new Game(tokenGenerator, faceGenerator, filterTokenRules, playerGenerator, orderPlayer);
+            Game game = new Game(tokenGenerator, faceGenerator, filterTokenRule, playerGenerator, orderPlayer);
 
             Events.MainEvent mainEvent = new Events.MainEvent();
 
