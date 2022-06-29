@@ -79,6 +79,10 @@ class ConsoleInterface : IGraphicinterface
         }
         
         Thread.Sleep(1000);
+
+        Console.WriteLine("The game will start...\n\n");
+
+        Thread.Sleep(2000);
     }
 
     public void GameOver(Game game)
