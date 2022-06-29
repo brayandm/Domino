@@ -89,6 +89,7 @@ class Events
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
             AddEdge(processCurrentTurn, gameOver, States.IsGameOver);
             AddEdge(processCurrentTurn, processCurrentTurn, States.IsNotLastPlayerPassed);
+            AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
 
