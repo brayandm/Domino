@@ -1,5 +1,3 @@
-using System.Threading;
-
 interface IGraphicinterface : IBaseInterface
 {
     void Main();
