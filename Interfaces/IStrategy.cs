@@ -55,8 +55,15 @@ class FrequencyStrategy : IStrategy
                 idFrequency.Add(token.Faces.Item2.Id, 0);
             }
 
-            idFrequency[token.Faces.Item1.Id]++;
-            idFrequency[token.Faces.Item2.Id]++;
+            if(token.Faces.Item1.Id != token.Faces.Item2.Id)
+            {
+                idFrequency[token.Faces.Item1.Id]++;
+                idFrequency[token.Faces.Item2.Id]++;
+            }
+            else
+            {
+                idFrequency[token.Faces.Item1.Id]++;
+            }
         }
 
         string mostFrequencyId = "";
