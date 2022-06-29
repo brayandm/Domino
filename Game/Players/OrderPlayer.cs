@@ -20,7 +20,7 @@ class ClassicOrderPlayer : IOrderPlayer
     public void Init(List<Player> players)
     {
         Debug.Assert(players.Count != 0);
-        this._players = players;
+        this._players = new List<Player>(players);
     }
 
     public void NextPlayer()
