@@ -316,4 +316,9 @@ class Game
     {
         return this._history.GetLastMove();
     }
+
+    public void ReversePlayerOrder()
+    {
+        this._playerInfo.OrderPlayer.Reverse();
+    }
 }

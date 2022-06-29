@@ -33,13 +33,13 @@ class States
     {
         IFinalizationRule finalizationRule = (IFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFinalizationRule));
         
-        if(finalizationRule.IsGameOver(game))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return finalizationRule.IsGameOver(game);
+    }
+
+    public static bool IsConditionMetToReverse(Game game)
+    {
+        IReversePlayerOrder reversePlayerOrder = (IReversePlayerOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IReversePlayerOrder));
+        
+        return reversePlayerOrder.IsConditionMet(game);
     }
 }

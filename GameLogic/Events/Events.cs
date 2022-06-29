@@ -1,5 +1,12 @@
 class Events
 {
+    private class NewGame : Event
+    {
+        public override void Action(Game game)
+        {
+        }
+    }
+
     private class DistributeTokens : Event
     {
         public override void Action(Game game)
@@ -26,20 +33,20 @@ class Events
         }
     }
 
+    private class ReversePlayerOrder : Event
+    {
+        public override void Action(Game game)
+        {
+            game.ReversePlayerOrder();
+        }
+    }
+
     private class GameOver : Event
     {
         public override void Action(Game game)
         {
         }
     }
-
-    private class NewGame : Event
-    {
-        public override void Action(Game game)
-        {
-        }
-    }
-
 
     public class MainEvent : ComplexEvent
     {
@@ -49,6 +56,7 @@ class Events
             Event distributeTokens = new DistributeTokens();
             Event processCurrentTurn = new ProcessCurrentTurn();
             Event nextPlayer = new NextPlayer();
+            Event reversePlayerOrder = new ReversePlayerOrder();
             Event gameOver = new GameOver();
 
             this.Origin = newGame;
@@ -56,6 +64,7 @@ class Events
             AddEdge(newGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
             AddEdge(processCurrentTurn, gameOver, States.IsGameOver);
+            AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
 
