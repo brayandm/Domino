@@ -10,6 +10,7 @@ interface IGraphicinterface : IBaseInterface
 
 class ConsoleInterface : IGraphicinterface
 {
+    private const int _time = 1000;
     private int _numberOfMoves = 0;
 
     private void Clear()
@@ -21,7 +22,7 @@ class ConsoleInterface : IGraphicinterface
     {
         Console.WriteLine("Welcome to Domino game\n\n");
 
-        Thread.Sleep(1000);
+        Thread.Sleep(_time);
     }
 
     public void NewGame()
@@ -81,11 +82,11 @@ class ConsoleInterface : IGraphicinterface
             }
         }
         
-        Thread.Sleep(1000);
+        Thread.Sleep(_time);
 
         Console.WriteLine("The game will start...\n\n");
 
-        Thread.Sleep(2000);
+        Thread.Sleep(_time*2);
     }
 
     public void GameOver(Game game)
@@ -108,7 +109,7 @@ class ConsoleInterface : IGraphicinterface
             Console.WriteLine("Nobody won\n\n\n");
         }
 
-        Thread.Sleep(1000);
+        Thread.Sleep(_time);
 
         Console.WriteLine("Do you want to play a new Domino game (Y/N)?\n\n");
 
@@ -180,6 +181,6 @@ class ConsoleInterface : IGraphicinterface
             Console.Write("\n");
         }
 
-        Thread.Sleep(1000);
+        Thread.Sleep(_time);
     }
 }
