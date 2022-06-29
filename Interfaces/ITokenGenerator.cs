@@ -1,7 +1,7 @@
 interface ITokenGenerator : IBaseInterface
 {
-    List<Token> Generate(IFaceGenerator faceGenerator);
-    List<Token> Generate(IFaceGenerator faceGenerator, int k);
+    List<Token> Generate(List<IFace> faces);
+    List<Token> Generate(List<IFace> faces, int k);
 }
 
 static class TokenGeneration
@@ -21,14 +21,14 @@ static class TokenGeneration
 
 class ClassicTokenGenerator : ITokenGenerator
 {
-    public List<Token> Generate(IFaceGenerator faceGenerator)
+    public List<Token> Generate(List<IFace> faces)
     {
-        return AllPair(faceGenerator.GetFaces());
+        return AllPair(faces);
     }
 
-    public List<Token> Generate(IFaceGenerator faceGenerator, int k)
+    public List<Token> Generate(List<IFace> faces, int k)
     {
-        return TokenGeneration.KTimesTokens(AllPair(faceGenerator.GetFaces()), k);
+        return TokenGeneration.KTimesTokens(AllPair(faces), k);
     }
 
     private List<Token> AllPair(List<IFace> faces)
@@ -52,14 +52,14 @@ class ClassicTokenGenerator : ITokenGenerator
 
 class CycleTokenGenerator : ITokenGenerator
 {
-    public List<Token> Generate(IFaceGenerator faceGenerator)
+    public List<Token> Generate(List<IFace> faces)
     {
-        return CyclePair(faceGenerator.GetFaces());
+        return CyclePair(faces);
     }
 
-    public List<Token> Generate(IFaceGenerator faceGenerator, int k)
+    public List<Token> Generate(List<IFace> faces, int k)
     {
-        return TokenGeneration.KTimesTokens(CyclePair(faceGenerator.GetFaces()), k);
+        return TokenGeneration.KTimesTokens(CyclePair(faces), k);
     }
 
     private List<Token> CyclePair(List<IFace> faces)
