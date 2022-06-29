@@ -24,3 +24,14 @@ class ClassicSevenTokensDistribution : ITokenDealer
         }
     }
 }
+
+class RandomMaxTenTokensDistribution : ITokenDealer
+{
+    public void Distribute(Box box, List<Board> boards)
+    {
+        foreach(Board board in boards)
+        {
+            board.Add(box.Take((new Random().Next(10)) + 1));
+        }
+    }
+}
