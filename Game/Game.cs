@@ -126,6 +126,8 @@ class Game
             tokens.Add(protectedToken.GetTokenWithoutVisibility());
         }
 
+        Debug.Assert(tokens.Count > 0);
+
         int index = player.Strategy.ChooseTokenIndex(tokens, this._table.GetTokens());
 
         ProtectedToken protectedTokenToPlay = protectedTokens[index];
