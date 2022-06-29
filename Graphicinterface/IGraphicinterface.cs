@@ -10,7 +10,7 @@ interface IGraphicinterface : IBaseInterface
 
 class ConsoleInterface : IGraphicinterface
 {
-    private const int _time = 1000;
+    private int _time = 1000;
     private int _numberOfMoves = 0;
 
     private void Clear()
@@ -23,12 +23,41 @@ class ConsoleInterface : IGraphicinterface
         Console.WriteLine("Welcome to Domino game\n\n");
 
         Thread.Sleep(_time);
+
+        while(true)
+        {
+            Console.WriteLine("Select the speed of the game:\n");
+            Console.WriteLine("1 - Very Slow");
+            Console.WriteLine("2 - Slow");
+            Console.WriteLine("3 - Medium");
+            Console.WriteLine("4 - Fast");
+            Console.WriteLine("5 - Very Fast");
+
+            Console.WriteLine("\n");
+
+            int selection = Utils.GetIntFromConsoleKeyInfo(Console.ReadKey());
+
+            Console.WriteLine("\n\n");
+
+            if(1 <= selection && selection <= 5)
+            {
+                if(selection == 1)this._time = 2000;
+                if(selection == 2)this._time = 1000;
+                if(selection == 3)this._time = 500;
+                if(selection == 4)this._time = 100;
+                if(selection == 5)this._time = 0;
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect selection, repeat it again\n\n");
+            }
+        }
     }
 
     public void NewGame()
     {
         this.Clear();
-
 
         Console.WriteLine("Do you want to set the default configuration (Y/N)?\n\n");
 
@@ -179,7 +208,7 @@ class ConsoleInterface : IGraphicinterface
             Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
-            
+
             Thread.Sleep(_time);
         }
     }
