@@ -36,7 +36,7 @@ abstract class Event
 {
     public abstract void Action(Game game);
 
-    public void Start(Game game, IGraphicinterface graphicinterface)
+    public virtual void Start(Game game, IGraphicinterface graphicinterface)
     {
         Action(game);
 
@@ -90,7 +90,7 @@ abstract class ComplexEvent : Event
 
     public override void Action(Game game){}
 
-    public new void Start(Game game, IGraphicinterface graphicinterface)
+    public override void Start(Game game, IGraphicinterface graphicinterface)
     {
         if(this.Origin is Event)
         {
