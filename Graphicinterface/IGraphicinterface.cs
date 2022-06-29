@@ -39,8 +39,11 @@ class ConsoleInterface : IGraphicinterface
         {
             Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IFaceGenerator), typeof(IntFacesGenerator));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenGenerator), typeof(ClassicTokenGenerator));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IFinalizationRule), typeof(ClassicFinalizationRule));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IPlayerGenerator), typeof(ClassicFourGreedyPlayers));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IReversePlayerOrder), typeof(NoReverse));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
         }
         else
         {

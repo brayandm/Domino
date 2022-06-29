@@ -3,7 +3,7 @@ interface IFinalizationRule : IBaseInterface, ISelector
     bool IsGameOver(Game game);
 }
 
-class ClasicFinalizationRule : IFinalizationRule 
+class ClassicFinalizationRule : IFinalizationRule 
 {
     public bool IsGameOver(Game game) 
     {
