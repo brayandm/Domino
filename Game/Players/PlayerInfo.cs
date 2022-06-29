@@ -6,15 +6,15 @@ class PlayerInfo
     public IOrderPlayer OrderPlayer;
     public Dictionary<Player, Board> PlayerBoard;
 
-    public PlayerInfo(List<Player> players, List<Board> boards, IOrderPlayer orderPlayer)
+    public PlayerInfo(List<Player> players, List<Board> boards)
     {
         Debug.Assert(players.Count == boards.Count);
 
-        orderPlayer.Init(players);
-
         this.Players = players;
-        this.OrderPlayer = orderPlayer;
+        this.OrderPlayer = (IOrderPlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayer));
         this.PlayerBoard = new Dictionary<Player, Board>();
+
+        this.OrderPlayer.Init(players);
 
         for(int i = 0 ; i < Math.Min(players.Count, boards.Count) ; i++)
         {

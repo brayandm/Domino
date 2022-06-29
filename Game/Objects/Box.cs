@@ -6,15 +6,9 @@ class Box
 
     public int Count { get { return this._tokens.Count; } }
     
-    public Box(ITokenGenerator tokenGenerator, IFaceGenerator faceGenerator, IFilterTokenRule filterTokenRule)
+    public Box(IBoxGenerator boxGenerator)
     {
-        List<Token> tokens = tokenGenerator.Generate(faceGenerator);
-        tokens.RemoveAll(x => !filterTokenRule.Apply(x));
-        
-        foreach(Token token in tokens)
-        {
-            _tokens.Add(new ProtectedToken(token));
-        }
+        this._tokens = boxGenerator.Generate();
     }
 
     private ProtectedToken TakeAt(int pos)
