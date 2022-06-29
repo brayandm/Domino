@@ -6,6 +6,8 @@ interface IOrderPlayer : IBaseInterface
 
     void NextPlayer();
 
+    void Reverse();
+
     Player CurrentPlayer();
 }
 
@@ -21,13 +23,19 @@ class ClassicOrderPlayer : IOrderPlayer
         this._players = players;
     }
 
-    public Player CurrentPlayer()
-    {
-        return _players[_currentPlayer];
-    }
-
     public void NextPlayer()
     {
         _currentPlayer = (_currentPlayer + 1) % _players.Count;
+    }
+
+    public void Reverse()
+    {
+        this._players.Reverse();
+        this._currentPlayer = this._players.Count - this._currentPlayer - 1;
+    }
+
+    public Player CurrentPlayer()
+    {
+        return _players[_currentPlayer];
     }
 }
