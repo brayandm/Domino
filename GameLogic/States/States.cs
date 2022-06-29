@@ -1,5 +1,10 @@
 class States
 {
+    public static bool Identity(Game game)
+    {
+        return true;
+    }
+
     public static bool IsAllPlayersPassed(Game game)
     {
         if(game.GetNumberOfContiguousPassedTurns() >= game.GetNumberOfPlayers())
@@ -24,8 +29,17 @@ class States
         }
     }
 
-    public static bool Identity(Game game)
+    public static bool IsGameOver(Game game)
     {
-        return true;
+        IFinalizationRule finalizationRule = (IFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFinalizationRule));
+        
+        if(finalizationRule.IsGameOver(game))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

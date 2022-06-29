@@ -55,8 +55,7 @@ class Events
 
             AddEdge(newGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, gameOver, States.CurrentPlayerPlayedAllTokens);
-            AddEdge(processCurrentTurn, gameOver, States.IsAllPlayersPassed);
+            AddEdge(processCurrentTurn, gameOver, States.IsGameOver);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
 
