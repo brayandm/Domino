@@ -211,14 +211,8 @@ class Game
     {
         Tuple<ProtectedToken?, Position> playerMove = this.SelectCurrentPlayerMove();
 
-        if(playerMove.Item2 == Position.Pass)
+        if(playerMove.Item2 != Position.Pass)
         {
-            this._history.PassTurn();
-        }
-        else
-        {
-            this._history.ResetContiguousPassedTurns();
-            
             Debug.Assert(playerMove.Item1 is ProtectedToken);
             
             if(playerMove.Item1 is ProtectedToken)
@@ -229,7 +223,7 @@ class Game
 
         Move move = new Move(this._teamInfo.OrderPlayer.CurrentPlayer(), playerMove.Item1, playerMove.Item2);
 
-        this._history.AddMove(move);
+        this._history.PlayMove(move);
     }
 
     public void DistributeTokens(ITokenDealer tokenDealer)
@@ -305,6 +299,11 @@ class Game
     public string GetCurrentPlayerBoardString()
     {
         return GetBoardString(this.GetPlayerBoard(this.GetCurrentPlayer()));
+    }
+
+    public int GetPlayerTotalPassedTurns(Player player)
+    {
+        return this._history.GetPlayerTotalPassedTurns(player);
     }
 
     public bool IsDistributed()

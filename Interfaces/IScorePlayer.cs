@@ -34,3 +34,11 @@ class ScorePlayerMaxRule : IScorePlayer
         return totalValues.Count != 0 ? totalValues.Last() : 0;
     }
 }
+
+class PassesScorePlayer : IScorePlayer
+{
+    public int GetScore(Game game, Player player) 
+    {
+        return game.GetPlayerTotalPassedTurns(player);
+    }
+}

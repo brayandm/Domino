@@ -54,7 +54,7 @@ class History
         this.AddMove(move);
     }
 
-    public void AddMove(Move move)
+    private void AddMove(Move move)
     {
         this._moves.Add(move);
     }
@@ -84,7 +84,7 @@ class History
         return this._moves.Count;
     }
 
-    public int GetPlayerPassedTurns(Player player)
+    public int GetPlayerTotalPassedTurns(Player player)
     {
         return this._playerTotalPassedTurns.ContainsKey(player) ? this._playerTotalPassedTurns[player] : 0;
     }
