@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 interface IJoinable : IBaseInterface, ISelector
 {
-    bool IsJoinable(Game game, ProtectedToken protectedTokenA, ProtectedToken protectedTokenB);
+    bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB);
 }
 
 class ClassicJoinById : IJoinable
