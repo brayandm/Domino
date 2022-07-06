@@ -10,7 +10,9 @@ class Game
 
     private History _history;
 
-    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator)
+    private IJoinable _joinable;
+
+    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable)
     {
         Tuple<List<Team>, List<Player>> teams = teamGenerator.GetTeams();
         this._boards = new List<Board>();
@@ -24,6 +26,7 @@ class Game
         this._box = new Box(boxGenerator);
         this._table = new Table();
         this._history = new History();
+        this._joinable = joinable;
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
@@ -43,48 +46,7 @@ class Game
         return visibleTokens;
     }
 
-    public bool MatchTokenWithFace(Token token, IFace face)
-    {
-        if(token.Faces.Item1.Id == face.Id || token.Faces.Item2.Id == face.Id)return true;
-        return false;
-    }
-
-    public bool MatchTokenWithFaces(Token token, Tuple<IFace, IFace> faces)
-    {
-        if(this.MatchTokenWithFace(token, faces.Item1) || this.MatchTokenWithFace(token, faces.Item2))return true;
-        return false;
-    }
-
-    public bool MatchTokenWithLeftFace(Token token)
-    {
-        Tuple<IFace, IFace>? availableFaces = this._table.AvailableFaces;
-
-        if(availableFaces == null)
-        {
-            return true;
-        }
-
-        return this.MatchTokenWithFace(token, availableFaces.Item1);
-    }
-
-    public bool MatchTokenWithRightFace(Token token)
-    {
-        Tuple<IFace, IFace>? availableFaces = this._table.AvailableFaces;
-
-        if(availableFaces == null)
-        {
-            return true;
-        }
-
-        return this.MatchTokenWithFace(token, availableFaces.Item2);
-    }
-
-    public bool MatchTokenWithBothFaces(Token token)
-    {
-        return this.MatchTokenWithLeftFace(token) || this.MatchTokenWithRightFace(token);
-    }
-
-    public List<ProtectedToken> GetPlayerTokensPlayable(Player player)
+    public List<ProtectedToken> GetPlayerTokensPlayable(Player player, IJoinable joinable)
     {
         Board board = this._teamInfo.PlayerBoard[player];
         
@@ -92,23 +54,42 @@ class Game
 
         foreach(ProtectedToken token in GetBoardTokensVisibleForPlayer(player, board))
         {
-            if(this.MatchTokenWithBothFaces(token.GetTokenWithoutVisibility()))
+            if(joinable.IsJoinable(this, token, this._table.LeftToken))
             {
                 tokens.Add(token);
+                break;
+            }
+            if(joinable.IsJoinable(this, this._table.RightToken, token))
+            {
+                tokens.Add(token);
+                break;
+            }
+
+            token.Rotate();
+
+            if(joinable.IsJoinable(this, token, this._table.LeftToken))
+            {
+                tokens.Add(token);
+                break;
+            }
+            if(joinable.IsJoinable(this, this._table.RightToken, token))
+            {
+                tokens.Add(token);
+                break;
             }
         }
 
         return tokens;
     }
 
-    public List<ProtectedToken> GetCurrentPlayerTokensPlayable()
+    public List<ProtectedToken> GetCurrentPlayerTokensPlayable(IJoinable joinable)
     {
-        return this.GetPlayerTokensPlayable(this._teamInfo.OrderPlayer.CurrentPlayer());
+        return this.GetPlayerTokensPlayable(this._teamInfo.OrderPlayer.CurrentPlayer(), joinable);
     }
 
-    public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove()
+    public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove(IJoinable joinable)
     {
-        List<ProtectedToken> protectedTokens = this.GetCurrentPlayerTokensPlayable();
+        List<ProtectedToken> protectedTokens = this.GetCurrentPlayerTokensPlayable(joinable);
 
         if(protectedTokens.Count == 0)
         {
@@ -130,21 +111,31 @@ class Game
 
         int index = player.Strategy.ChooseTokenIndex(tokens, this._table.GetTokens());
 
-        ProtectedToken protectedTokenToPlay = protectedTokens[index];
+        ProtectedToken tokenToPlay = protectedTokens[index];
 
-        Token tokenToPlay = protectedTokenToPlay.GetTokenWithoutVisibility();
-
-        if(!this._table.Empty && this.MatchTokenWithLeftFace(tokenToPlay))
+        if(!this._table.Empty && joinable.IsJoinable(this, tokenToPlay, this._table.LeftToken))
         {
-            return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Left);
+            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Left);
         }
 
-        if(!this._table.Empty && this.MatchTokenWithRightFace(tokenToPlay))
+        if(!this._table.Empty && joinable.IsJoinable(this, this._table.RightToken, tokenToPlay))
         {
-            return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Right);
+            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Right);
+        }
+
+        tokenToPlay.Rotate();
+
+        if(!this._table.Empty && joinable.IsJoinable(this, tokenToPlay, this._table.LeftToken))
+        {
+            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Left);
+        }
+
+        if(!this._table.Empty && joinable.IsJoinable(this, this._table.RightToken, tokenToPlay))
+        {
+            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Right);
         }
         
-        return new Tuple<ProtectedToken?, Position>(protectedTokenToPlay, Position.Middle);
+        return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Middle);
     }
 
     public void WatchAllPlayers(ProtectedToken token)
@@ -155,61 +146,57 @@ class Game
         }
     }
 
-    public void PlayToken(ProtectedToken protectedToken, Position position)
+    public void PlayToken(ProtectedToken token, Position position)
     {
-        this.WatchAllPlayers(protectedToken);
+        this.WatchAllPlayers(token);
         
-        Token token = protectedToken.GetTokenWithoutVisibility();
-
         foreach(Board board in _boards)
         {
-            if(board.Contains(protectedToken))
+            if(board.Contains(token))
             {
                 if(position == Position.Left)
                 {
-                    if(_table.LeftFace is IFace)
+                    if(_table.LeftToken is ProtectedToken)
                     {
-                        if(token.Faces.Item1.Id == ((IFace)_table.LeftFace).Id)
+                        if(!this._joinable.IsJoinable(this, token, this._table.LeftToken))
                         {
-                            protectedToken.Rotate();
                             token.Rotate();
                         }
 
-                        Debug.Assert(token.Faces.Item2.Id == ((IFace)_table.LeftFace).Id);
+                        Debug.Assert(this._joinable.IsJoinable(this, token, this._table.LeftToken));
 
-                        this._table.Put(protectedToken, false);
+                        this._table.Put(token, false);
                     }
                 }
 
                 if(position == Position.Middle)
                 {
-                    this._table.Put(protectedToken, false);
+                    this._table.Put(token, false);
                 }
 
                 if(position == Position.Right)
                 {
-                    if(_table.RightFace is IFace)
+                    if(_table.RightToken is ProtectedToken)
                     {
-                        if(token.Faces.Item2.Id == ((IFace)_table.RightFace).Id)
+                        if(!this._joinable.IsJoinable(this, this._table.RightToken, token))
                         {
-                            protectedToken.Rotate();
                             token.Rotate();
                         }
 
-                        Debug.Assert(token.Faces.Item1.Id == ((IFace)_table.RightFace).Id);
+                        Debug.Assert(this._joinable.IsJoinable(this, this._table.RightToken, token));
 
-                        this._table.Put(protectedToken, true);
+                        this._table.Put(token, true);
                     }
                 }
 
-                board.Remove(protectedToken);
+                board.Remove(token);
             }
         }
     }
 
     public void ProcessCurrentTurn()
     {
-        Tuple<ProtectedToken?, Position> playerMove = this.SelectCurrentPlayerMove();
+        Tuple<ProtectedToken?, Position> playerMove = this.SelectCurrentPlayerMove(this._joinable);
 
         if(playerMove.Item2 != Position.Pass)
         {
