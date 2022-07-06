@@ -6,6 +6,8 @@ class History
 
     private bool _isDistributed = false;
 
+    private Dictionary<Player, int> _playerTotalPassedTurns = new Dictionary<Player, int>();
+
     public void Distributed()
     {
         this._isDistributed = true;
@@ -29,6 +31,27 @@ class History
     public int ResetContiguousPassedTurns()
     {
         return this._contiguousPassedTurns = 0;
+    }
+
+    public void PlayMove(Move move)
+    {
+        if(move.Position == Position.Pass)
+        {
+            this.PassTurn();
+
+            if(!this._playerTotalPassedTurns.ContainsKey(move.Player))
+            {
+                this._playerTotalPassedTurns.Add(move.Player, 0);
+            }
+
+            this._playerTotalPassedTurns[move.Player]++;
+        }
+        else
+        {
+            this.ResetContiguousPassedTurns();
+        }
+
+        this.AddMove(move);
     }
 
     public void AddMove(Move move)
@@ -59,5 +82,10 @@ class History
     public int GetNumberOfMoves()
     {
         return this._moves.Count;
+    }
+
+    public int GetPlayerPassedTurns(Player player)
+    {
+        return this._playerTotalPassedTurns.ContainsKey(player) ? this._playerTotalPassedTurns[player] : 0;
     }
 }
