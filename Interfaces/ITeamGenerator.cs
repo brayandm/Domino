@@ -34,3 +34,18 @@ class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamGenerator
             players);
     }
 }
+
+class TwoRandomTeamsWithOnlyOnePlayer : ITeamGenerator
+{
+    public Tuple<List<Team>, List<Player>> GetTeams()
+    {
+        List<Player> players = (new TwoRandomPlayers()).GetPlayers();
+
+        return new Tuple<List<Team>, List<Player>>(
+            new List<Team>(){
+                new Team(new List<Player>{players[0]}),
+                new Team(new List<Player>{players[1]})
+                },
+            players);
+    }
+}
