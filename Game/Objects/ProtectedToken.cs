@@ -2,12 +2,23 @@ class ProtectedToken : IComparable
 {
     private Token _token;
 
-    private HashSet<Player> _visibles;
+    private List<Player> _ownersHistory = new List<Player>();
+
+    private HashSet<Player> _visibles = new HashSet<Player>();
 
     public ProtectedToken(Token token)
     {
         this._token = token;
-        this._visibles = new HashSet<Player>();
+    }
+
+    public void NewOwner(Player player)
+    {
+        this._ownersHistory.Add(player);
+    }
+
+    public Player? GetCurrentOwner()
+    {
+        return this._ownersHistory.Count > 0 ? this._ownersHistory.Last() : null; 
     }
 
     public void Rotate()
