@@ -14,7 +14,7 @@ class ClassicJoinById : IJoinable
             IFace faceA = protectedTokenA.GetTokenWithoutVisibility().Faces.Item2;
             IFace faceB = protectedTokenB.GetTokenWithoutVisibility().Faces.Item1;
 
-            return faceA.Id == faceB.Id;
+            return game.IsIdJoinable(faceA.Id, faceB.Id);
         }
 
         return true;
@@ -41,7 +41,7 @@ class JoinByIdAndDifferentTeam : IJoinable
                 Team teamA = game.GetPlayerTeam(playerA);
                 Team teamB = game.GetPlayerTeam(playerB);
 
-                return faceA.Id == faceB.Id && teamA != teamB;
+                return game.IsIdJoinable(faceA.Id, faceB.Id) && teamA != teamB;
             }
 
             return false;

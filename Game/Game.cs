@@ -9,10 +9,11 @@ class Game
     private Table _table;
 
     private History _history;
-
+    
     private IJoinable _joinable;
+    private IIdJoinable _idJoinable;
 
-    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IOrderPlayerSequence orderPlayerSequence)
+    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IIdJoinable idJoinable, IOrderPlayerSequence orderPlayerSequence)
     {
         Tuple<List<Team>, List<Player>> teams = teamGenerator.GetTeams();
         this._boards = new List<Board>();
@@ -27,6 +28,7 @@ class Game
         this._table = new Table();
         this._history = new History();
         this._joinable = joinable;
+        this._idJoinable = idJoinable;
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
@@ -317,5 +319,10 @@ class Game
     public Team GetPlayerTeam(Player player)
     {
         return this._teamInfo.PlayerTeam[player];
+    }
+
+    public bool IsIdJoinable(string idA, string idB)
+    {
+        return this.IsIdJoinable(idA, idB);
     }
 }

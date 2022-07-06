@@ -2,12 +2,12 @@ using System.Diagnostics;
 
 interface IIdJoinable : IBaseInterface, ISelector
 {
-    bool IsIdJoinable(string IdA, string idB);
+    bool IsIdJoinable(string idA, string idB);
 }
 
 class ClassicIdJoinable : IIdJoinable
 {
-    public bool IsIdJoinable(string IdA, string idB)
+    public bool IsIdJoinable(string idA, string idB)
     {
         return true;
     }
@@ -15,14 +15,14 @@ class ClassicIdJoinable : IIdJoinable
 
 class DivisibilityIdJoinable : IIdJoinable
 {
-    public bool IsIdJoinable(string IdA, string IdB)
+    public bool IsIdJoinable(string idA, string idB)
     {
         try
         {
             int intA = 0;
             int intB = 0;
 
-            foreach(char c in IdA)
+            foreach(char c in idA)
             {
                 if(!char.IsDigit(c))
                 {
@@ -31,7 +31,7 @@ class DivisibilityIdJoinable : IIdJoinable
                 intA = intA * 10 + (int)char.GetNumericValue(c);
             }
 
-            foreach(char c in IdB)
+            foreach(char c in idB)
             {
                 if(!char.IsDigit(c))
                 {

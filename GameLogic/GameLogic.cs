@@ -13,9 +13,10 @@ class GameLogic
             IBoxGenerator boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
             ITeamGenerator teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
             IJoinable joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
+            IIdJoinable idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
             IOrderPlayerSequence orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
 
-            Game game = new Game(boxGenerator, teamGenerator, joinable, orderPlayerSequence);
+            Game game = new Game(boxGenerator, teamGenerator, joinable, idJoinable, orderPlayerSequence);
 
             Events.MainEvent mainEvent = new Events.MainEvent();
 
