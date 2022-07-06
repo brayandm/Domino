@@ -320,4 +320,9 @@ class Game
     {
         this._teamInfo.OrderPlayer.Reverse();
     }
+
+    public List<Team> GetAllTeams()
+    {
+        return this._teamInfo.Teams;
+    }
 }

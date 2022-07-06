@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 class TeamInfo
 {
+    public List<Team> Teams;
     public List<Player> Players;
     public IOrderPlayer OrderPlayer;
     public Dictionary<Player, Board> PlayerBoard;
@@ -39,6 +40,7 @@ class TeamInfo
 
         this.CheckTeamsAndPlayers(teams, players);
 
+        this.Teams = teams;
         this.Players = players;
         this.OrderPlayer = (IOrderPlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayer));
         this.PlayerBoard = new Dictionary<Player, Board>();
