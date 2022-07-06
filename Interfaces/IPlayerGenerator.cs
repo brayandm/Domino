@@ -1,4 +1,4 @@
-interface IPlayerGenerator : IBaseInterface, ISelector
+interface IPlayerGenerator : IBaseInterface
 {
     List<Player> GetPlayers();
 }
