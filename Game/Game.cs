@@ -323,6 +323,6 @@ class Game
 
     public bool IsIdJoinable(string idA, string idB)
     {
-        return this.IsIdJoinable(idA, idB);
+        return this._idJoinable.IsIdJoinable(idA, idB);
     }
 }
