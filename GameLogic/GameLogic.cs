@@ -11,9 +11,9 @@ class GameLogic
             graphicinterface.NewGame();
             
             IBoxGenerator boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
-            IPlayerGenerator playerGenerator = (IPlayerGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IPlayerGenerator));
+            ITeamGenerator teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
 
-            Game game = new Game(boxGenerator, playerGenerator);
+            Game game = new Game(boxGenerator, teamGenerator);
 
             Events.MainEvent mainEvent = new Events.MainEvent();
 

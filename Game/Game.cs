@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 class Game
 {
-    private PlayerInfo _playerInfo;
+    private TeamInfo _teamInfo;
 
     private List<Board> _boards;
     private Box _box;
@@ -10,17 +10,17 @@ class Game
 
     private History _history;
 
-    public Game(IBoxGenerator boxGenerator, IPlayerGenerator playerGenerator)
+    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator)
     {
-        List<Player> players = playerGenerator.GetPlayers();
+        Tuple<List<Team>, List<Player>> teams = teamGenerator.GetTeams();
         this._boards = new List<Board>();
         
-        for(int i = 0 ; i < players.Count ; i++)
+        for(int i = 0 ; i < teams.Item2.Count ; i++)
         {
             this._boards.Add(new Board());
         }
 
-        this._playerInfo = new PlayerInfo(players, _boards);
+        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards);
         this._box = new Box(boxGenerator);
         this._table = new Table();
         this._history = new History();
@@ -86,7 +86,7 @@ class Game
 
     public List<ProtectedToken> GetPlayerTokensPlayable(Player player)
     {
-        Board board = this._playerInfo.PlayerBoard[player];
+        Board board = this._teamInfo.PlayerBoard[player];
         
         List<ProtectedToken> tokens = new List<ProtectedToken>();
 
@@ -103,7 +103,7 @@ class Game
 
     public List<ProtectedToken> GetCurrentPlayerTokensPlayable()
     {
-        return this.GetPlayerTokensPlayable(this._playerInfo.OrderPlayer.CurrentPlayer());
+        return this.GetPlayerTokensPlayable(this._teamInfo.OrderPlayer.CurrentPlayer());
     }
 
     public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove()
@@ -115,7 +115,7 @@ class Game
             return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
         }
 
-        Player player = this._playerInfo.OrderPlayer.CurrentPlayer();
+        Player player = this._teamInfo.OrderPlayer.CurrentPlayer();
 
         List<Token> tokens = new List<Token>();
 
@@ -149,7 +149,7 @@ class Game
 
     public void WatchAllPlayers(ProtectedToken token)
     {
-        foreach(Player player in this._playerInfo.Players)
+        foreach(Player player in this._teamInfo.Players)
         {
             token.Watch(player);
         }
@@ -227,7 +227,7 @@ class Game
             }
         }
 
-        Move move = new Move(this._playerInfo.OrderPlayer.CurrentPlayer(), playerMove.Item1, playerMove.Item2);
+        Move move = new Move(this._teamInfo.OrderPlayer.CurrentPlayer(), playerMove.Item1, playerMove.Item2);
 
         this._history.AddMove(move);
     }
@@ -238,7 +238,7 @@ class Game
 
         tokenDealer.Distribute(this._box, this._boards);
 
-        foreach(Player player in this._playerInfo.Players)
+        foreach(Player player in this._teamInfo.Players)
         {
             foreach(ProtectedToken token in this.GetPlayerBoard(player).GetTokens())
             {
@@ -254,22 +254,22 @@ class Game
 
     public int GetNumberOfPlayers()
     {
-        return this._playerInfo.Players.Count;
+        return this._teamInfo.Players.Count;
     }
 
     public void NextPlayer()
     {
-        this._playerInfo.OrderPlayer.NextPlayer();
+        this._teamInfo.OrderPlayer.NextPlayer();
     }
 
     public bool PlayerPlayedAllTokens(Player player)
     {
-        return this._playerInfo.PlayerBoard[player].Count == 0;
+        return this._teamInfo.PlayerBoard[player].Count == 0;
     }
 
     public bool CurrentPlayerPlayedAllTokens()
     {
-        return this.PlayerPlayedAllTokens(this._playerInfo.OrderPlayer.CurrentPlayer());
+        return this.PlayerPlayedAllTokens(this._teamInfo.OrderPlayer.CurrentPlayer());
     }
 
     public int GetNumberOfMoves()
@@ -289,17 +289,17 @@ class Game
 
     public Player GetCurrentPlayer()
     {
-        return this._playerInfo.OrderPlayer.CurrentPlayer();
+        return this._teamInfo.OrderPlayer.CurrentPlayer();
     }
 
     public List<Player> GetAllPlayers()
     {
-        return this._playerInfo.Players;
+        return this._teamInfo.Players;
     }
 
     public Board GetPlayerBoard(Player player)
     {
-        return this._playerInfo.PlayerBoard[player];
+        return this._teamInfo.PlayerBoard[player];
     }
 
     public string GetCurrentPlayerBoardString()
@@ -319,6 +319,6 @@ class Game
 
     public void ReversePlayerOrder()
     {
-        this._playerInfo.OrderPlayer.Reverse();
+        this._teamInfo.OrderPlayer.Reverse();
     }
 }

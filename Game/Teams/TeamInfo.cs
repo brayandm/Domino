@@ -1,12 +1,12 @@
 using System.Diagnostics;
 
-class PlayerInfo
+class TeamInfo
 {
     public List<Player> Players;
     public IOrderPlayer OrderPlayer;
     public Dictionary<Player, Board> PlayerBoard;
 
-    public PlayerInfo(List<Player> players, List<Board> boards)
+    public TeamInfo(List<Team> teams, List<Player> players, List<Board> boards)
     {
         Debug.Assert(players.Count == boards.Count);
 

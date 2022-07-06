@@ -1,9 +1,11 @@
 class Team
 {
-    List<Player> _players = new List<Player>();
+    public List<Player> Players = new List<Player>();
+
+    public int Count { get { return this.Players.Count; } }
 
     public Team(List<Player> players)
     {
-        this._players = players;
+        this.Players = players;
     }
 }
