@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-class Table
+﻿class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 
@@ -9,7 +7,7 @@ class Table
     public bool Empty { get { return this._tokens.Count == 0; } }
 
 
-    public Tuple<IFace, IFace>? AvailableFaces
+    public Tuple<ProtectedToken, ProtectedToken>? AvailableTokens
     { 
         get 
         {
@@ -18,34 +16,34 @@ class Table
                 return null;
             }
 
-            Token tokenLeft = (Token)this._tokens.First.Value.GetTokenWithoutVisibility();
-            Token tokenRight = (Token)this._tokens.Last.Value.GetTokenWithoutVisibility();
+            ProtectedToken tokenLeft = this._tokens.First.Value;
+            ProtectedToken tokenRight = this._tokens.Last.Value;
 
-            return new Tuple<IFace, IFace>(tokenLeft.Faces.Item1, tokenRight.Faces.Item2);
+            return new Tuple<ProtectedToken, ProtectedToken>(tokenLeft, tokenRight);
         }
     }
 
-    public IFace? LeftFace
+    public ProtectedToken? LeftToken
     {
         get 
         {
-            Tuple<IFace, IFace>? availableFaces = this.AvailableFaces;
+            Tuple<ProtectedToken, ProtectedToken>? availableTokens = this.AvailableTokens;
 
-            if(availableFaces == null)return null;
+            if(availableTokens == null)return null;
 
-            return availableFaces.Item1;
+            return availableTokens.Item1;
         }
     }
 
-    public IFace? RightFace
+    public ProtectedToken? RightToken
     {
         get 
         {
-            Tuple<IFace, IFace>? availableFaces = this.AvailableFaces;
+            Tuple<ProtectedToken, ProtectedToken>? availableTokens = this.AvailableTokens;
 
-            if(availableFaces == null)return null;
+            if(availableTokens == null)return null;
 
-            return availableFaces.Item2;
+            return availableTokens.Item2;
         }
     }
 
@@ -73,18 +71,16 @@ class Table
 
     public void Put(ProtectedToken token, bool atLast)
     {
-        if(this.AvailableFaces == null)
+        if(this.AvailableTokens == null)
         {
             this._tokens.AddFirst(token);
         }
         else if(!atLast)
         { 
-            Debug.Assert(token.GetTokenWithoutVisibility().Faces.Item2 == this.AvailableFaces.Item1);
             this._tokens.AddFirst(token); 
         }
         else
         { 
-            Debug.Assert(this.AvailableFaces.Item2 == token.GetTokenWithoutVisibility().Faces.Item1);
             this._tokens.AddLast(token); 
         } 
     }
