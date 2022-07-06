@@ -237,6 +237,7 @@ class Game
             foreach(ProtectedToken token in this.GetPlayerBoard(player).GetTokens())
             {
                 token.Watch(player);
+                token.NewOwner(player);
             }
         }
     }
@@ -324,5 +325,10 @@ class Game
     public List<Team> GetAllTeams()
     {
         return this._teamInfo.Teams;
+    }
+
+    public Team GetPlayerTeam(Player player)
+    {
+        return this._teamInfo.PlayerTeam[player];
     }
 }
