@@ -12,7 +12,7 @@ class Game
 
     private IJoinable _joinable;
 
-    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable)
+    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IOrderPlayerSequence orderPlayerSequence)
     {
         Tuple<List<Team>, List<Player>> teams = teamGenerator.GetTeams();
         this._boards = new List<Board>();
@@ -22,7 +22,7 @@ class Game
             this._boards.Add(new Board());
         }
 
-        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards);
+        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, orderPlayerSequence);
         this._box = new Box(boxGenerator);
         this._table = new Table();
         this._history = new History();

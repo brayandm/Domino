@@ -4,7 +4,7 @@ class TeamInfo
 {
     public List<Team> Teams;
     public List<Player> Players;
-    public IOrderPlayer OrderPlayer;
+    public OrderPlayer OrderPlayer;
     public Dictionary<Player, Board> PlayerBoard;
     public Dictionary<Player, Team> PlayerTeam;
 
@@ -34,7 +34,7 @@ class TeamInfo
         }
     }
 
-    public TeamInfo(List<Team> teams, List<Player> players, List<Board> boards)
+    public TeamInfo(List<Team> teams, List<Player> players, List<Board> boards, IOrderPlayerSequence orderPlayerSequence)
     {
         Debug.Assert(players.Count == boards.Count);
 
@@ -42,11 +42,9 @@ class TeamInfo
 
         this.Teams = teams;
         this.Players = players;
-        this.OrderPlayer = (IOrderPlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayer));
+        this.OrderPlayer = new OrderPlayer(players, orderPlayerSequence);
         this.PlayerBoard = new Dictionary<Player, Board>();
         this.PlayerTeam = new Dictionary<Player, Team>();
-
-        this.OrderPlayer.Init(players);
 
         for(int i = 0 ; i < Math.Min(players.Count, boards.Count) ; i++)
         {

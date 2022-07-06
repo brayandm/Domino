@@ -1,41 +1,32 @@
 using System.Diagnostics;
 
-interface IOrderPlayer : IBaseInterface
+class OrderPlayer
 {
-    void Init(List<Player> players);
-
-    void NextPlayer();
-
-    void Reverse();
-
-    Player CurrentPlayer();
-}
-
-class ClassicOrderPlayer : IOrderPlayer
-{
-    private List<Player> _players = new List<Player>();
+    private List<Player> _playerSequence = new List<Player>();
 
     private int _currentPlayer;
 
-    public void Init(List<Player> players)
+    private bool _reversed = false;
+
+    public OrderPlayer(List<Player> players, IOrderPlayerSequence orderPlayerSecuence)
     {
-        Debug.Assert(players.Count != 0);
-        this._players = new List<Player>(players);
+        this._playerSequence = orderPlayerSecuence.GetOrderPlayersequence(players);
+        Debug.Assert(this._playerSequence.Count != 0);
     }
 
     public void NextPlayer()
     {
-        _currentPlayer = (_currentPlayer + 1) % _players.Count;
+        if(this._reversed)_currentPlayer = (_currentPlayer + _playerSequence.Count - 1) % _playerSequence.Count;
+        else _currentPlayer = (_currentPlayer + _playerSequence.Count + 1) % _playerSequence.Count;
     }
 
     public void Reverse()
     {
-        this._players.Reverse();
-        this._currentPlayer = this._players.Count - this._currentPlayer - 1;
+        this._reversed = !this._reversed;
     }
 
     public Player CurrentPlayer()
     {
-        return _players[_currentPlayer];
+        return _playerSequence[_currentPlayer];
     }
 }
