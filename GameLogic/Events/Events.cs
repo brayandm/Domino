@@ -1,13 +1,13 @@
 class Events
 {
-    private class NewGame : Event
+    public class NewGame : Event
     {
         public override void Action(Game game)
         {
         }
     }
 
-    private class DistributeTokens : Event
+    public class DistributeTokens : Event
     {
         public override void Action(Game game)
         {
@@ -17,7 +17,7 @@ class Events
         }
     }
 
-    private class ProcessCurrentTurn : Event
+    public class ProcessCurrentTurn : Event
     {
         public override void Action(Game game)
         {
@@ -25,7 +25,7 @@ class Events
         }
     }
 
-    private class NextPlayer : Event
+    public class NextPlayer : Event
     {
         public override void Action(Game game)
         {
@@ -33,7 +33,7 @@ class Events
         }
     }
 
-    private class ReversePlayerOrder : Event
+    public class ReversePlayerOrder : Event
     {
         public override void Action(Game game)
         {
@@ -41,14 +41,14 @@ class Events
         }
     }
 
-    private class GameOver : Event
+    public class GameOver : Event
     {
         public override void Action(Game game)
         {
         }
     }
 
-    private class ClassicGame : ComplexEvent, IGame
+    public class ClassicGame : ComplexEvent, IGame
     {
         public ClassicGame()
         {
@@ -72,7 +72,7 @@ class Events
         }
     }
 
-    private class PlayWhilePossibleGame : ComplexEvent, IGame
+    public class PlayWhilePossibleGame : ComplexEvent, IGame
     {
         public PlayWhilePossibleGame()
         {
