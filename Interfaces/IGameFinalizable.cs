@@ -5,9 +5,9 @@ interface IGameFinalizable : IBaseInterface, ISelector
     bool IsGameFinalizable(Game game);
 }
 
-class ClassicTenRoundGameFinalizable
+class ClassicTenRoundGameFinalizable : IGameFinalizable
 {
-    bool IsGameFinalizable(Game game)
+    public bool IsGameFinalizable(Game game)
     {
         Debug.Assert(game.GetNumberOfRounds() <= 10);
         
@@ -15,9 +15,9 @@ class ClassicTenRoundGameFinalizable
     }
 }
 
-class HundredPointsGameFinalizable
+class HundredPointsGameFinalizable : IGameFinalizable
 {
-    bool IsGameFinalizable(Game game)
+    public bool IsGameFinalizable(Game game)
     {
         foreach(Team team in game.GetAllTeams())
         {
