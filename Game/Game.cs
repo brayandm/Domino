@@ -4,17 +4,31 @@ class Game
 {
     private TeamInfo _teamInfo;
 
-    private List<Board> _boards;
-    private Box _box;
-    private Table _table;
+    private List<Board> _boards = new List<Board>();
+    private Box _box = new Box();
+    private Table _table = new Table();
 
-    private History _history;
+    private History _history = new History();
     
     private IBoxGenerator _boxGenerator;
     private ITeamGenerator _teamGenerator;
     private IJoinable _joinable;
     private IIdJoinable _idJoinable;
     private IOrderPlayerSequence _orderPlayerSequence;
+
+    public void NewGame()
+    {
+        this._teamInfo.OrderPlayer.RestartOrder();
+
+        foreach(Board board in this._boards)
+        {
+            board.Clear();
+        }
+
+        this._box.Init(this._boxGenerator);
+        this._table.Clear();
+        this._history.NewHistoryRound();
+    }
 
     public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IIdJoinable idJoinable, IOrderPlayerSequence orderPlayerSequence)
     {
@@ -25,7 +39,6 @@ class Game
         this._orderPlayerSequence = orderPlayerSequence;
         
         Tuple<List<Team>, List<Player>> teams = this._teamGenerator.GetTeams();
-        this._boards = new List<Board>();
         
         for(int i = 0 ; i < teams.Item2.Count ; i++)
         {
@@ -33,9 +46,8 @@ class Game
         }
 
         this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);
-        this._box = new Box(this._boxGenerator);
-        this._table = new Table();
-        this._history = new History();
+        
+        this.NewGame();
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
@@ -219,12 +231,12 @@ class Game
 
         Move move = new Move(this._teamInfo.OrderPlayer.CurrentPlayer(), playerMove.Item1, playerMove.Item2);
 
-        this._history.PlayMove(move);
+        this._history.GetCurrentHistoryRound().PlayMove(move);
     }
 
     public void DistributeTokens(ITokenDealer tokenDealer)
     {
-        this._history.Distributed();
+        this._history.GetCurrentHistoryRound().Distributed();
 
         tokenDealer.Distribute(this._box, this._boards);
 
@@ -240,7 +252,7 @@ class Game
 
     public int GetNumberOfContiguousPassedTurns()
     {
-        return this._history.GetContiguousPassedTurns();
+        return this._history.GetCurrentHistoryRound().GetContiguousPassedTurns();
     }
 
     public int GetNumberOfPlayers()
@@ -265,7 +277,7 @@ class Game
 
     public int GetNumberOfMoves()
     {
-        return this._history.GetNumberOfMoves();
+        return this._history.GetCurrentHistoryRound().GetNumberOfMoves();
     }
 
     public string GetTableString()
@@ -300,17 +312,17 @@ class Game
 
     public int GetPlayerTotalPassedTurns(Player player)
     {
-        return this._history.GetPlayerTotalPassedTurns(player);
+        return this._history.GetCurrentHistoryRound().GetPlayerTotalPassedTurns(player);
     }
 
     public bool IsDistributed()
     {
-        return this._history.IsDistributed();
+        return this._history.GetCurrentHistoryRound().IsDistributed();
     }
 
     public Move? GetLastMove()
     {
-        return this._history.GetLastMove();
+        return this._history.GetCurrentHistoryRound().GetLastMove();
     }
 
     public void ReversePlayerOrder()

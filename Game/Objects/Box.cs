@@ -10,8 +10,8 @@ class Box
     {
         this._tokens = new List<ProtectedToken>();
     }
-    
-    public Box(IBoxGenerator boxGenerator)
+
+    public void Init(IBoxGenerator boxGenerator)
     {
         this._tokens = boxGenerator.Generate();
     }
