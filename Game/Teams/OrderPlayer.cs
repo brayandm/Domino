@@ -4,7 +4,7 @@ class OrderPlayer
 {
     private List<Player> _playerSequence = new List<Player>();
 
-    private int _currentPlayer;
+    private int _currentPlayer = 0;
 
     private bool _reversed = false;
 
@@ -28,5 +28,10 @@ class OrderPlayer
     public Player CurrentPlayer()
     {
         return _playerSequence[_currentPlayer];
+    }
+
+    public void Restart()
+    {
+        _currentPlayer = 0;
     }
 }

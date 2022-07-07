@@ -16,11 +16,6 @@ class Game
     private IIdJoinable _idJoinable;
     private IOrderPlayerSequence _orderPlayerSequence;
 
-    public void NewGame()
-    {
-        
-    }
-
     public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IIdJoinable idJoinable, IOrderPlayerSequence orderPlayerSequence)
     {
         this._boxGenerator = boxGenerator;

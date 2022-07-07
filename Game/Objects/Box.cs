@@ -11,6 +11,11 @@ class Box
         this._tokens = boxGenerator.Generate();
     }
 
+    public void Clear()
+    {
+        this._tokens.Clear();
+    }
+
     private ProtectedToken TakeAt(int pos)
     {
         Debug.Assert(0 <= pos && pos < this._tokens.Count);

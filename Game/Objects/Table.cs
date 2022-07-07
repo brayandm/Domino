@@ -47,6 +47,11 @@
         }
     }
 
+    public void Clear()
+    {
+        this._tokens.Clear();
+    }
+
     public new string ToString()
     { 
         string text = "";
