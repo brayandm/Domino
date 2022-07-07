@@ -15,6 +15,8 @@ class Game
     private IJoinable _joinable;
     private IIdJoinable _idJoinable;
     private IOrderPlayerSequence _orderPlayerSequence;
+    private IRoundScoreTeam _roundScoreTeam;
+    private IRoundScorePlayer _roundScorePlayer;
 
     public void NewGame()
     {
@@ -30,13 +32,15 @@ class Game
         this._history.NewHistoryRound();
     }
 
-    public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IIdJoinable idJoinable, IOrderPlayerSequence orderPlayerSequence)
+    public Game()
     {
-        this._boxGenerator = boxGenerator;
-        this._teamGenerator = teamGenerator;
-        this._joinable = joinable;
-        this._idJoinable = idJoinable;
-        this._orderPlayerSequence = orderPlayerSequence;
+        this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
+        this._teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
+        this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
+        this._idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
+        this._orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
+        this._roundScoreTeam = (IRoundScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundScoreTeam));
+        this._roundScorePlayer = (IRoundScorePlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundScorePlayer));
         
         Tuple<List<Team>, List<Player>> teams = this._teamGenerator.GetTeams();
         
@@ -343,5 +347,15 @@ class Game
     public bool IsIdJoinable(string idA, string idB)
     {
         return this._idJoinable.IsIdJoinable(idA, idB);
+    }
+
+    public int GetRoundPlayerScore(Player player)
+    {
+        return this._roundScorePlayer.GetScore(this, player);
+    }
+
+    public int GetRoundTeamScore(Team team)
+    {
+        return this._roundScoreTeam.GetScore(this, team);
     }
 }

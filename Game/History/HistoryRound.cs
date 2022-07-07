@@ -6,6 +6,8 @@ class HistoryRound
 
     private bool _isDistributed = false;
 
+    private Dictionary<Team, int> TeamScore = new Dictionary<Team, int>();
+
     private Dictionary<Player, int> _playerTotalPassedTurns = new Dictionary<Player, int>();
 
     public void Distributed()

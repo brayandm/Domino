@@ -9,14 +9,8 @@ class GameLogic
         while(true)
         {
             graphicinterface.NewGame();
-            
-            IBoxGenerator boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
-            ITeamGenerator teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
-            IJoinable joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
-            IIdJoinable idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
-            IOrderPlayerSequence orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
 
-            Game game = new Game(boxGenerator, teamGenerator, joinable, idJoinable, orderPlayerSequence);
+            Game game = new Game();
 
             Events.MainEvent mainEvent = new Events.MainEvent();
 

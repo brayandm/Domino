@@ -2,18 +2,18 @@ using System.Diagnostics;
 
 interface IRoundWinnerRule : IBaseInterface, ISelector
 {
-    List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer);
+    List<Team> GetWinners(Game game);
 }
 
 class RoundWinnerRuleMax : IRoundWinnerRule
 {
-    public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
+    public List<Team> GetWinners(Game game)
     {
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         
         foreach(Team team in game.GetAllTeams())
         {
-            teamScores.Add(new Tuple<Team, int>(team, scoreTeam.GetScore(game, team, scorePlayer)));
+            teamScores.Add(new Tuple<Team, int>(team, game.GetRoundTeamScore(team)));
         }
         
         Debug.Assert(teamScores.Count > 0);
@@ -38,13 +38,13 @@ class RoundWinnerRuleMax : IRoundWinnerRule
 
 class RoundWinnerRuleMin : IRoundWinnerRule
 {
-    public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
+    public List<Team> GetWinners(Game game)
     {
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         
         foreach(Team team in game.GetAllTeams())
         {
-            teamScores.Add(new Tuple<Team, int>(team, scoreTeam.GetScore(game, team, scorePlayer)));
+            teamScores.Add(new Tuple<Team, int>(team, game.GetRoundTeamScore(team)));
         }
         
         Debug.Assert(teamScores.Count > 0);

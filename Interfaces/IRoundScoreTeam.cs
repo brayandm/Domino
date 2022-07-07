@@ -1,17 +1,17 @@
 interface IRoundScoreTeam : IBaseInterface, ISelector
 {
-    int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer);
+    int GetScore(Game game, Team team);
 }
 
 class RoundScoreTeamSumRule : IRoundScoreTeam
 {
-    public int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer)
+    public int GetScore(Game game, Team team)
     {
         int total = 0;
         
         foreach(Player player in team)
         {
-            total += scorePlayer.GetScore(game, player);
+            total += game.GetRoundPlayerScore(player);
         }
 
         return total;
@@ -20,13 +20,13 @@ class RoundScoreTeamSumRule : IRoundScoreTeam
 
 class RoundScoreTeamMaxRule : IRoundScoreTeam
 {
-    public int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer)
+    public int GetScore(Game game, Team team)
     {
         List<int> scores = new List<int>();
 
         foreach(Player player in team)
         {
-            scores.Add(scorePlayer.GetScore(game, player));
+            scores.Add(game.GetRoundPlayerScore(player));
         }
 
         scores.Sort();
