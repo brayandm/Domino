@@ -108,7 +108,8 @@ class Events
             this.Origin = newGame;
 
             AddEdge(newGame, roundGame, States.Identity);
-            AddEdge(roundGame, gameOver, States.IsRoundGameOver);
+            AddEdge(roundGame, gameOver, States.IsGameOver);
+            AddEdge(roundGame, roundGame, States.Identity);
 
             this.Ends.Add(gameOver);
         }
@@ -118,7 +119,7 @@ class Events
     {
         public MainEvent()
         {
-            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
+            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGame));
         
             this.Origin = game;
         }

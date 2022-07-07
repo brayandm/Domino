@@ -53,6 +53,13 @@ class States
         return roundFinalizationRule.IsRoundGameOver(game);
     }
 
+    public static bool IsGameOver(Game game)
+    {
+        IGameFinalizable gameFinalizable = (IGameFinalizable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameFinalizable));
+        
+        return gameFinalizable.IsGameFinalizable(game);
+    }
+
     public static bool IsConditionMetToReverse(Game game)
     {
         IReversePlayerOrder reversePlayerOrder = (IReversePlayerOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IReversePlayerOrder));
