@@ -30,7 +30,17 @@ class OrderPlayer
         return _playerSequence[_currentPlayer];
     }
 
-    public void Restart()
+    public void RestartWithPlayer(Player player)
+    {
+        this.RestartOrder();
+
+        while(this.CurrentPlayer() != player)
+        {
+            this.NextPlayer();
+        }
+    }
+
+    public void RestartOrder()
     {
         _currentPlayer = 0;
     }

@@ -5,6 +5,11 @@ class Box
     private List<ProtectedToken> _tokens = new List<ProtectedToken>();
 
     public int Count { get { return this._tokens.Count; } }
+
+    public Box()
+    {
+        this._tokens = new List<ProtectedToken>();
+    }
     
     public Box(IBoxGenerator boxGenerator)
     {

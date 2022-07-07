@@ -1,4 +1,4 @@
-class History
+class HistoryRound
 {
     private List<Move> _moves = new List<Move>();
 
