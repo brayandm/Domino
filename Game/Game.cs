@@ -375,4 +375,16 @@ class Game
 
         this._history.GetCurrentHistoryRound().SetWinners(this.GetRoundWinners());
     }
+
+    public List<int> GetTeamAllRoundScores(Team team)
+    {
+        List<int> scores = new List<int>();
+
+        foreach(HistoryRound historyRound in this._history.GetHistoryRounds())
+        {
+            scores.Add(historyRound.GetTeamScore(team));
+        }
+        
+        return scores;
+    }
 }
