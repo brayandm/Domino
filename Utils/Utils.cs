@@ -14,6 +14,18 @@ public static class Utils
         b = c;
     }
 
+    public static bool IsSort<T>(params T[] list) where T : IComparable<T>
+    {
+        for(int i = 1 ; i < list.Length ; i++)
+        {
+            if(list[i-1].CompareTo(list[i]) > 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static int GetIntFromConsoleKeyInfo(ConsoleKeyInfo keyInfo)
     {
         return (int)keyInfo.Key - 48;
