@@ -79,7 +79,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamGenerator), typeof(ClassicFourGreedyTeamsWithOnlyOnePlayer));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IWinnerRule), typeof(WinnerRuleMax));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IWinnerRule), typeof(WinnerRuleMin));
         }
         else
         {
