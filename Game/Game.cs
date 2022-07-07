@@ -10,12 +10,26 @@ class Game
 
     private History _history;
     
+    private IBoxGenerator _boxGenerator;
+    private ITeamGenerator _teamGenerator;
     private IJoinable _joinable;
     private IIdJoinable _idJoinable;
+    private IOrderPlayerSequence _orderPlayerSequence;
+
+    public void NewGame()
+    {
+        
+    }
 
     public Game(IBoxGenerator boxGenerator, ITeamGenerator teamGenerator, IJoinable joinable, IIdJoinable idJoinable, IOrderPlayerSequence orderPlayerSequence)
     {
-        Tuple<List<Team>, List<Player>> teams = teamGenerator.GetTeams();
+        this._boxGenerator = boxGenerator;
+        this._teamGenerator = teamGenerator;
+        this._joinable = joinable;
+        this._idJoinable = idJoinable;
+        this._orderPlayerSequence = orderPlayerSequence;
+        
+        Tuple<List<Team>, List<Player>> teams = this._teamGenerator.GetTeams();
         this._boards = new List<Board>();
         
         for(int i = 0 ; i < teams.Item2.Count ; i++)
@@ -23,12 +37,10 @@ class Game
             this._boards.Add(new Board());
         }
 
-        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, orderPlayerSequence);
-        this._box = new Box(boxGenerator);
+        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);
+        this._box = new Box(this._boxGenerator);
         this._table = new Table();
         this._history = new History();
-        this._joinable = joinable;
-        this._idJoinable = idJoinable;
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
