@@ -21,7 +21,7 @@ class Game
     private IScoreTeam _scoreTeam;
     private IWinnerRule _winnerRule;
 
-    public void NewGame()
+    public void NewRoundGame()
     {
         this._teamInfo.OrderPlayer.RestartOrder();
 
@@ -57,7 +57,7 @@ class Game
 
         this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);
         
-        this.NewGame();
+        this.NewRoundGame();
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)

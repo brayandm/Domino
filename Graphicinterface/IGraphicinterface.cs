@@ -10,10 +10,12 @@ class ConsoleInterface : IGraphicinterface
 {
     private int _time = 1000;
     private int _numberOfMoves = 0;
+    private int _numberOfRounds = 0;
 
     private void Clear()
     {
         this._numberOfMoves = 0;
+        this._numberOfRounds = 0;
     }
 
     public void Main()
@@ -169,6 +171,12 @@ class ConsoleInterface : IGraphicinterface
 
     public void Update(Game game)
     {
+        if(game.GetNumberOfRounds() > this._numberOfRounds)
+        {
+            this._numberOfRounds = game.GetNumberOfRounds();
+            this._numberOfMoves = 0;
+        }
+
         if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
         {
             this._numberOfMoves++;   

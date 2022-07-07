@@ -41,6 +41,14 @@ class Events
         }
     }
 
+    public class NewRoundGame : Event
+    {
+        public override void Action(Game game)
+        {
+            game.NewRoundGame();
+        }
+    }
+
     public class GameOver : Event
     {
         public override void Action(Game game)
@@ -102,14 +110,16 @@ class Events
         public ClassicGame()
         {
             Event newGame = new NewGame();
+            Event newRoundGame = new NewRoundGame();
             Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
             Event gameOver = new GameOver();
 
             this.Origin = newGame;
 
-            AddEdge(newGame, roundGame, States.Identity);
+            AddEdge(newGame, newRoundGame, States.Identity);
+            AddEdge(newRoundGame, roundGame, States.Identity);
             AddEdge(roundGame, gameOver, States.IsGameOver);
-            AddEdge(roundGame, roundGame, States.Identity);
+            AddEdge(roundGame, newRoundGame, States.Identity);
 
             this.Ends.Add(gameOver);
         }
@@ -120,6 +130,8 @@ class Events
         public MainEvent()
         {
             Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGame));
+
+            game = new ClassicGame();
         
             this.Origin = game;
         }
