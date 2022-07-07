@@ -8,15 +8,22 @@ class GameLogic
 
         while(true)
         {
-            graphicinterface.NewGame();
+            try
+            {
+                graphicinterface.NewGame();
 
-            Game game = new Game();
+                Game game = new Game();
 
-            Events.MainEvent mainEvent = new Events.MainEvent();
+                Events.MainEvent mainEvent = new Events.MainEvent();
 
-            mainEvent.Start(game, graphicinterface);
+                mainEvent.Start(game, graphicinterface);
 
-            graphicinterface.GameOver(game);
+                graphicinterface.GameOver(game);
+            }
+            catch
+            {
+
+            }
         }
 
     }
