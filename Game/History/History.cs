@@ -11,7 +11,6 @@ class History
 
     public HistoryRound GetCurrentHistoryRound()
     {
-        Debug.Assert(this._historyRounds.Count > 0);
         return this._historyRounds.Count > 0 ? this._historyRounds.Last() : new HistoryRound();
     }
 

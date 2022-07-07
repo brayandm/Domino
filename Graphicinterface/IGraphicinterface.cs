@@ -140,20 +140,36 @@ class ConsoleInterface : IGraphicinterface
     {
         Console.WriteLine("The Domino game has finished\n");
 
-        bool thereIsWinner = false;
+        List<Team> winners = game.GetWinnersAllRound();
 
-        foreach(Player player in game.GetAllPlayers())
+        for(int i = 0 ; i < winners.Count ; i++)
         {
-            if(game.GetPlayerBoard(player).Count == 0)
+            if(0 < i && i + 1 < winners.Count)
             {
-                Console.WriteLine(player.Id + " has won\n\n\n");
-                thereIsWinner = true;
+                Console.Write(", ");
             }
+            else if(0 < i && i + 1 == winners.Count)
+            {
+                Console.Write(" and ");
+            }
+            Console.Write(winners[i].Id);
         }
 
-        if(!thereIsWinner)
+        if(winners.Count == 0)
         {
             Console.WriteLine("Nobody won\n\n\n");
+        }
+        else if(winners.Count == 1)
+        {
+            Console.WriteLine(" has won\n\n\n");
+        }
+        else if(winners.Count < game.GetAllTeams().Count)
+        {
+            Console.WriteLine(" have won\n\n\n");
+        }
+        else if(winners.Count == game.GetAllTeams().Count)
+        {
+            Console.WriteLine(" have tied\n\n\n");
         }
 
         Thread.Sleep(_time);
@@ -172,7 +188,6 @@ class ConsoleInterface : IGraphicinterface
 
     public void Update(Game game)
     {
-        System.Console.WriteLine(this._numberOfRounds);
         if(!this._roundEnded && game.IsCurrentRoundEnded())
         {
             this._roundEnded = true;
@@ -194,13 +209,21 @@ class ConsoleInterface : IGraphicinterface
                 Console.Write(winners[i].Id);
             }
 
-            if(winners.Count == 1)
+            if(winners.Count == 0)
+            {
+                Console.WriteLine("Nobody won\n\n\n");
+            }
+            else if(winners.Count == 1)
             {
                 Console.WriteLine(" has won\n\n\n");
             }
-            else
+            else if(winners.Count < game.GetAllTeams().Count)
             {
                 Console.WriteLine(" have won\n\n\n");
+            }
+            else if(winners.Count == game.GetAllTeams().Count)
+            {
+                Console.WriteLine(" have tied\n\n\n");
             }
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)

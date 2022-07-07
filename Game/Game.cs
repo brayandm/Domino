@@ -408,6 +408,7 @@ class Game
     public void EndRoundGame()
     {
         this._history.GetCurrentHistoryRound().EndRound();
+        this.SaveRoundGameResults();
     }
 
     public bool IsCurrentRoundEnded()
