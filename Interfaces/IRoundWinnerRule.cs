@@ -1,13 +1,13 @@
 using System.Diagnostics;
 
-interface IWinnerRule : IBaseInterface, ISelector
+interface IRoundWinnerRule : IBaseInterface, ISelector
 {
-    List<Team> GetWinners(Game game, IScoreTeam scoreTeam, IScorePlayer scorePlayer);
+    List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer);
 }
 
-class WinnerRuleMax : IWinnerRule
+class WinnerRuleMax : IRoundWinnerRule
 {
-    public List<Team> GetWinners(Game game, IScoreTeam scoreTeam, IScorePlayer scorePlayer)
+    public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
     {
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         
@@ -36,9 +36,9 @@ class WinnerRuleMax : IWinnerRule
     }
 }
 
-class WinnerRuleMin : IWinnerRule
+class WinnerRuleMin : IRoundWinnerRule
 {
-    public List<Team> GetWinners(Game game, IScoreTeam scoreTeam, IScorePlayer scorePlayer)
+    public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
     {
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         

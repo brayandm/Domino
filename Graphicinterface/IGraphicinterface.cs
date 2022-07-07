@@ -74,12 +74,12 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IReversePlayerOrder), typeof(NoReverse));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IScorePlayer), typeof(ScorePlayerSumRule));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IScoreTeam), typeof(ScoreTeamSumRule));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScorePlayer), typeof(ScorePlayerSumRule));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScoreTeam), typeof(ScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamGenerator), typeof(ClassicFourGreedyTeamsWithOnlyOnePlayer));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IWinnerRule), typeof(WinnerRuleMin));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(WinnerRuleMin));
         }
         else
         {

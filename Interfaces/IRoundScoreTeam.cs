@@ -1,11 +1,11 @@
-interface IScoreTeam : IBaseInterface, ISelector
+interface IRoundScoreTeam : IBaseInterface, ISelector
 {
-    int GetScore(Game game, Team team, IScorePlayer scorePlayer);
+    int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer);
 }
 
-class ScoreTeamSumRule : IScoreTeam
+class ScoreTeamSumRule : IRoundScoreTeam
 {
-    public int GetScore(Game game, Team team, IScorePlayer scorePlayer)
+    public int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer)
     {
         int total = 0;
         
@@ -18,9 +18,9 @@ class ScoreTeamSumRule : IScoreTeam
     }
 }
 
-class ScoreTeamMaxRule : IScoreTeam
+class ScoreTeamMaxRule : IRoundScoreTeam
 {
-    public int GetScore(Game game, Team team, IScorePlayer scorePlayer)
+    public int GetScore(Game game, Team team, IRoundScorePlayer scorePlayer)
     {
         List<int> scores = new List<int>();
 

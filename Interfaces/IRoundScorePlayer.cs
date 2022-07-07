@@ -1,9 +1,9 @@
-interface IScorePlayer : IBaseInterface, ISelector
+interface IRoundScorePlayer : IBaseInterface, ISelector
 {
     int GetScore(Game game, Player player);
 }
 
-class ScorePlayerSumRule : IScorePlayer
+class ScorePlayerSumRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 
     {
@@ -18,7 +18,7 @@ class ScorePlayerSumRule : IScorePlayer
     }
 }
 
-class ScorePlayerMaxRule : IScorePlayer
+class ScorePlayerMaxRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player)
     {
@@ -35,7 +35,7 @@ class ScorePlayerMaxRule : IScorePlayer
     }
 }
 
-class PassesScorePlayer : IScorePlayer
+class PassesScorePlayer : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 
     {
