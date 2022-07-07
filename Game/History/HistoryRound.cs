@@ -14,9 +14,21 @@ class HistoryRound
 
     private List<Team>_winners = new List<Team>();
 
+    private bool _isRoundEnded = false;
+
     public void Distributed()
     {
         this._isDistributed = true;
+    }
+
+    public void EndRound()
+    {
+        this._isRoundEnded = true;
+    }
+
+    public bool IsRoundEnded()
+    {
+        return this._isRoundEnded;
     }
 
     public bool IsDistributed()
