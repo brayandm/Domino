@@ -43,7 +43,7 @@ class Board
 
     private void Sort()
     {
-        this._tokens.OrderBy(x => x.GetTokenWithoutVisibility().GetTotalValue());
+        this._tokens.OrderBy(x => x.GetTokenWithoutVisibility().GetValue());
     }
 
     public IEnumerator<ProtectedToken> GetEnumerator()

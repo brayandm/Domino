@@ -11,7 +11,7 @@ class ScorePlayerSumRule : IScorePlayer
 
         foreach(ProtectedToken token in game.GetPlayerBoard(player).GetTokens())
         {
-            score += token.GetTokenWithoutVisibility().GetTotalValue();
+            score += token.GetTokenWithoutVisibility().GetValue();
         }
 
         return score;
@@ -26,7 +26,7 @@ class ScorePlayerMaxRule : IScorePlayer
 
         foreach(ProtectedToken token in game.GetPlayerBoard(player).GetTokens())
         {
-            totalValues.Add(token.GetTokenWithoutVisibility().GetTotalValue());
+            totalValues.Add(token.GetTokenWithoutVisibility().GetValue());
         }
 
         totalValues.Sort();
