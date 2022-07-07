@@ -1,11 +1,11 @@
 interface IRoundFinalizationRule : IBaseInterface, ISelector
 {
-    bool IsGameOver(Game game);
+    bool IsRoundGameOver(Game game);
 }
 
 class ClassicFinalizationRule : IRoundFinalizationRule 
 {
-    public bool IsGameOver(Game game) 
+    public bool IsRoundGameOver(Game game) 
     {
         return game.CurrentPlayerPlayedAllTokens() || game.GetNumberOfContiguousPassedTurns() == game.GetNumberOfPlayers();
     }
@@ -13,7 +13,7 @@ class ClassicFinalizationRule : IRoundFinalizationRule
 
 class DoubleFinalizationRule : IRoundFinalizationRule 
 {
-    public bool IsGameOver(Game game) 
+    public bool IsRoundGameOver(Game game) 
     {
         if(game.CurrentPlayerPlayedAllTokens())
         {

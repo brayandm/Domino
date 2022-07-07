@@ -63,7 +63,7 @@ class Events
 
             AddEdge(newGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, gameOver, States.IsGameOver);
+            AddEdge(processCurrentTurn, gameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
@@ -87,11 +87,28 @@ class Events
 
             AddEdge(newGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, gameOver, States.IsGameOver);
+            AddEdge(processCurrentTurn, gameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, processCurrentTurn, States.IsNotLastPlayerPassed);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
+
+            this.Ends.Add(gameOver);
+        }
+    }
+
+    public class ClassicGame : ComplexEvent, IGame
+    {
+        public ClassicGame()
+        {
+            Event newGame = new NewGame();
+            Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
+            Event gameOver = new GameOver();
+
+            this.Origin = newGame;
+
+            AddEdge(newGame, roundGame, States.Identity);
+            AddEdge(roundGame, gameOver, States.IsRoundGameOver);
 
             this.Ends.Add(gameOver);
         }

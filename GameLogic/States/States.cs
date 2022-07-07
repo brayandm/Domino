@@ -46,11 +46,11 @@ class States
         }
     }
 
-    public static bool IsGameOver(Game game)
+    public static bool IsRoundGameOver(Game game)
     {
         IRoundFinalizationRule roundFinalizationRule = (IRoundFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundFinalizationRule));
         
-        return roundFinalizationRule.IsGameOver(game);
+        return roundFinalizationRule.IsRoundGameOver(game);
     }
 
     public static bool IsConditionMetToReverse(Game game)
