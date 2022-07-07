@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 class HistoryRound
 {
     private List<Move> _moves = new List<Move>();
@@ -6,9 +8,11 @@ class HistoryRound
 
     private bool _isDistributed = false;
 
-    private Dictionary<Team, int> TeamScore = new Dictionary<Team, int>();
+    private Dictionary<Team, int> _teamScore = new Dictionary<Team, int>();
 
     private Dictionary<Player, int> _playerTotalPassedTurns = new Dictionary<Player, int>();
+
+    private List<Team>_winners = new List<Team>();
 
     public void Distributed()
     {
@@ -18,6 +22,31 @@ class HistoryRound
     public bool IsDistributed()
     {
         return this._isDistributed;
+    }
+
+    public void SetWinners(List<Team> winners)
+    {
+        this._winners = winners;
+    }
+
+    public List<Team> GetWinners()
+    {
+        return this._winners;
+    }
+
+    public void SetTeamScore(Team team, int score)
+    {
+        if(!this._teamScore.ContainsKey(team))
+        {
+            this._teamScore.Add(team, score);
+        }
+    }
+
+    public int GetTeamScore(Team team)
+    {
+        Debug.Assert(this._teamScore.ContainsKey(team));
+
+        return this._teamScore[team];
     }
 
     public void PassTurn()
