@@ -157,19 +157,19 @@ class ConsoleInterface : IGraphicinterface
 
         if(winners.Count == 0)
         {
-            Console.WriteLine("Nobody won\n\n\n");
+            Console.WriteLine("Nobody won\n\n\n\n\n");
         }
         else if(winners.Count == 1)
         {
-            Console.WriteLine(" has won\n\n\n");
+            Console.WriteLine(" has won\n\n\n\n\n");
         }
         else if(winners.Count < game.GetAllTeams().Count)
         {
-            Console.WriteLine(" have won\n\n\n");
+            Console.WriteLine(" have won\n\n\n\n\n");
         }
         else if(winners.Count == game.GetAllTeams().Count)
         {
-            Console.WriteLine(" have tied\n\n\n");
+            Console.WriteLine(" have tied\n\n\n\n\n");
         }
 
         Thread.Sleep(_time);
@@ -211,19 +211,19 @@ class ConsoleInterface : IGraphicinterface
 
             if(winners.Count == 0)
             {
-                Console.WriteLine("Nobody won\n\n\n");
+                Console.WriteLine("Nobody won\n\n\n\n\n");
             }
             else if(winners.Count == 1)
             {
-                Console.WriteLine(" has won\n\n\n");
+                Console.WriteLine(" has won\n\n\n\n\n");
             }
             else if(winners.Count < game.GetAllTeams().Count)
             {
-                Console.WriteLine(" have won\n\n\n");
+                Console.WriteLine(" have won\n\n\n\n\n");
             }
             else if(winners.Count == game.GetAllTeams().Count)
             {
-                Console.WriteLine(" have tied\n\n\n");
+                Console.WriteLine(" have tied\n\n\n\n\n");
             }
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
