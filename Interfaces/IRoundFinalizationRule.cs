@@ -1,9 +1,9 @@
-interface IFinalizationRule : IBaseInterface, ISelector
+interface IRoundFinalizationRule : IBaseInterface, ISelector
 {
     bool IsGameOver(Game game);
 }
 
-class ClassicFinalizationRule : IFinalizationRule 
+class ClassicFinalizationRule : IRoundFinalizationRule 
 {
     public bool IsGameOver(Game game) 
     {
@@ -11,7 +11,7 @@ class ClassicFinalizationRule : IFinalizationRule
     }
 }
 
-class DoubleFinalizationRule : IFinalizationRule 
+class DoubleFinalizationRule : IRoundFinalizationRule 
 {
     public bool IsGameOver(Game game) 
     {

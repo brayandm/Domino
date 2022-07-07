@@ -48,9 +48,9 @@ class States
 
     public static bool IsGameOver(Game game)
     {
-        IFinalizationRule finalizationRule = (IFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IFinalizationRule));
+        IRoundFinalizationRule roundFinalizationRule = (IRoundFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundFinalizationRule));
         
-        return finalizationRule.IsGameOver(game);
+        return roundFinalizationRule.IsGameOver(game);
     }
 
     public static bool IsConditionMetToReverse(Game game)
