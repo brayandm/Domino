@@ -1,6 +1,29 @@
 class Events
 {
+    public class NewRoundGame : Event
+    {
+        public override void Action(Game game)
+        {
+            game.NewRoundGame();
+        }
+    }
+
+    public class RoundGameOver : Event
+    {
+        public override void Action(Game game)
+        {
+            game.EndRoundGame();
+        }
+    }
+
     public class NewGame : Event
+    {
+        public override void Action(Game game)
+        {
+        }
+    }
+
+    public class GameOver : Event
     {
         public override void Action(Game game)
         {
@@ -41,42 +64,27 @@ class Events
         }
     }
 
-    public class NewRoundGame : Event
-    {
-        public override void Action(Game game)
-        {
-            game.NewRoundGame();
-        }
-    }
-
-    public class GameOver : Event
-    {
-        public override void Action(Game game)
-        {
-        }
-    }
-
     public class ClassicRoundGame : ComplexEvent, IRoundGame
     {
         public ClassicRoundGame()
         {
-            Event newGame = new NewGame();
+            Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
             Event processCurrentTurn = new ProcessCurrentTurn();
             Event nextPlayer = new NextPlayer();
             Event reversePlayerOrder = new ReversePlayerOrder();
-            Event gameOver = new GameOver();
+            Event roundGameOver = new RoundGameOver();
 
-            this.Origin = newGame;
+            this.Origin = newRoundGame;
 
-            AddEdge(newGame, distributeTokens, States.Identity);
+            AddEdge(newRoundGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, gameOver, States.IsRoundGameOver);
+            AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
 
-            this.Ends.Add(gameOver);
+            this.Ends.Add(roundGameOver);
         }
     }
 
@@ -84,24 +92,24 @@ class Events
     {
         public PlayWhilePossibleRoundGame()
         {
-            Event newGame = new NewGame();
+            Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
             Event processCurrentTurn = new ProcessCurrentTurn();
             Event nextPlayer = new NextPlayer();
             Event reversePlayerOrder = new ReversePlayerOrder();
-            Event gameOver = new GameOver();
+            Event roundGameOver = new RoundGameOver();
 
-            this.Origin = newGame;
+            this.Origin = newRoundGame;
 
-            AddEdge(newGame, distributeTokens, States.Identity);
+            AddEdge(newRoundGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, gameOver, States.IsRoundGameOver);
+            AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, processCurrentTurn, States.IsNotLastPlayerPassed);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
 
-            this.Ends.Add(gameOver);
+            this.Ends.Add(roundGameOver);
         }
     }
 
@@ -110,16 +118,14 @@ class Events
         public ClassicGame()
         {
             Event newGame = new NewGame();
-            Event newRoundGame = new NewRoundGame();
             Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
             Event gameOver = new GameOver();
 
             this.Origin = newGame;
 
-            AddEdge(newGame, newRoundGame, States.Identity);
-            AddEdge(newRoundGame, roundGame, States.Identity);
+            AddEdge(newGame, roundGame, States.Identity);
             AddEdge(roundGame, gameOver, States.IsGameOver);
-            AddEdge(roundGame, newRoundGame, States.Identity);
+            AddEdge(roundGame, roundGame, States.Identity);
 
             this.Ends.Add(gameOver);
         }
@@ -129,10 +135,8 @@ class Events
     {
         public MainEvent()
         {
-            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGame));
+            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
 
-            game = new ClassicGame();
-        
             this.Origin = game;
         }
     }

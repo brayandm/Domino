@@ -406,4 +406,9 @@ class Game
     {
         return this._history.GetNumberOfRounds();
     }
+
+    public void EndRoundGame()
+    {
+        this._history.GetCurrentHistoryRound().EndRound();
+    }
 }
