@@ -9,7 +9,7 @@ class ClassicIdJoinable : IIdJoinable
 {
     public bool IsIdJoinable(string idA, string idB)
     {
-        return true;
+        return idA == idB;
     }
 }
 
