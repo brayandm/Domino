@@ -74,7 +74,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IReversePlayerOrder), typeof(NoReverse));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundFinalizationRule), typeof(ClassicFinalizationRule));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundGame), typeof(Events.ClassicGame));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundGame), typeof(Events.ClassicRoundGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScorePlayer), typeof(RoundScorePlayerSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScoreTeam), typeof(RoundScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(RoundWinnerRuleMin));

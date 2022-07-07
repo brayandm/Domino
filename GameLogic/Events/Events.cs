@@ -48,9 +48,9 @@ class Events
         }
     }
 
-    public class ClassicGame : ComplexEvent, IRoundGame
+    public class ClassicRoundGame : ComplexEvent, IRoundGame
     {
-        public ClassicGame()
+        public ClassicRoundGame()
         {
             Event newGame = new NewGame();
             Event distributeTokens = new DistributeTokens();
@@ -72,9 +72,9 @@ class Events
         }
     }
 
-    public class PlayWhilePossibleGame : ComplexEvent, IRoundGame
+    public class PlayWhilePossibleRoundGame : ComplexEvent, IRoundGame
     {
-        public PlayWhilePossibleGame()
+        public PlayWhilePossibleRoundGame()
         {
             Event newGame = new NewGame();
             Event distributeTokens = new DistributeTokens();
