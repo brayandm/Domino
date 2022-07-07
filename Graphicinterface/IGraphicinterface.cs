@@ -15,8 +15,10 @@ class ConsoleInterface : IGraphicinterface
 
     private void Clear()
     {
+        this._time = 1000;
         this._numberOfMoves = 0;
         this._numberOfRounds = 0;
+        this._roundEnded = false;
     }
 
     public void Main()
