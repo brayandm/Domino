@@ -71,6 +71,7 @@ class ConsoleInterface : IGraphicinterface
             Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ClassicTenRoundGameFinalizable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
@@ -82,7 +83,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScoreTeam), typeof(RoundScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(RoundWinnerRuleMin));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IScoreTeam), typeof(ScoreTeamSumRule));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamGenerator), typeof(ClassicFourGreedyTeamsWithOnlyOnePlayer));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamGenerator), typeof(ClassicTwoGreedyTeams));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IWinnerRule), typeof(WinnerRuleMin));
@@ -161,16 +162,24 @@ class ConsoleInterface : IGraphicinterface
         }
         else if(winners.Count == 1)
         {
-            Console.WriteLine(" has won\n\n\n\n\n");
+            Console.WriteLine(" has won with " + game.GetTeamAllRoundScore(winners.Last()) + " points\n\n\n\n\n");
         }
         else if(winners.Count < game.GetAllTeams().Count)
         {
-            Console.WriteLine(" have won\n\n\n\n\n");
+            Console.WriteLine(" have won with " + game.GetTeamAllRoundScore(winners.Last()) + " points\n\n\n\n\n");
         }
         else if(winners.Count == game.GetAllTeams().Count)
         {
-            Console.WriteLine(" have tied\n\n\n\n\n");
+            Console.WriteLine(" have tied with " + game.GetTeamAllRoundScore(winners.Last()) + " points\n\n\n\n\n");
         }
+
+        Console.WriteLine("Scoreboard final:\n");
+
+        foreach(Team team in game.GetAllTeams())
+        {
+            Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
+        }
+        Console.Write("\n\n\n\n\n");
 
         Thread.Sleep(_time);
 
@@ -215,16 +224,24 @@ class ConsoleInterface : IGraphicinterface
             }
             else if(winners.Count == 1)
             {
-                Console.WriteLine(" has won\n\n\n\n\n");
+                Console.WriteLine(" has won with " + game.GetRoundTeamScore(winners.Last()) + " points\n\n\n\n\n");
             }
             else if(winners.Count < game.GetAllTeams().Count)
             {
-                Console.WriteLine(" have won\n\n\n\n\n");
+                Console.WriteLine(" have won with " + game.GetRoundTeamScore(winners.Last()) + " points\n\n\n\n\n");
             }
             else if(winners.Count == game.GetAllTeams().Count)
             {
-                Console.WriteLine(" have tied\n\n\n\n\n");
+                Console.WriteLine(" have tied with " + game.GetRoundTeamScore(winners.Last()) + " points\n\n\n\n\n");
             }
+
+            Console.WriteLine("Scoreboard updated:\n");
+
+            foreach(Team team in game.GetAllTeams())
+            {
+                Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
+            }
+            Console.Write("\n\n\n\n\n");
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
         {
