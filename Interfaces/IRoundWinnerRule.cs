@@ -5,7 +5,7 @@ interface IRoundWinnerRule : IBaseInterface, ISelector
     List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer);
 }
 
-class WinnerRuleMax : IRoundWinnerRule
+class RoundWinnerRuleMax : IRoundWinnerRule
 {
     public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
     {
@@ -36,7 +36,7 @@ class WinnerRuleMax : IRoundWinnerRule
     }
 }
 
-class WinnerRuleMin : IRoundWinnerRule
+class RoundWinnerRuleMin : IRoundWinnerRule
 {
     public List<Team> GetWinners(Game game, IRoundScoreTeam scoreTeam, IRoundScorePlayer scorePlayer)
     {
