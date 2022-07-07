@@ -1,4 +1,0 @@
-interface IGame : IBaseInterface, ISelector
-{
-    
-}

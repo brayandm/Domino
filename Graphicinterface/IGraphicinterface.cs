@@ -68,13 +68,13 @@ class ConsoleInterface : IGraphicinterface
             Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ClassicTenRoundGameFinalizable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IReversePlayerOrder), typeof(NoReverse));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundFinalizationRule), typeof(ClassicFinalizationRule));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScorePlayer), typeof(RoundScorePlayerSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScoreTeam), typeof(RoundScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(RoundWinnerRuleMin));

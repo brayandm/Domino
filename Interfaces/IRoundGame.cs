@@ -1,0 +1,4 @@
+interface IRoundGame : IBaseInterface, ISelector
+{
+    
+}
