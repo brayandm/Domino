@@ -11,8 +11,8 @@ class ClassicTwoGreedyTeams : ITeamGenerator
 
         return new Tuple<List<Team>, List<Player>>(
             new List<Team>(){
-                new Team(new List<Player>{players[0], players[2]}),
-                new Team(new List<Player>{players[1], players[3]})
+                new Team("Team-1", new List<Player>{players[0], players[2]}),
+                new Team("Team-2", new List<Player>{players[1], players[3]})
                 },
             players);
     }
@@ -26,10 +26,10 @@ class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamGenerator
 
         return new Tuple<List<Team>, List<Player>>(
             new List<Team>(){
-                new Team(new List<Player>{players[0]}),
-                new Team(new List<Player>{players[1]}),
-                new Team(new List<Player>{players[2]}),
-                new Team(new List<Player>{players[3]}),
+                new Team("Team-1", new List<Player>{players[0]}),
+                new Team("Team-2", new List<Player>{players[1]}),
+                new Team("Team-3", new List<Player>{players[2]}),
+                new Team("Team-4", new List<Player>{players[3]}),
             },
             players);
     }
@@ -43,8 +43,8 @@ class TwoRandomTeamsWithOnlyOnePlayer : ITeamGenerator
 
         return new Tuple<List<Team>, List<Player>>(
             new List<Team>(){
-                new Team(new List<Player>{players[0]}),
-                new Team(new List<Player>{players[1]})
+                new Team("Team-1", new List<Player>{players[0]}),
+                new Team("Team-2", new List<Player>{players[1]})
                 },
             players);
     }

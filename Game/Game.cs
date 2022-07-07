@@ -411,4 +411,9 @@ class Game
     {
         this._history.GetCurrentHistoryRound().EndRound();
     }
+
+    public bool IsCurrentRoundEnded()
+    {
+        return this._history.GetCurrentHistoryRound().IsRoundEnded();
+    }
 }

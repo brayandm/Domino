@@ -11,6 +11,7 @@ class ConsoleInterface : IGraphicinterface
     private int _time = 1000;
     private int _numberOfMoves = 0;
     private int _numberOfRounds = 0;
+    private bool _roundEnded = false;
 
     private void Clear()
     {
@@ -171,10 +172,42 @@ class ConsoleInterface : IGraphicinterface
 
     public void Update(Game game)
     {
+        if(!this._roundEnded && game.IsCurrentRoundEnded())
+        {
+            this._roundEnded = true;
+
+            Console.WriteLine("The round " + game.GetNumberOfRounds() + " has finished\n");
+
+            List<Team> winners = game.GetRoundWinners();
+
+            for(int i = 0 ; i < winners.Count ; i++)
+            {
+                if(0 < i && i + 1 < winners.Count)
+                {
+                    Console.Write(", ");
+                }
+                else if(0 < i && i + 1 == winners.Count)
+                {
+                    Console.Write(" and ");
+                }
+                Console.Write(winners[i].Id);
+            }
+
+            if(winners.Count == 1)
+            {
+                Console.WriteLine(" has won\n\n\n");
+            }
+            else
+            {
+                Console.WriteLine(" have won\n\n\n");
+            }
+        }
+
         if(game.GetNumberOfRounds() > this._numberOfRounds)
         {
             this._numberOfRounds = game.GetNumberOfRounds();
             this._numberOfMoves = 0;
+            this._roundEnded = false;
         }
 
         if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
