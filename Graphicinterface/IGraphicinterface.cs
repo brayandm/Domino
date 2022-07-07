@@ -69,6 +69,7 @@ class ConsoleInterface : IGraphicinterface
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ClassicTenRoundGameFinalizable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));

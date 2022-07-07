@@ -19,4 +19,9 @@ class History
     {
         return this._historyRounds;
     }
+
+    public int GetNumberOfRounds()
+    {
+        return this._historyRounds.Count;
+    }
 }

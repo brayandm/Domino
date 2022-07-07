@@ -401,4 +401,9 @@ class Game
     {
         return this._winnerRule.GetWinners(this);
     }
+
+    public int GetNumberOfRounds()
+    {
+        return this._history.GetNumberOfRounds();
+    }
 }
