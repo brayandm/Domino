@@ -38,8 +38,6 @@ abstract class Event
 
     public virtual void Start(Game game, IGraphicinterface graphicinterface)
     {
-        graphicinterface.Update(game);
-        
         Action(game);
 
         graphicinterface.Update(game);

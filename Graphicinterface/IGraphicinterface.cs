@@ -172,11 +172,12 @@ class ConsoleInterface : IGraphicinterface
 
     public void Update(Game game)
     {
+        System.Console.WriteLine(this._numberOfRounds);
         if(!this._roundEnded && game.IsCurrentRoundEnded())
         {
             this._roundEnded = true;
 
-            Console.WriteLine("The round " + game.GetNumberOfRounds() + " has finished\n");
+            Console.WriteLine("The round " + this._numberOfRounds + " has finished\n");
 
             List<Team> winners = game.GetRoundWinners();
 
@@ -202,15 +203,13 @@ class ConsoleInterface : IGraphicinterface
                 Console.WriteLine(" have won\n\n\n");
             }
         }
-
-        if(game.GetNumberOfRounds() > this._numberOfRounds)
+        else if(game.GetNumberOfRounds() > this._numberOfRounds)
         {
             this._numberOfRounds = game.GetNumberOfRounds();
             this._numberOfMoves = 0;
             this._roundEnded = false;
         }
-
-        if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
+        else if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
         {
             this._numberOfMoves++;   
 

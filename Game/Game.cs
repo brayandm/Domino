@@ -55,9 +55,7 @@ class Game
             this._boards.Add(new Board());
         }
 
-        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);
-        
-        this.NewRoundGame();
+        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);   
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
