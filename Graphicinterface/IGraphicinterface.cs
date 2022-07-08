@@ -325,15 +325,15 @@ class ConsoleInterface : IGraphicinterface
             {
                 if(lastMove.Position == Position.Left)
                 {
-                    Console.WriteLine("(Left move)");
+                    Console.WriteLine("(Left Move)");
                 }
                 else if(lastMove.Position == Position.Middle)
                 {
-                    Console.WriteLine("(First move)");
+                    Console.WriteLine("(First Move)");
                 }
                 else if(lastMove.Position == Position.Right)
                 {
-                    Console.WriteLine("(Right move)");
+                    Console.WriteLine("(Right Move)");
                 }
                 else if(lastMove.Position == Position.Pass)
                 {
