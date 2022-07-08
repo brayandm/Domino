@@ -246,7 +246,14 @@ class Game
     {
         this._history.GetCurrentHistoryRound().Distributed();
 
-        tokenDealer.Distribute(this._box, this._boards);
+        try
+        {
+            tokenDealer.Distribute(this._box, this._boards);
+        }
+        catch (TokenUnavailabilityException)
+        {
+            throw new TokenDealerUnavailabilityException();
+        }
 
         foreach(Player player in this._teamInfo.Players)
         {
