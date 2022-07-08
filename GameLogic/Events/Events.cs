@@ -79,6 +79,7 @@ class Events
             Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
             Event processCurrentTurn = new ProcessCurrentTurn();
+            Event drawTokenCurrentPlayer = new DrawTokenCurrentPlayer();
             Event nextPlayer = new NextPlayer();
             Event reversePlayerOrder = new ReversePlayerOrder();
             Event roundGameOver = new RoundGameOver();
@@ -88,6 +89,7 @@ class Events
             AddEdge(newRoundGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
             AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
+            AddEdge(processCurrentTurn, drawTokenCurrentPlayer, States.IsDrawable);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
@@ -103,6 +105,7 @@ class Events
             Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
             Event processCurrentTurn = new ProcessCurrentTurn();
+            Event drawTokenCurrentPlayer = new DrawTokenCurrentPlayer();
             Event nextPlayer = new NextPlayer();
             Event reversePlayerOrder = new ReversePlayerOrder();
             Event roundGameOver = new RoundGameOver();
@@ -113,6 +116,7 @@ class Events
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
             AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, processCurrentTurn, States.IsNotLastPlayerPassed);
+            AddEdge(processCurrentTurn, drawTokenCurrentPlayer, States.IsDrawable);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
