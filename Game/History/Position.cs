@@ -3,5 +3,6 @@ enum Position
     Left,
     Middle,
     Right,
-    Pass
+    Pass,
+    Draw,
 }

@@ -488,4 +488,9 @@ class Game
             
         }
     }
+
+    public bool LastMoveWasDraw()
+    {
+        return this._history.GetCurrentHistoryRound().LastMoveWasDraw();
+    }
 }

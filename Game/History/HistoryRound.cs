@@ -131,4 +131,16 @@ class HistoryRound
     {
         return this._playerTotalPassedTurns.ContainsKey(player) ? this._playerTotalPassedTurns[player] : 0;
     }
+
+    public bool LastMoveWasDraw()
+    {
+        Move? move = this.GetLastMove();
+
+        if(move == null)
+        {
+            return false;
+        }
+
+        return move.Position == Position.Draw;
+    }
 }
