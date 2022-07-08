@@ -78,7 +78,11 @@ class HistoryRound
 
     public void PlayMove(Move move)
     {
-        if(move.Position == Position.Pass)
+        if(move.Position == Position.Draw)
+        {
+            
+        }
+        else if(move.Position == Position.Pass)
         {
             this.PassTurn();
 

@@ -477,16 +477,22 @@ class Game
         return -1;
     }
 
-    public void DrawTokenCurrentPlayer()
+    public void DrawTokenPlayer(Player player)
     {
         try
         {
-            this.GetPlayerBoard(this.GetCurrentPlayer()).Add(this._box.Take());
+            this.GetPlayerBoard(player).Add(this._box.Take());
+            this._history.GetCurrentHistoryRound().PlayMove(new Move(player, null, Position.Draw));
         }
         catch (TokenUnavailabilityException)
         {
             
         }
+    }
+
+    public void DrawTokenCurrentPlayer()
+    {
+        this.DrawTokenPlayer(this.GetCurrentPlayer());
     }
 
     public bool LastMoveWasDraw()
