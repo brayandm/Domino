@@ -213,6 +213,7 @@ class ConsoleInterface : IGraphicinterface
         }
         Console.Write("\n\n\n\n\n");
         Console.WriteLine("Press any key to continue...");
+        Console.Write("\n\n\n\n\n");
         Console.ReadKey();
 
         Thread.Sleep(_time);
@@ -281,6 +282,7 @@ class ConsoleInterface : IGraphicinterface
             }
             Console.Write("\n\n\n\n\n");
             Console.WriteLine("Press any key to continue...");
+            Console.Write("\n\n\n\n\n");
             Console.ReadKey();
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
@@ -341,14 +343,14 @@ class ConsoleInterface : IGraphicinterface
 
             Console.WriteLine("\n" + this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
 
-            Console.Write("\n");
-            Console.Write("\n");
-            Console.Write("\n");
-            Console.Write("\n");
-            Console.Write("\n");
-            Console.Write("\n");
-
             Thread.Sleep(_time);
+
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.Write("\n");
+            Console.Write("\n");
         }
     }
 }
