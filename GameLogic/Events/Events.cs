@@ -88,8 +88,8 @@ class Events
 
             AddEdge(newRoundGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
-            AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, drawTokenCurrentPlayer, States.IsDrawable);
+            AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
@@ -114,9 +114,9 @@ class Events
 
             AddEdge(newRoundGame, distributeTokens, States.Identity);
             AddEdge(distributeTokens, processCurrentTurn, States.Identity);
+            AddEdge(processCurrentTurn, drawTokenCurrentPlayer, States.IsDrawable);
             AddEdge(processCurrentTurn, roundGameOver, States.IsRoundGameOver);
             AddEdge(processCurrentTurn, processCurrentTurn, States.IsNotLastPlayerPassed);
-            AddEdge(processCurrentTurn, drawTokenCurrentPlayer, States.IsDrawable);
             AddEdge(processCurrentTurn, reversePlayerOrder, States.IsConditionMetToReverse);
             AddEdge(processCurrentTurn, nextPlayer, States.Identity);
             AddEdge(nextPlayer, processCurrentTurn, States.Identity);
