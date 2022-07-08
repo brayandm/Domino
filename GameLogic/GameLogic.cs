@@ -22,7 +22,7 @@ class GameLogic
             }
             catch (TokenDealerUnavailabilityException)
             {
-                Console.WriteLine("The number of tokens in the box is insufficient");
+                Console.WriteLine("The number of tokens in the box is insufficient to start the game\n\n");
             }
         }
 
