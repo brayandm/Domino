@@ -237,6 +237,11 @@ class ObjectsGraphic
 
     public string GraphicTable(List<Token> tokens, int center)
     {
+        if(tokens.Count == 0)
+        {
+            return "";
+        }
+        
         Debug.Assert(0 <= center && center < tokens.Count);
 
         List<Tuple<Token, Point>> pointTokens = new List<Tuple<Token, Point>>();

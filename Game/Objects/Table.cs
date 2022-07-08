@@ -95,7 +95,12 @@
         return this._tokens.ToList();
     }
 
-    public List<Token> GetTokens()
+    public List<ProtectedToken> GetTokens()
+    {
+        return this._tokens.ToList();
+    }
+
+    public List<Token> GetTokensWithoutProtection()
     {
         List<Token> tokens = new List<Token>();
 

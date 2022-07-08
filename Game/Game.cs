@@ -138,7 +138,7 @@ class Game
 
         Debug.Assert(tokens.Count > 0);
 
-        int index = player.Strategy.ChooseTokenIndex(tokens, this._table.GetTokens());
+        int index = player.Strategy.ChooseTokenIndex(tokens, this._table.GetTokensWithoutProtection());
 
         ProtectedToken tokenToPlay = protectedTokens[index];
 
@@ -414,5 +414,59 @@ class Game
     public bool IsCurrentRoundEnded()
     {
         return this._history.GetCurrentHistoryRound().IsRoundEnded();
+    }
+
+    public List<Token> GetBoardTokens(Board board)
+    {
+        List<ProtectedToken> protectedTokens = board.GetTokens();
+
+        List<Token> tokens = new List<Token>();
+
+        foreach(ProtectedToken protectedToken in protectedTokens)
+        {
+            tokens.Add(protectedToken.GetTokenWithoutVisibility());
+        }
+
+        return tokens;
+    }
+
+    public List<Token> GetTabletokens()
+    {
+        return this._table.GetTokensWithoutProtection();
+    }
+
+    public ProtectedToken? GetTokenPositionMiddle()
+    {
+        List<Move> moves = this._history.GetCurrentHistoryRound().GetMoves();
+
+        foreach(Move move in moves)
+        {
+            if(move.Position == Position.Middle)
+            {
+                return move.Token;
+            }
+        }
+
+        return null;
+    }
+
+    public int GetPositionMiddle()
+    {   
+        ProtectedToken? protectedToken = this.GetTokenPositionMiddle();
+
+        if(protectedToken is ProtectedToken)
+        {
+            List<ProtectedToken> protectedTokens = this._table.GetTokens();
+
+            for(int i = 0 ; i < protectedTokens.Count ; i++)
+            {
+                if(protectedToken == protectedTokens[i])
+                {
+                    return i;
+                }
+            }
+        }
+        
+        return -1;
     }
 }
