@@ -125,6 +125,8 @@ class Game
             return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
         }
 
+        System.Console.WriteLine(protectedTokens.Count + " aquiiiiiiiiiiiiiiiiiiii");
+
         Player player = this._teamInfo.OrderPlayer.CurrentPlayer();
 
         List<Token> tokens = new List<Token>();
@@ -481,7 +483,13 @@ class Game
     {
         try
         {
-            this.GetPlayerBoard(player).Add(this._box.Take());
+            ProtectedToken protectedToken = this._box.Take();
+
+            protectedToken.Watch(player);
+            protectedToken.NewOwner(player);
+
+            this.GetPlayerBoard(player).Add(protectedToken);
+
             this._history.GetCurrentHistoryRound().PlayMove(new Move(player, null, Position.Draw));
         }
         catch (TokenUnavailabilityException)
