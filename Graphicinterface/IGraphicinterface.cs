@@ -23,12 +23,16 @@ class ConsoleInterface : IGraphicinterface
 
     public void Main()
     {
+        Console.Clear();
+
         Console.WriteLine("Welcome to Domino game\n\n");
 
         Thread.Sleep(_time);
 
         while(true)
         {
+            Console.Clear();
+
             Console.WriteLine("Select the speed of the game:\n");
             Console.WriteLine("1 - Very Slow");
             Console.WriteLine("2 - Slow");
@@ -53,13 +57,19 @@ class ConsoleInterface : IGraphicinterface
             }
             else
             {
+                Console.Clear();
+
                 Console.WriteLine("Incorrect selection, repeat it again\n\n");
+
+                Thread.Sleep(_time);
             }
         }
     }
 
     public void NewGame()
     {
+        Console.Clear();
+
         this.Clear();
 
         Console.WriteLine("Do you want to set the default configuration (Y/N)?\n\n");
@@ -70,11 +80,13 @@ class ConsoleInterface : IGraphicinterface
 
         if(keyInfo.Key == ConsoleKey.Y)
         {
+            Console.Clear();
+
             Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ClassicTenRoundGameFinalizable));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));
@@ -100,6 +112,8 @@ class ConsoleInterface : IGraphicinterface
 
                 while(true)
                 {
+                    Console.Clear();
+
                     Console.WriteLine("Select the implementation for " + gameInterface + ":\n");
 
                     Console.WriteLine(0 + " - " + "Default");
@@ -126,13 +140,17 @@ class ConsoleInterface : IGraphicinterface
                     }
                     else
                     {
+                        Console.Clear();
+
                         Console.WriteLine("Incorrect selection, repeat it again\n\n");
+
+                        Thread.Sleep(_time);
                     }
                 }
             }
         }
         
-        Thread.Sleep(_time);
+        Console.Clear();
 
         Console.WriteLine("The game will start...\n\n");
 
@@ -141,6 +159,8 @@ class ConsoleInterface : IGraphicinterface
 
     public void GameOver(Game game)
     {
+        Console.Clear();
+
         Console.WriteLine("The Domino game has finished\n");
 
         List<Team> winners = game.GetWinnersAllRound();
@@ -182,8 +202,12 @@ class ConsoleInterface : IGraphicinterface
             Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
         }
         Console.Write("\n\n\n\n\n");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
 
         Thread.Sleep(_time);
+
+        Console.Clear();
 
         Console.WriteLine("Do you want to play a new Domino game (Y/N)?\n\n");
 
@@ -201,6 +225,8 @@ class ConsoleInterface : IGraphicinterface
     {
         if(!this._roundEnded && game.IsCurrentRoundEnded())
         {
+            Console.Clear();
+
             this._roundEnded = true;
 
             Console.WriteLine("The round " + this._numberOfRounds + " has finished\n");
@@ -244,15 +270,21 @@ class ConsoleInterface : IGraphicinterface
                 Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
             }
             Console.Write("\n\n\n\n\n");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
         {
+            Console.Clear();
+
             this._numberOfRounds = game.GetNumberOfRounds();
             this._numberOfMoves = 0;
             this._roundEnded = false;
         }
         else if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
         {
+            Console.Clear();
+
             this._numberOfMoves++;   
 
             Move? lastMove = game.GetLastMove();
