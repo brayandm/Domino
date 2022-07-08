@@ -16,7 +16,6 @@ class ConsoleInterface : IGraphicinterface
 
     private void Clear()
     {
-        this._time = 1000;
         this._numberOfMoves = 0;
         this._numberOfRounds = 0;
         this._roundEnded = false;
@@ -264,11 +263,11 @@ class ConsoleInterface : IGraphicinterface
             {
                 if(player == game.GetCurrentPlayer() && lastMove != null)
                 {
-                    Console.WriteLine(player.Id + ": (In Turn)\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine(player.Id + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
                 else
                 {
-                    Console.WriteLine(player.Id + ":\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine(player.Id + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
             }         
 
@@ -298,7 +297,7 @@ class ConsoleInterface : IGraphicinterface
                 }
             }
 
-            Console.WriteLine(this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
+            Console.WriteLine("\n" + this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
 
             Console.Write("\n");
             Console.Write("\n");

@@ -21,6 +21,7 @@ class ObjectsGraphic
             this.x = x;
             this.y = y;
             this.rotated = rotated;
+            this.sense = sense;
         } 
     }
 
@@ -84,7 +85,7 @@ class ObjectsGraphic
 
         if(rotated)
         {
-            return new Point(realX, realY, rotated, k < 0);
+            return new Point(realX, realY, rotated, false);
         }
         else
         {
@@ -124,27 +125,13 @@ class ObjectsGraphic
         else
         {
             matrix[x-1][y-1] = "[";
-            if(pointTokens.Item2.sense)
-            {
-                matrix[x-1][y] = pointTokens.Item1.Faces.Item2.Id;
-            }
-            else
-            {
-                matrix[x-1][y] = pointTokens.Item1.Faces.Item1.Id;
-            }
+            matrix[x-1][y] = pointTokens.Item1.Faces.Item2.Id;
             matrix[x-1][y+1] = "]";
             matrix[x][y-1] = "|";
             matrix[x][y] = ":";
             matrix[x][y+1] = "|";
             matrix[x+1][y-1] = "[";
-            if(pointTokens.Item2.sense)
-            {
-                matrix[x+1][y] = pointTokens.Item1.Faces.Item1.Id;
-            }
-            else
-            {
-                matrix[x+1][y] = pointTokens.Item1.Faces.Item2.Id;
-            }
+            matrix[x+1][y] = pointTokens.Item1.Faces.Item1.Id;
             matrix[x+1][y+1] = "]";
         }
     }
@@ -241,7 +228,7 @@ class ObjectsGraphic
         {
             return "";
         }
-        
+
         Debug.Assert(0 <= center && center < tokens.Count);
 
         List<Tuple<Token, Point>> pointTokens = new List<Tuple<Token, Point>>();
