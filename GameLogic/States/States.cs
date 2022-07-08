@@ -7,26 +7,12 @@ class States
 
     public static bool IsAllPlayersPassed(Game game)
     {
-        if(game.GetNumberOfContiguousPassedTurns() >= game.GetNumberOfPlayers())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return game.GetNumberOfContiguousPassedTurns() >= game.GetNumberOfPlayers();
     }
 
     public static bool IsLastPlayerPassed(Game game)
     {
-        if(game.GetNumberOfContiguousPassedTurns() != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return game.GetNumberOfContiguousPassedTurns() != 0;
     }
 
     public static bool IsNotLastPlayerPassed(Game game)
@@ -36,14 +22,7 @@ class States
 
     public static bool CurrentPlayerPlayedAllTokens(Game game)
     {
-        if(game.CurrentPlayerPlayedAllTokens() == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return game.CurrentPlayerPlayedAllTokens() == true;
     }
 
     public static bool IsRoundGameOver(Game game)
