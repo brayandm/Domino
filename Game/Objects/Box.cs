@@ -23,7 +23,10 @@ class Box
 
     private ProtectedToken TakeAt(int pos)
     {
-        Debug.Assert(0 <= pos && pos < this._tokens.Count);
+        if(pos < 0 || this._tokens.Count <= pos)
+        {
+            throw new TokenUnavailabilityException();
+        }
         
         ProtectedToken token = this._tokens[pos];
 
@@ -44,14 +47,20 @@ class Box
 
     public ProtectedToken Take()
     {
-        Debug.Assert(this._tokens.Count != 0);
+        if(this._tokens.Count == 0)
+        {
+            throw new TokenUnavailabilityException();
+        }
 
         return TakeRandom();
     }
 
     public List<ProtectedToken> Take(int n)
     {
-        Debug.Assert(0 <= n && n <= this._tokens.Count);
+        if(n < 0 || this._tokens.Count < n)
+        {
+            throw new TokenUnavailabilityException();
+        }
 
         List<ProtectedToken> tokens = new List<ProtectedToken>();
 
