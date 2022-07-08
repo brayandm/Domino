@@ -13,6 +13,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfRounds = 0;
     private bool _roundEnded = false;
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
+    private bool _consoleClearable = true;   
 
     private void Clear()
     {
@@ -21,9 +22,17 @@ class ConsoleInterface : IGraphicinterface
         this._roundEnded = false;
     }
 
+    private void ConsoleClear()
+    {
+        if(this._consoleClearable)
+        {
+            Console.Clear();
+        }
+    }
+
     public void Main()
     {
-        Console.Clear();
+        this.ConsoleClear();
 
         Console.WriteLine("Welcome to Domino game\n\n");
 
@@ -31,7 +40,7 @@ class ConsoleInterface : IGraphicinterface
 
         while(true)
         {
-            Console.Clear();
+            this.ConsoleClear();
 
             Console.WriteLine("Select the speed of the game:\n");
             Console.WriteLine("1 - Very Slow");
@@ -57,7 +66,7 @@ class ConsoleInterface : IGraphicinterface
             }
             else
             {
-                Console.Clear();
+                this.ConsoleClear();
 
                 Console.WriteLine("Incorrect selection, repeat it again\n\n");
 
@@ -68,7 +77,7 @@ class ConsoleInterface : IGraphicinterface
 
     public void NewGame()
     {
-        Console.Clear();
+        this.ConsoleClear();
 
         this.Clear();
 
@@ -80,7 +89,7 @@ class ConsoleInterface : IGraphicinterface
 
         if(keyInfo.Key == ConsoleKey.Y)
         {
-            Console.Clear();
+            this.ConsoleClear();
 
             Console.WriteLine("The Domino game will be set with default configuration\n\n");
 
@@ -112,7 +121,7 @@ class ConsoleInterface : IGraphicinterface
 
                 while(true)
                 {
-                    Console.Clear();
+                    this.ConsoleClear();
 
                     Console.WriteLine("Select the implementation for " + gameInterface + ":\n");
 
@@ -140,7 +149,7 @@ class ConsoleInterface : IGraphicinterface
                     }
                     else
                     {
-                        Console.Clear();
+                        this.ConsoleClear();
 
                         Console.WriteLine("Incorrect selection, repeat it again\n\n");
 
@@ -150,7 +159,7 @@ class ConsoleInterface : IGraphicinterface
             }
         }
         
-        Console.Clear();
+        this.ConsoleClear();
 
         Console.WriteLine("The game will start...\n\n");
 
@@ -159,7 +168,7 @@ class ConsoleInterface : IGraphicinterface
 
     public void GameOver(Game game)
     {
-        Console.Clear();
+        this.ConsoleClear();
 
         Console.WriteLine("The Domino game has finished\n");
 
@@ -207,7 +216,7 @@ class ConsoleInterface : IGraphicinterface
 
         Thread.Sleep(_time);
 
-        Console.Clear();
+        this.ConsoleClear();
 
         Console.WriteLine("Do you want to play a new Domino game (Y/N)?\n\n");
 
@@ -225,7 +234,7 @@ class ConsoleInterface : IGraphicinterface
     {
         if(!this._roundEnded && game.IsCurrentRoundEnded())
         {
-            Console.Clear();
+            this.ConsoleClear();
 
             this._roundEnded = true;
 
@@ -275,7 +284,7 @@ class ConsoleInterface : IGraphicinterface
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
         {
-            Console.Clear();
+            this.ConsoleClear();
 
             this._numberOfRounds = game.GetNumberOfRounds();
             this._numberOfMoves = 0;
@@ -283,7 +292,7 @@ class ConsoleInterface : IGraphicinterface
         }
         else if(game.IsDistributed() && game.GetNumberOfMoves() == this._numberOfMoves)
         {
-            Console.Clear();
+            this.ConsoleClear();
 
             this._numberOfMoves++;   
 
