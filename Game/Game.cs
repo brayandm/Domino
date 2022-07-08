@@ -125,8 +125,6 @@ class Game
             return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
         }
 
-        System.Console.WriteLine(protectedTokens.Count + " aquiiiiiiiiiiiiiiiiiiii");
-
         Player player = this._teamInfo.OrderPlayer.CurrentPlayer();
 
         List<Token> tokens = new List<Token>();
