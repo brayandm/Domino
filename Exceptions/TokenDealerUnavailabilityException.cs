@@ -1,0 +1,4 @@
+class TokenDealerUnavailabilityException : Exception
+{
+
+}

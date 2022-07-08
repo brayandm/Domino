@@ -20,9 +20,9 @@ class GameLogic
 
                 graphicinterface.GameOver(game);
             }
-            catch
+            catch (TokenDealerUnavailabilityException)
             {
-
+                Console.WriteLine("The number of tokens in the box is insufficient");
             }
         }
 

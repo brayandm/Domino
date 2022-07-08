@@ -7,9 +7,16 @@ class ClassicTenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
     {
-        foreach(Board board in boards)
+        try
         {
-            board.Add(box.Take(10));
+            foreach(Board board in boards)
+            {
+                board.Add(box.Take(10));
+            }
+        }
+        catch (TokenUnavailabilityException)
+        {
+            throw new TokenDealerUnavailabilityException();
         }
     }
 }
