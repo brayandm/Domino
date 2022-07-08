@@ -2,7 +2,8 @@ using System.Diagnostics;
 
 class ObjectsGraphic
 {
-    private const int _width = 5;
+    private const int _width = 6;
+    private const int _height = 8;
     private const int _dimX = 2;
     private const int _dimY = 7;
     private const int _dimYLite = 2;
@@ -238,8 +239,8 @@ class ObjectsGraphic
             pointTokens.Add(new Tuple<Token, Point>(tokens[i], this.GetKthPoint(i-center)));
         }
 
-        int minX = this.GetMinX(pointTokens);
-        int maxX = this.GetMaxX(pointTokens);
+        int minX = Math.Min(this.GetMinX(pointTokens), -_height);
+        int maxX = Math.Max(this.GetMaxX(pointTokens), _height);
         
         List<List<string>> matrix = this.GetMatrix(maxX - minX + 1, (_width * 2 + 1) * 7);
 

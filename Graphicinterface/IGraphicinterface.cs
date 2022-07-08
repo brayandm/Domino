@@ -13,7 +13,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfRounds = 0;
     private bool _roundEnded = false;
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
-    private bool _consoleClearable = true;   
+    private bool _consoleClearable = false;   
 
     private void Clear()
     {
