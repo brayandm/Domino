@@ -45,4 +45,11 @@ class States
         
         return reversePlayerOrder.IsConditionMet(game);
     }
+
+    public static bool IsDrawable(Game game)
+    {
+        IDrawable drawable = (IDrawable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IDrawable));
+
+        return drawable.IsDrawable(game);
+    }
 }

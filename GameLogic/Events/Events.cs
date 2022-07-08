@@ -48,6 +48,14 @@ class Events
         }
     }
 
+    public class DrawTokenCurrentPlayer : Event
+    {
+        public override void Action(Game game)
+        {
+            game.DrawTokenCurrentPlayer();
+        }
+    }
+
     public class NextPlayer : Event
     {
         public override void Action(Game game)

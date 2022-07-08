@@ -476,4 +476,16 @@ class Game
         
         return -1;
     }
+
+    public void DrawTokenCurrentPlayer()
+    {
+        try
+        {
+            this.GetPlayerBoard(this.GetCurrentPlayer()).Add(this._box.Take());
+        }
+        catch (TokenUnavailabilityException)
+        {
+            
+        }
+    }
 }
