@@ -339,6 +339,10 @@ class ConsoleInterface : IGraphicinterface
                 {
                     Console.WriteLine("(Pass Turn)");
                 }
+                else if(lastMove.Position == Position.Draw)
+                {
+                    Console.WriteLine("(Drawn Token)");
+                }
             }
 
             Console.WriteLine("\n" + this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
