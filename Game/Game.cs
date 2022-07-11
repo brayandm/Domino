@@ -13,6 +13,7 @@ class Game
     private IBoxGenerator _boxGenerator;
     private ITeamGenerator _teamGenerator;
     private ITeamOrder _teamOrder;
+    private ITokenVisibility _tokenVisibility;
     private IJoinable _joinable;
     private IIdJoinable _idJoinable;
     private IOrderPlayerSequence _orderPlayerSequence;
@@ -41,6 +42,7 @@ class Game
         this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
         this._teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
         this._teamOrder = (ITeamOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamOrder));
+        this._tokenVisibility = (ITokenVisibility)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenVisibility));
         this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
         this._idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
         this._orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
@@ -178,6 +180,14 @@ class Game
         }
     }
 
+    public void WatchThesePlayers(ProtectedToken token, List<Player> players)
+    {
+        foreach(Player player in players)
+        {
+            token.Watch(player);
+        }
+    }
+
     public void PlayToken(ProtectedToken token, Position position)
     {
         this.WatchAllPlayers(token);
@@ -262,7 +272,7 @@ class Game
         {
             foreach(ProtectedToken token in this.GetPlayerBoard(player).GetTokens())
             {
-                token.Watch(player);
+                this.WatchThesePlayers(token, this._tokenVisibility.GetTokenVisibilityPlayers(player, this._teamInfo.Teams));
                 token.NewOwner(player);
             }
         }
@@ -486,7 +496,7 @@ class Game
         {
             ProtectedToken protectedToken = this._box.Take();
 
-            protectedToken.Watch(player);
+            this.WatchThesePlayers(protectedToken, this._tokenVisibility.GetTokenVisibilityPlayers(player, this._teamInfo.Teams));
             protectedToken.NewOwner(player);
 
             this.GetPlayerBoard(player).Add(protectedToken);
