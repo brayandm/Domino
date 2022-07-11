@@ -12,6 +12,7 @@ class Game
     
     private IBoxGenerator _boxGenerator;
     private ITeamGenerator _teamGenerator;
+    private ITeamOrder _teamOrder;
     private IJoinable _joinable;
     private IIdJoinable _idJoinable;
     private IOrderPlayerSequence _orderPlayerSequence;
@@ -39,6 +40,7 @@ class Game
     {
         this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
         this._teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
+        this._teamOrder = (ITeamOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamOrder));
         this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
         this._idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
         this._orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
@@ -48,14 +50,15 @@ class Game
         this._scoreTeam = (IScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IScoreTeam));
         this._winnerRule = (IWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IWinnerRule));
         
-        Tuple<List<Team>, List<Player>> teams = this._teamGenerator.GetTeams();
+        List<Team> teams = this._teamGenerator.GetTeams();
+        List<Player> players = this._teamOrder.GetTeamOrder(teams);
         
-        for(int i = 0 ; i < teams.Item2.Count ; i++)
+        for(int i = 0 ; i < players.Count ; i++)
         {
             this._boards.Add(new Board());
         }
 
-        this._teamInfo = new TeamInfo(teams.Item1, teams.Item2, _boards, this._orderPlayerSequence);   
+        this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
     }
 
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)

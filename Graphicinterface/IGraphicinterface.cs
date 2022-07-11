@@ -108,6 +108,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(RoundWinnerRuleMin));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IScoreTeam), typeof(ScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamGenerator), typeof(ClassicTwoGreedyTeams));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamOrder), typeof(AlternateTeamOrder));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IWinnerRule), typeof(WinnerRuleMin));
