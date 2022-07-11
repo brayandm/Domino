@@ -143,7 +143,7 @@ class Game
 
         Debug.Assert(tokens.Count > 0);
 
-        int index = player.Strategy.ChooseTokenIndex(tokens, this._table.GetTokensWithoutProtection());
+        int index = player.Strategy.ChooseTokenIndex(tokens, player, this._teamInfo.Teams, this.GetPlayersAndBoardTokensVisibleByPlayer(player), this._table.GetTokensWithoutProtection());
 
         ProtectedToken tokenToPlay = protectedTokens[index];
 
@@ -517,5 +517,31 @@ class Game
     public bool LastMoveWasDraw()
     {
         return this._history.GetCurrentHistoryRound().LastMoveWasDraw();
+    }
+
+    public Dictionary<Player, List<Token?>> GetPlayersAndBoardTokensVisibleByPlayer(Player player)
+    {
+        Dictionary<Player, List<Token?>> playerBoard = new Dictionary<Player, List<Token?>>();
+
+        foreach(Player otherPlayer in this._teamInfo.Players)
+        {
+            playerBoard.Add(otherPlayer, new List<Token?>());
+
+            Board board = this.GetPlayerBoard(otherPlayer);
+
+            foreach(ProtectedToken token in board.GetTokens())
+            {
+                if(token.IsVisible(player))
+                {
+                    playerBoard[otherPlayer].Add(token.GetTokenWithoutVisibility());
+                }
+                else
+                {
+                    playerBoard[otherPlayer].Add(null);
+                }
+            }
+        }
+
+        return playerBoard;
     }
 }

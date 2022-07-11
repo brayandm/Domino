@@ -1,22 +1,22 @@
 interface IStrategy : IBaseInterface
 {
-    int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens);
+    int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens);
 }
 
 class GreedyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
-        if(tokens.Count == 0)return -1;
+        if(playableTokens.Count == 0)return -1;
      
-        Token token = tokens[0];
+        Token token = playableTokens[0];
         int result = 0;
 
-        for(int i = 0 ; i < tokens.Count ; i++)
+        for(int i = 0 ; i < playableTokens.Count ; i++)
         {
-            if(token.CompareTo(tokens[i]) < 0)
+            if(token.CompareTo(playableTokens[i]) < 0)
             {
-                token = tokens[i];
+                token = playableTokens[i];
                 result = i;
             }
         }
@@ -27,23 +27,23 @@ class GreedyStrategy : IStrategy
 
 class RandomStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
-        if(tokens.Count == 0)return -1;
+        if(playableTokens.Count == 0)return -1;
 
-        return new Random().Next(tokens.Count);
+        return new Random().Next(playableTokens.Count);
     }
 }
 
 class FrequencyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> tokens, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
-        if(tokens.Count == 0)return -1;
+        if(playableTokens.Count == 0)return -1;
 
         Dictionary<string, int> idFrequency = new Dictionary<string, int>();
 
-        foreach(Token token in tokens)
+        foreach(Token token in playableTokens)
         {
             if(!idFrequency.ContainsKey(token.Faces.Item1.Id))
             {
@@ -80,7 +80,7 @@ class FrequencyStrategy : IStrategy
 
         List<bool> tokensToSelect = new List<bool>();
 
-        foreach(Token token in tokens)
+        foreach(Token token in playableTokens)
         {
             tokensToSelect.Add(token.Faces.Item1.Id == mostFrequencyId || token.Faces.Item2.Id == mostFrequencyId);
         }
@@ -88,21 +88,21 @@ class FrequencyStrategy : IStrategy
         Token tokenToPlay = new Token();
         int result = 0;
 
-        for(int i = 0 ; i < tokens.Count ; i++)
+        for(int i = 0 ; i < playableTokens.Count ; i++)
         {
             if(tokensToSelect[i])
             {
-                tokenToPlay = tokens[i];
+                tokenToPlay = playableTokens[i];
             }
         }
 
-        for(int i = 0 ; i < tokens.Count ; i++)
+        for(int i = 0 ; i < playableTokens.Count ; i++)
         {
             if(tokensToSelect[i])
             {
-                if(tokenToPlay.CompareTo(tokens[i]) < 0)
+                if(tokenToPlay.CompareTo(playableTokens[i]) < 0)
                 {
-                    tokenToPlay = tokens[i];
+                    tokenToPlay = playableTokens[i];
                     result = i;
                 }
             }
