@@ -18,6 +18,11 @@ class Namer
     {
         this._playerNames = this.ReadLines("Namer\\PlayerNameDatabase.txt");
         this._teamNames = this.ReadLines("Namer\\TeamNameDatabase.txt");
+
+        Random random = new Random();
+
+        this._playerNames = this._playerNames.OrderBy(_ => random.Next()).ToList();
+        this._teamNames = this._teamNames.OrderBy(_ => random.Next()).ToList();
     }
 
     public string GetPlayerId()

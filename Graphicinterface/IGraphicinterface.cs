@@ -57,7 +57,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.WriteLine("Welcome to Domino game\n\n");
 
-        Thread.Sleep(_time);
+        Thread.Sleep(_time/2);
 
         while(true)
         {
@@ -134,7 +134,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenVisibility), typeof(ClassicIndividualTokenVisibility));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentGenerator), typeof(GetEliminationTournamentFourTeams));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentWinnerRule), typeof(ITournamentWinnerRule));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentWinnerRule), typeof(ClassicTournamentMaxGamesWon));
         }
         else
         {
@@ -207,6 +207,40 @@ class ConsoleInterface : IGraphicinterface
         this.ConsoleClear();
 
         Console.WriteLine("The Domino tournament has finished\n\n");
+
+        ITournamentWinnerRule tournamentWinnerRule = (ITournamentWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITournamentWinnerRule));
+
+        List<Team> winners = tournamentWinnerRule.GetTournamentWinners(tournament);
+
+        for(int i = 0 ; i < winners.Count ; i++)
+        {
+            if(0 < i && i + 1 < winners.Count)
+            {
+                Console.Write(", ");
+            }
+            else if(0 < i && i + 1 == winners.Count)
+            {
+                Console.Write(" and ");
+            }
+            Console.Write(winners[i].Name);
+        }
+
+        if(winners.Count == 0)
+        {
+            Console.WriteLine("Nobody won the tournament\n\n\n\n\n");
+        }
+        else if(winners.Count == 1)
+        {
+            Console.WriteLine(" has won the tournament\n\n\n\n\n");
+        }
+        else if(winners.Count < tournament.GetTeams().Count)
+        {
+            Console.WriteLine(" have won the tournament\n\n\n\n\n");
+        }
+        else if(winners.Count == tournament.GetTeams().Count)
+        {
+            Console.WriteLine(" have tied in the tournament\n\n\n\n\n");
+        }
 
         Thread.Sleep(_time);
 
