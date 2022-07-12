@@ -80,11 +80,6 @@ class ConsoleInterface : IGraphicinterface
 
     public void NewTournament()
     {
-
-    }
-
-    public void NewGame()
-    {
         this.ConsoleClear();
 
         this.Clear();
@@ -99,7 +94,7 @@ class ConsoleInterface : IGraphicinterface
         {
             this.ConsoleClear();
 
-            Console.WriteLine("The Domino game will be set with default configuration\n\n");
+            Console.WriteLine("The Domino tournament will be set with default configuration\n\n");
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicPassTurnDraw));
@@ -173,6 +168,15 @@ class ConsoleInterface : IGraphicinterface
         
         this.ConsoleClear();
 
+        Console.WriteLine("The tournament will start...\n\n");
+
+        Thread.Sleep(_time*2);
+    }
+
+    public void NewGame()
+    {
+        this.ConsoleClear();
+
         Console.WriteLine("The game will start...\n\n");
 
         Thread.Sleep(_time*2);
@@ -181,6 +185,10 @@ class ConsoleInterface : IGraphicinterface
     public void TournamentOver(Tournament tournament)
     {
         this.ConsoleClear();
+
+        Console.WriteLine("The Domino tournament has finished\n\n");
+
+        Thread.Sleep(_time);
 
         Console.WriteLine("Do you want to play a new Domino tournament (Y/N)?\n\n");
 

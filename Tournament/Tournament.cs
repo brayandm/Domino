@@ -35,14 +35,14 @@ class Tournament
 
         foreach(Match nextMatch in _nextMatches[match])
         {
-            if(!mark.Contains(match))
+            if(!mark.Contains(nextMatch))
             {
                 if(!DFS(nextMatch, mark, markIn))
                 {
                     return false;
                 }
             }
-            else if(markIn.Contains(match))
+            else if(markIn.Contains(nextMatch))
             {
                 return false;
             }
@@ -151,7 +151,7 @@ class Tournament
 
         foreach(Match match in this._matches)
         {
-            foreach(Match nextMatch in this._nextMatches.Keys)
+            foreach(Match nextMatch in this._nextMatches[match])
             {
                 inDegree[nextMatch]++;
             }
