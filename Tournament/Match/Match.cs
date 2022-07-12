@@ -6,6 +6,11 @@ class Match
 
     private List<Team> _teams = new List<Team>();
 
+    public List<Team> GetTeams()
+    {
+        return this._teams;
+    }
+
     public void AddTeam(Team team)
     {
         this._teams.Add(team);

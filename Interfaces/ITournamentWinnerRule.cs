@@ -1,19 +1,21 @@
 using System.Diagnostics;
 
-interface IGameWinnerRule : IBaseInterface, ISelector
+interface ITournamentWinnerRule : IBaseInterface, ISelector
 {
-    List<Team> GetWinners(Game game);
+    List<Team> GetTournamentWinners(Tournament tournament);
 }
 
-class WinnerRuleMax : IGameWinnerRule
+class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
 {
-    public List<Team> GetWinners(Game game)
+    public List<Team> GetTournamentWinners(Tournament tournament)
     {
+        List<Team> teams = tournament.GetTeams();
+
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         
-        foreach(Team team in game.GetAllTeams())
+        foreach(Team team in teams)
         {
-            teamScores.Add(new Tuple<Team, int>(team, game.GetTeamAllRoundScore(team)));
+            teamScores.Add(new Tuple<Team, int>(team, tournament.GetTournamentHistory().GetTeamMatchsWon(team)));
         }
         
         Debug.Assert(teamScores.Count > 0);
@@ -36,15 +38,17 @@ class WinnerRuleMax : IGameWinnerRule
     }
 }
 
-class WinnerRuleMin : IGameWinnerRule
+class ClassicTournamentMinScore : ITournamentWinnerRule
 {
-    public List<Team> GetWinners(Game game)
+    public List<Team> GetTournamentWinners(Tournament tournament)
     {
+        List<Team> teams = tournament.GetTeams();
+
         List<Tuple<Team, int>> teamScores = new List<Tuple<Team, int>>();
         
-        foreach(Team team in game.GetAllTeams())
+        foreach(Team team in teams)
         {
-            teamScores.Add(new Tuple<Team, int>(team, game.GetTeamAllRoundScore(team)));
+            teamScores.Add(new Tuple<Team, int>(team, tournament.GetTournamentHistory().GetTeamTotalScore(team)));
         }
         
         Debug.Assert(teamScores.Count > 0);

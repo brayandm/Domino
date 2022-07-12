@@ -4,6 +4,8 @@ class Tournament
 {
     private List<Match> _matches;
 
+    private List<Team> _teams = new List<Team>();
+
     private Dictionary<Match, List<Match>> _nextMatches;
 
     private TournamentHistory _tournamentHistory = new TournamentHistory();
@@ -19,6 +21,11 @@ class Tournament
         {
             this._tournamentHistory.AddTeamTotalScore(team, game.GetTeamAllRoundScore(team));
         }
+    }
+
+    public TournamentHistory GetTournamentHistory()
+    {
+        return this._tournamentHistory;
     }
 
     private bool DFS(Match match, HashSet<Match> mark, HashSet<Match> markIn)
@@ -88,10 +95,31 @@ class Tournament
         return true;
     }
 
+    private void StoreTeamsFromMatches(List<Match> matches)
+    {
+        foreach(Match match in matches)
+        {
+            foreach(Team team in match.GetTeams())
+            {
+                if(!this._teams.Contains(team))
+                {
+                    this._teams.Add(team);
+                }
+            }
+        }
+    }  
+
+    public List<Team> GetTeams()
+    {
+        return this._teams;
+    }
+
     public Tournament(List<Match> matches, Dictionary<Match, List<Match>> nextMatches)
     {
         this._matches = matches;
         this._nextMatches = nextMatches;
+
+        this.StoreTeamsFromMatches(this._matches);
 
         foreach(Match match in this._matches)
         {
