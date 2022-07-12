@@ -15,7 +15,7 @@ class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
         
         foreach(Team team in teams)
         {
-            teamScores.Add(new Tuple<Team, int>(team, tournament.GetTournamentHistory().GetTeamMatchsWon(team)));
+            teamScores.Add(new Tuple<Team, int>(team, tournament.GetTournamentHistory().GetTeamMatchesWon(team)));
         }
         
         Debug.Assert(teamScores.Count > 0);

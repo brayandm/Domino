@@ -1,4 +1,4 @@
-interface ITeamGenerator : IBaseInterface, ISelector
+interface ITeamGenerator : IBaseInterface
 {
     List<Team> GetTeams();
 }
