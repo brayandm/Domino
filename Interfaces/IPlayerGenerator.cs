@@ -1,45 +1,20 @@
 interface IPlayerGenerator : IBaseInterface
 {
-    List<Player> GetPlayers();
+    Player GetPlayer(string id, string name);
 }
 
-class ClassicFourGreedyPlayers : IPlayerGenerator
+class ClassicGreddyPlayer : IPlayerGenerator
 {
-    public List<Player> GetPlayers()
+    public Player GetPlayer(string id, string name)
     {
-        List<Player> players = new List<Player>();
-
-        players.Add(new Player("Player1", "Juan", new GreedyStrategy()));
-        players.Add(new Player("Player2", "Ana", new GreedyStrategy()));
-        players.Add(new Player("Player3", "Pedro", new GreedyStrategy()));
-        players.Add(new Player("Player4", "Marta", new GreedyStrategy()));
-
-        return players;
+        return new Player(id, name, new GreedyStrategy());
     }
 }
 
-class TwoRandomPlayers : IPlayerGenerator
+class ClassicRandomPlayer : IPlayerGenerator
 {
-    public List<Player> GetPlayers()
+    public Player GetPlayer(string id, string name)
     {
-        List<Player> players = new List<Player>();
-
-        players.Add(new Player("Player1", "Carlos", new RandomStrategy()));
-        players.Add(new Player("Player2", "Maria", new RandomStrategy()));
-
-        return players;
-    }
-}
-
-class TwoGreedyPlayers : IPlayerGenerator
-{
-    public List<Player> GetPlayers()
-    {
-        List<Player> players = new List<Player>();
-
-        players.Add(new Player("Player1", "Carlos", new GreedyStrategy()));
-        players.Add(new Player("Player2", "Maria", new GreedyStrategy()));
-
-        return players;
+        return new Player(id, name, new RandomStrategy());
     }
 }

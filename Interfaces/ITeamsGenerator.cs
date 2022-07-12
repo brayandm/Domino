@@ -7,12 +7,10 @@ class ClassicTwoGreedyTeams : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
-        List<Player> players = (new ClassicFourGreedyPlayers()).GetPlayers();
+        Team teamA = (new ClassicGreedyTeamTwoPlayers()).GetTeam("Team1", "Team A");
+        Team teamB = (new ClassicGreedyTeamTwoPlayers()).GetTeam("Team2", "Team B");
 
-        return new List<Team>(){
-            new Team("Team-1", new List<Player>{players[0], players[2]}),
-            new Team("Team-2", new List<Player>{players[1], players[3]})
-            };
+        return new List<Team>(){teamA, teamB};
     }
 }
 
@@ -20,14 +18,12 @@ class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
-        List<Player> players = (new ClassicFourGreedyPlayers()).GetPlayers();
+        Team teamA = (new ClassicGreedyTeamOnePlayer()).GetTeam("Team1", "Team A");
+        Team teamB = (new ClassicGreedyTeamOnePlayer()).GetTeam("Team2", "Team B");
+        Team teamC = (new ClassicGreedyTeamOnePlayer()).GetTeam("Team3", "Team C");
+        Team teamD = (new ClassicGreedyTeamOnePlayer()).GetTeam("Team4", "Team D");
 
-        return new List<Team>(){
-            new Team("Team-1", new List<Player>{players[0]}),
-            new Team("Team-2", new List<Player>{players[1]}),
-            new Team("Team-3", new List<Player>{players[2]}),
-            new Team("Team-4", new List<Player>{players[3]}),
-        };
+        return new List<Team>(){teamA, teamB, teamC, teamD};
     }
 }
 
@@ -35,11 +31,9 @@ class TwoRandomTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
-        List<Player> players = (new TwoRandomPlayers()).GetPlayers();
+        Team teamA = (new ClassicRandomTeamOnePlayer()).GetTeam("Team1", "Team A");
+        Team teamB = (new ClassicRandomTeamOnePlayer()).GetTeam("Team2", "Team B");
 
-        return new List<Team>(){
-            new Team("Team-1", new List<Player>{players[0]}),
-            new Team("Team-2", new List<Player>{players[1]})
-            };
+        return new List<Team>(){teamA, teamB};
     }
 }

@@ -1,19 +1,16 @@
 class Team
 {
     public string Id;
+    public string Name;
     public List<Player> Players = new List<Player>();
 
     public int Count { get { return this.Players.Count; } }
 
-    public Team(string id, List<Player> players)
+    public Team(string id, string name, List<Player> players)
     {
         this.Id = id;
+        this.Name = name;
         this.Players = players;
-    }
-
-    public void ChangeId(string id)
-    {
-        this.Id = id;
     }
 
     public void Add(Player player) 
