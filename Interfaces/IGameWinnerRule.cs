@@ -1,11 +1,11 @@
 using System.Diagnostics;
 
-interface IWinnerRule : IBaseInterface, ISelector
+interface IGameWinnerRule : IBaseInterface, ISelector
 {
     List<Team> GetWinners(Game game);
 }
 
-class WinnerRuleMax : IWinnerRule
+class WinnerRuleMax : IGameWinnerRule
 {
     public List<Team> GetWinners(Game game)
     {
@@ -36,7 +36,7 @@ class WinnerRuleMax : IWinnerRule
     }
 }
 
-class WinnerRuleMin : IWinnerRule
+class WinnerRuleMin : IGameWinnerRule
 {
     public List<Team> GetWinners(Game game)
     {
