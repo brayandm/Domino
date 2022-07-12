@@ -360,3 +360,8 @@ class ConsoleInterface : IGraphicinterface
         }
     }
 }
+
+class Graphics
+{
+    public static ConsoleInterface graphicinterface = new ConsoleInterface();
+}
