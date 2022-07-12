@@ -187,7 +187,7 @@ class ConsoleInterface : IGraphicinterface
             {
                 Console.Write(" and ");
             }
-            Console.Write(winners[i].Id);
+            Console.Write(winners[i].Name);
         }
 
         if(winners.Count == 0)
@@ -211,7 +211,7 @@ class ConsoleInterface : IGraphicinterface
 
         foreach(Team team in game.GetAllTeams())
         {
-            Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
+            Console.WriteLine(team.Name + " has " + game.GetTeamAllRoundScore(team) + " points.");
         }
         Console.Write("\n\n\n\n\n");
         Console.WriteLine("Press any key to continue...");
@@ -256,7 +256,7 @@ class ConsoleInterface : IGraphicinterface
                 {
                     Console.Write(" and ");
                 }
-                Console.Write(winners[i].Id);
+                Console.Write(winners[i].Name);
             }
 
             if(winners.Count == 0)
@@ -280,7 +280,7 @@ class ConsoleInterface : IGraphicinterface
 
             foreach(Team team in game.GetAllTeams())
             {
-                Console.WriteLine(team.Id + " has " + game.GetTeamAllRoundScore(team) + " points.");
+                Console.WriteLine(team.Name + " has " + game.GetTeamAllRoundScore(team) + " points.");
             }
             Console.Write("\n\n\n\n\n");
             Console.WriteLine("Press any key to continue...");
@@ -309,11 +309,11 @@ class ConsoleInterface : IGraphicinterface
             {
                 if(player == game.GetCurrentPlayer() && lastMove != null)
                 {
-                    Console.WriteLine(player.Id + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine(player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
                 else
                 {
-                    Console.WriteLine(player.Id + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine(player.Name + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
             }         
 
