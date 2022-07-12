@@ -63,6 +63,20 @@ class Game
         this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
     }
 
+    public Game(List<Team> teams) : this()
+    {
+        List<Player> players = this._teamOrder.GetTeamOrder(teams);
+
+        this._boards = new List<Board>();
+        
+        for(int i = 0 ; i < players.Count ; i++)
+        {
+            this._boards.Add(new Board());
+        }
+
+        this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
+    }
+
     public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
     {
         List<ProtectedToken> tokens = board.GetTokens();
