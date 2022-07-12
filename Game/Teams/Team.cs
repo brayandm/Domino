@@ -11,6 +11,11 @@ class Team
         this.Players = players;
     }
 
+    public void ChangeId(string id)
+    {
+        this.Id = id;
+    }
+
     public void Add(Player player) 
     {
         if(!this.Players.Contains(player))

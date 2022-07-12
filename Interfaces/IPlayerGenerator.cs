@@ -30,3 +30,16 @@ class TwoRandomPlayers : IPlayerGenerator
         return players;
     }
 }
+
+class TwoGreedyPlayers : IPlayerGenerator
+{
+    public List<Player> GetPlayers()
+    {
+        List<Player> players = new List<Player>();
+
+        players.Add(new Player("Player1", "Carlos", new GreedyStrategy()));
+        players.Add(new Player("Player2", "Maria", new GreedyStrategy()));
+
+        return players;
+    }
+}

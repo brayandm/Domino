@@ -11,7 +11,7 @@ class Game
     private History _history = new History();
     
     private IBoxGenerator _boxGenerator;
-    private ITeamGenerator _teamGenerator;
+    private ITeamsGenerator _teamsGenerator;
     private ITeamOrder _teamOrder;
     private ITokenVisibility _tokenVisibility;
     private IJoinable _joinable;
@@ -40,7 +40,7 @@ class Game
     public Game()
     {
         this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
-        this._teamGenerator = (ITeamGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamGenerator));
+        this._teamsGenerator = (ITeamsGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamsGenerator));
         this._teamOrder = (ITeamOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamOrder));
         this._tokenVisibility = (ITokenVisibility)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenVisibility));
         this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
@@ -52,7 +52,7 @@ class Game
         this._scoreTeam = (IScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IScoreTeam));
         this._winnerRule = (IGameWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameWinnerRule));
         
-        List<Team> teams = this._teamGenerator.GetTeams();
+        List<Team> teams = this._teamsGenerator.GetTeams();
 
         Debug.Assert(teams.Count > 0);
 
