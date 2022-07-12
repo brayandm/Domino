@@ -27,6 +27,7 @@ class Events
     {
         public override void Action(Game game)
         {
+            game.SetGameToEnded();
         }
     }
 
