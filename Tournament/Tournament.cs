@@ -6,6 +6,21 @@ class Tournament
 
     private Dictionary<Match, List<Match>> _nextMatches;
 
+    private TournamentHistory _tournamentHistory = new TournamentHistory();
+
+    private void UpdateTournamentHistory(Game game)
+    {
+        foreach(Team team in game.GetWinnersAllRound())
+        {
+            this._tournamentHistory.TeamWinMatch(team);
+        }
+
+        foreach(Team team in game.GetAllTeams())
+        {
+            this._tournamentHistory.AddTeamTotalScore(team, game.GetTeamAllRoundScore(team));
+        }
+    }
+
     private bool DFS(Match match, HashSet<Match> mark, HashSet<Match> markIn)
     {
         mark.Add(match);
@@ -126,6 +141,13 @@ class Tournament
             Match match = queue.Dequeue();
 
             match.PlayMatch();
+
+            Game? currentGame = match.GetGame();
+
+            if(currentGame is Game)
+            {
+                this.UpdateTournamentHistory(currentGame);
+            } 
 
             foreach(Match nextMatch in this._nextMatches[match])
             {

@@ -52,4 +52,9 @@ class Match
 
         return this._game is Game ? this._game.GetWinnersAllRound() : new List<Team>();
     }
+
+    public Game? GetGame()
+    {
+        return this._game;
+    }
 }
