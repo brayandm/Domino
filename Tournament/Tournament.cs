@@ -163,7 +163,7 @@ class Tournament
         {
             if(inDegree[match] == 0)
             {
-                queue.Append(match);
+                queue.Enqueue(match);
             }
         }
 

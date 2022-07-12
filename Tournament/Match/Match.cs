@@ -41,11 +41,15 @@ class Match
     {
         Debug.Assert(this._teams.Count > 0);
 
+        Graphics.graphicinterface.NewGame();
+
         this._game = new Game(this._teams);
 
         Events.MainEvent mainEvent = new Events.MainEvent();
 
         mainEvent.Start(this._game, Graphics.graphicinterface);
+
+        Graphics.graphicinterface.GameOver(this._game);
     }
 
     public List<Team> GetWinners()
