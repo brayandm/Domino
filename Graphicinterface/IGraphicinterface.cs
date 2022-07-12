@@ -15,8 +15,10 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMoves = 0;
     private int _numberOfRounds = 0;
     private bool _roundEnded = false;
+    private int _numberOfMatches = 0; 
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
-    private bool _consoleClearable = false;   
+    private bool _consoleClearable = false; 
+    private bool _skip = true;  
 
     private void ClearGame()
     {
@@ -25,11 +27,27 @@ class ConsoleInterface : IGraphicinterface
         this._roundEnded = false;
     }
 
+    private void ClearTournament()
+    {
+        this._numberOfMatches = 0;
+    }
+
     private void ConsoleClear()
     {
         if(this._consoleClearable)
         {
             Console.Clear();
+        }
+    }
+
+    private void Skip()
+    {
+        if(!this._skip)
+        {
+            Console.Write("\n\n\n\n\n");
+            Console.WriteLine("Press any key to continue...");
+            Console.Write("\n\n\n\n\n");
+            Console.ReadKey();
         }
     }
 
@@ -82,6 +100,8 @@ class ConsoleInterface : IGraphicinterface
     {
         this.ConsoleClear();
 
+        this.ClearTournament();
+
         Console.WriteLine("Do you want to set the default configuration (Y/N)?\n\n");
 
         ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -98,7 +118,7 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicNoDraw));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameWinnerRule), typeof(WinnerRuleMin));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameWinnerRule), typeof(OnlyOneWinnerRuleMin));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IJoinable), typeof(ClassicJoinById));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IOrderPlayerSequence), typeof(ClassicOrderPlayersequence));
@@ -246,17 +266,26 @@ class ConsoleInterface : IGraphicinterface
         {
             Console.WriteLine(team.Name + " has " + game.GetTeamAllRoundScore(team) + " points.");
         }
-        Console.Write("\n\n\n\n\n");
-        Console.WriteLine("Press any key to continue...");
-        Console.Write("\n\n\n\n\n");
-        Console.ReadKey();
+
+        Console.WriteLine("\n\n\n\n");
+        
+        this.Skip();
 
         Thread.Sleep(_time);
     }
 
     public void UpdateTournament(Tournament tournament)
     {
-        
+        if(tournament.GetNumberOfMatches() > this._numberOfMatches)
+        {
+            this.ConsoleClear();
+
+            this._numberOfMatches = tournament.GetNumberOfMatches();
+
+            Console.WriteLine("The match " + this._numberOfMatches + " has finished\n\n\n\n");
+
+            Thread.Sleep(_time*1000000);
+        }
     }
 
     public void UpdateGame(Game game)
@@ -307,10 +336,8 @@ class ConsoleInterface : IGraphicinterface
             {
                 Console.WriteLine(team.Name + " has " + game.GetTeamAllRoundScore(team) + " points.");
             }
-            Console.Write("\n\n\n\n\n");
-            Console.WriteLine("Press any key to continue...");
-            Console.Write("\n\n\n\n\n");
-            Console.ReadKey();
+            
+            this.Skip();
         }
         else if(game.GetNumberOfRounds() > this._numberOfRounds)
         {

@@ -2,6 +2,17 @@ class TournamentHistory
 {
     private Dictionary<Team, int> _teamMatchesWon = new Dictionary<Team, int>();
     private Dictionary<Team, int> _teamTotalScore = new Dictionary<Team, int>();
+    private int _numberOfMatches = 0;
+
+    public void AddMatch()
+    {
+        this._numberOfMatches++;
+    }
+
+    public int GetNumberOfMatches()
+    {
+        return this._numberOfMatches;
+    }
 
     public void TeamWinMatch(Team team)
     {

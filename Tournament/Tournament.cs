@@ -137,6 +137,11 @@ class Tournament
         }
     }
 
+    public int GetNumberOfMatches()
+    {
+        return this._tournamentHistory.GetNumberOfMatches();
+    }
+
     public void StartTournament()
     {
         Dictionary<Match, int> inDegree = new Dictionary<Match, int>();
@@ -172,6 +177,10 @@ class Tournament
             Match match = queue.Dequeue();
 
             match.PlayMatch();
+
+            this._tournamentHistory.AddMatch();
+
+            Graphics.graphicinterface.UpdateTournament(this);
 
             Game? currentGame = match.GetGame();
 
