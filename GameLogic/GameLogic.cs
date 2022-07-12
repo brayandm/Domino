@@ -25,6 +25,5 @@ class GameLogic
                 Console.WriteLine("The number of tokens in the box is insufficient to start the game\n\n");
             }
         }
-
     }
 }
