@@ -53,6 +53,9 @@ class Game
         this._winnerRule = (IWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IWinnerRule));
         
         List<Team> teams = this._teamGenerator.GetTeams();
+
+        Debug.Assert(teams.Count > 0);
+
         List<Player> players = this._teamOrder.GetTeamOrder(teams);
         
         for(int i = 0 ; i < players.Count ; i++)
@@ -65,6 +68,8 @@ class Game
 
     public Game(List<Team> teams) : this()
     {
+        Debug.Assert(teams.Count > 0);
+        
         List<Player> players = this._teamOrder.GetTeamOrder(teams);
 
         this._boards = new List<Board>();
