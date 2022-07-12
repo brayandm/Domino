@@ -318,7 +318,7 @@ class ConsoleInterface : IGraphicinterface
 
             Console.WriteLine("The match " + this._numberOfMatches + " has finished\n\n\n\n");
 
-            Thread.Sleep(_time*1000000);
+            Thread.Sleep(_time);
         }
     }
 
