@@ -9,10 +9,10 @@ class ClassicFourGreedyPlayers : IPlayersGenerator
     {
         List<Player> players = new List<Player>();
 
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player1", "Juan"));
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player2", "Ana"));
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player3", "Pedro"));
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player4", "Marta"));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
 
         return players;
     }
@@ -24,8 +24,8 @@ class TwoRandomPlayers : IPlayersGenerator
     {
         List<Player> players = new List<Player>();
 
-        players.Add((new ClassicRandomPlayer()).GetPlayer("Player1", "Carlos"));
-        players.Add((new ClassicRandomPlayer()).GetPlayer("Player2", "Maria"));
+        players.Add((new ClassicRandomPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
+        players.Add((new ClassicRandomPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
 
         return players;
     }
@@ -37,8 +37,8 @@ class TwoGreedyPlayers : IPlayersGenerator
     {
         List<Player> players = new List<Player>();
 
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player1", "Carlos"));
-        players.Add((new ClassicGreddyPlayer()).GetPlayer("Player2", "Maria"));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
+        players.Add((new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName()));
 
         return players;
     }

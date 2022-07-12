@@ -27,7 +27,7 @@ class ClassicGreedyTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
-        List<Player> players = new List<Player>(){(new ClassicGreddyPlayer()).GetPlayer("Player1", "Carmelina")};
+        List<Player> players = new List<Player>(){(new ClassicGreddyPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName())};
 
         return new Team(id, name, players);
     }
@@ -37,7 +37,7 @@ class ClassicRandomTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
-        List<Player> players = new List<Player>(){(new ClassicRandomPlayer()).GetPlayer("Player1", "Carmelina")};
+        List<Player> players = new List<Player>(){(new ClassicRandomPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName())};
 
         return new Team(id, name, players);
     }
