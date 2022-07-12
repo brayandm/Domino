@@ -558,4 +558,14 @@ class Game
 
         return playerBoard;
     }
+
+    public void SetGameToEnded()
+    {
+        this._history.SetGameToEnded();
+    }
+
+    public bool GameIsEnded()
+    {
+        return this._history.GameIsEnded();
+    }
 }

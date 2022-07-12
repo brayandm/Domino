@@ -4,6 +4,8 @@ class History
 {
     private List<HistoryRound> _historyRounds = new List<HistoryRound>();
 
+    private bool _isEnded = false;
+
     public void NewHistoryRound()
     {
         this._historyRounds.Add(new HistoryRound());
@@ -22,5 +24,15 @@ class History
     public int GetNumberOfRounds()
     {
         return this._historyRounds.Count;
+    }
+
+    public void SetGameToEnded()
+    {
+        this._isEnded = true;
+    }
+
+    public bool GameIsEnded()
+    {
+        return this._isEnded;
     }
 }
