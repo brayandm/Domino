@@ -135,7 +135,10 @@ class Tournament
         {
             throw new TournamentIsNotDirectedAcyclicGraph();
         }
+    }
 
+    public void StartTournament()
+    {
         Dictionary<Match, int> inDegree = new Dictionary<Match, int>();
 
         foreach(Match match in this._matches)

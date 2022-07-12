@@ -108,11 +108,12 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundScoreTeam), typeof(RoundScoreTeamSumRule));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IRoundWinnerRule), typeof(RoundWinnerRuleMin));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IScoreTeam), typeof(ScoreTeamSumRule));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamsGenerator), typeof(ClassicTwoGreedyTeams));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITeamOrder), typeof(AlternateTeamOrder));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenDealer), typeof(ClassicTenTokensDistribution));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenValue), typeof(ClassicSumTokenValue));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenVisibility), typeof(ClassicIndividualTokenVisibility));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentGenerator), typeof(GetEliminationTournamentFourTeams));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentWinnerRule), typeof(ITournamentWinnerRule));
         }
         else
         {
