@@ -370,6 +370,8 @@ class ConsoleInterface : IGraphicinterface
             {
                 Console.WriteLine(team.Name + " has " + game.GetTeamAllRoundScore(team) + " points.");
             }
+
+            Console.WriteLine("\n\n\n\n");
             
             this.Skip();
         }
@@ -395,11 +397,11 @@ class ConsoleInterface : IGraphicinterface
             {
                 if(player == game.GetCurrentPlayer() && lastMove != null)
                 {
-                    Console.WriteLine(player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
                 else
                 {
-                    Console.WriteLine(player.Name + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
             }         
 
