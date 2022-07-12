@@ -21,7 +21,7 @@ class Game
     private IRoundScorePlayer _roundScorePlayer;
     private IRoundWinnerRule _roundWinnerRule;
     private IScoreTeam _scoreTeam;
-    private IGameWinnerRule _winnerRule;
+    private IGameWinnerRule _gameWinnerRule;
 
     public void NewRoundGame()
     {
@@ -50,7 +50,7 @@ class Game
         this._roundScorePlayer = (IRoundScorePlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundScorePlayer));
         this._roundWinnerRule = (IRoundWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundWinnerRule));
         this._scoreTeam = (IScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IScoreTeam));
-        this._winnerRule = (IGameWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameWinnerRule));
+        this._gameWinnerRule = (IGameWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameWinnerRule));
         
         List<Team> teams = this._teamsGenerator.GetTeams();
 
@@ -436,7 +436,7 @@ class Game
 
     public List<Team> GetWinnersAllRound()
     {
-        return this._winnerRule.GetWinners(this);
+        return this._gameWinnerRule.GetWinners(this);
     }
 
     public int GetNumberOfRounds()

@@ -184,9 +184,10 @@ class Tournament
             {
                 inDegree[nextMatch]--;
 
+                nextMatch.AddTeams(match.GetWinners());
+                
                 if(inDegree[nextMatch] == 0)
                 {
-                    nextMatch.AddTeams(match.GetWinners());
                     queue.Enqueue(nextMatch);
                 }
             }

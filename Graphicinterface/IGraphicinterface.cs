@@ -18,7 +18,7 @@ class ConsoleInterface : IGraphicinterface
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
     private bool _consoleClearable = false;   
 
-    private void Clear()
+    private void ClearGame()
     {
         this._numberOfMoves = 0;
         this._numberOfRounds = 0;
@@ -81,8 +81,6 @@ class ConsoleInterface : IGraphicinterface
     public void NewTournament()
     {
         this.ConsoleClear();
-
-        this.Clear();
 
         Console.WriteLine("Do you want to set the default configuration (Y/N)?\n\n");
 
@@ -176,6 +174,8 @@ class ConsoleInterface : IGraphicinterface
     public void NewGame()
     {
         this.ConsoleClear();
+
+        this.ClearGame();
 
         Console.WriteLine("The game will start...\n\n");
 
