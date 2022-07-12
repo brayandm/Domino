@@ -564,8 +564,8 @@ class Game
         this._history.SetGameToEnded();
     }
 
-    public bool GameIsEnded()
+    public bool IsGameEnded()
     {
-        return this._history.GameIsEnded();
+        return this._history.IsGameEnded();
     }
 }

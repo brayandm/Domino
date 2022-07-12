@@ -31,7 +31,7 @@ class History
         this._isEnded = true;
     }
 
-    public bool GameIsEnded()
+    public bool IsGameEnded()
     {
         return this._isEnded;
     }
