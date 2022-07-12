@@ -2,8 +2,11 @@ interface IGraphicinterface : IBaseInterface
 {
     void Main();
     void NewGame();
+    void NewTournament();
     void GameOver(Game game);
-    void Update(Game game);
+    void TournamentOver(Tournament game);
+    void UpdateGame(Game game);
+    void UpdateTournament(Tournament game);
 }
 
 class ConsoleInterface : IGraphicinterface
@@ -73,6 +76,11 @@ class ConsoleInterface : IGraphicinterface
                 Thread.Sleep(_time);
             }
         }
+    }
+
+    public void NewTournament()
+    {
+
     }
 
     public void NewGame()
@@ -170,6 +178,22 @@ class ConsoleInterface : IGraphicinterface
         Thread.Sleep(_time*2);
     }
 
+    public void TournamentOver(Tournament tournament)
+    {
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want to play a new Domino tournament (Y/N)?\n\n");
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key != ConsoleKey.Y)
+        {
+            Environment.Exit(0);
+        }
+    }
+
     public void GameOver(Game game)
     {
         this.ConsoleClear();
@@ -220,22 +244,14 @@ class ConsoleInterface : IGraphicinterface
         Console.ReadKey();
 
         Thread.Sleep(_time);
-
-        this.ConsoleClear();
-
-        Console.WriteLine("Do you want to play a new Domino game (Y/N)?\n\n");
-
-        ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-        Console.Write("\n\n");
-
-        if(keyInfo.Key != ConsoleKey.Y)
-        {
-            Environment.Exit(0);
-        }
     }
 
-    public void Update(Game game)
+    public void UpdateTournament(Tournament tournament)
+    {
+        
+    }
+
+    public void UpdateGame(Game game)
     {
         if(!this._roundEnded && game.IsCurrentRoundEnded())
         {

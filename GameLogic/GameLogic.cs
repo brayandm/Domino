@@ -8,15 +8,15 @@ class GameLogic
         {
             try
             {
-                Graphics.graphicinterface.NewGame();
+                Graphics.graphicinterface.NewTournament();
 
-                Game game = new Game();
+                ITournamentGenerator tournamentGenerator = (ITournamentGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITournamentGenerator));
 
-                Events.MainEvent mainEvent = new Events.MainEvent();
+                Tournament tournament = tournamentGenerator.GetTournament();
 
-                mainEvent.Start(game, Graphics.graphicinterface);
+                tournament.StartTournament();
 
-                Graphics.graphicinterface.GameOver(game);
+                Graphics.graphicinterface.TournamentOver(tournament);
             }
             catch (TokenDealerUnavailabilityException)
             {

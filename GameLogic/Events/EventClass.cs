@@ -40,7 +40,7 @@ abstract class Event
     {
         Action(game);
 
-        graphicinterface.Update(game);
+        graphicinterface.UpdateGame(game);
     }
 }
 
