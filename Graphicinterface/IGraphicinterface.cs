@@ -18,7 +18,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMatches = 0; 
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
     private bool _consoleClearable = false; 
-    private bool _skip = true;  
+    private bool _skip = false;  
 
     private void ClearGame()
     {
@@ -57,7 +57,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.WriteLine("Welcome to Domino game\n\n");
 
-        Thread.Sleep(_time/2);
+        Thread.Sleep(_time);
 
         while(true)
         {
