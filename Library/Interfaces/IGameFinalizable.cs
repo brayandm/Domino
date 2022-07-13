@@ -25,6 +25,16 @@ class ThreeRoundGameFinalizable : IGameFinalizable
     }
 }
 
+class OneRoundGameFinalizable : IGameFinalizable
+{
+    public bool IsGameFinalizable(Game game)
+    {
+        Debug.Assert(game.GetNumberOfRounds() <= 1);
+        
+        return game.GetNumberOfRounds() == 1;
+    }
+}
+
 class HundredPointsGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
