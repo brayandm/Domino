@@ -1,5 +1,13 @@
 class Events
 {
+    public class DoNothing : Event
+    {
+        public override void Action(Game game)
+        {
+            
+        }
+    }
+
     public class NewRoundGame : Event
     {
         public override void Action(Game game)

@@ -2,9 +2,16 @@ struct Token : IComparable
 {
     public Tuple<IFace, IFace> Faces;
 
+    public Power? Power = null;
+
     public Token(IFace a, IFace b)
     {
         this.Faces = new Tuple<IFace, IFace>(a, b);
+    }
+
+    public Token(IFace a, IFace b, Power power) : this(a, b)
+    {
+        this.Power = power;
     }
 
     public new string ToString()
