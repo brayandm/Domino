@@ -27,7 +27,7 @@ class States
 
     public static bool IsRoundGameOver(Game game)
     {
-        if(game.PowerHandler.GetActivity("EndRoundPower"))
+        if(game.PowerHandler.GetActivity("EndRoundPower") || game.PowerHandler.GetActivity("EndGamePower"))
         {
             return true;
         }

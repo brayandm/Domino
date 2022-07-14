@@ -15,5 +15,5 @@ class EndRoundPower : Power
 
 class EndGamePower : Power
 {
-    public EndGamePower() : base("EndGamePower", 1, new List<bool>(){true}) {}
+    public EndGamePower() : base("EndGamePower", -1, new List<bool>(){true}) {}
 }
