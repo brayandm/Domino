@@ -10,17 +10,18 @@ interface IGraphicinterface : IBaseInterface
     void UpdateGame(Game game);
     void UpdateTournament(Tournament game);
     string GetEntry(string id, string message, Func<string,bool> validator);
-    string SendMessage(string id, string message);
+    void SendMessage(string id, string message);
 }
 
 class ConsoleInterface : IGraphicinterface
 {
+    public ObjectsGraphic ObjectsGraphic = new ObjectsGraphic();
+    
     private int _time = 1000;
     private int _numberOfMoves = 0;
     private int _numberOfRounds = 0;
     private bool _roundEnded = false;
     private int _numberOfMatches = 0; 
-    private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
     private bool _consoleClearable = false; 
     private bool _skip = false;  
 
@@ -46,13 +47,33 @@ class ConsoleInterface : IGraphicinterface
                 Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
             }
         }
+        else if(id == "HumanSelection")
+        {
+            while(true)
+            {
+                Console.WriteLine(message + "\n\n\n\n");
+                
+                string? read = Console.ReadLine();
+
+                string entry = (read == null) ? "" : read;
+
+                if(validator(entry))
+                {   
+                    Console.WriteLine("\n\n\n\n");
+
+                    return entry;
+                }
+
+                Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
+            }
+        }
 
         Debug.Assert(false);
 
         return "";
     }
 
-    public string SendMessage(string id, string message)
+    public void SendMessage(string id, string message)
     {
         if(id == "HumanSelection")
         {
@@ -60,10 +81,14 @@ class ConsoleInterface : IGraphicinterface
 
             this.Skip();
         }
-
-        Debug.Assert(false);
-
-        return "";
+        else if(id == "ShowPlayableTokens")
+        {
+            Console.WriteLine(message + "\n\n\n\n");
+        }
+        else
+        {
+            Debug.Assert(false);
+        }
     }
 
     private void ClearGame()
@@ -446,11 +471,11 @@ class ConsoleInterface : IGraphicinterface
             {
                 if(player == game.GetCurrentPlayer() && lastMove != null)
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
                 else
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                 }
             }         
 
@@ -484,7 +509,7 @@ class ConsoleInterface : IGraphicinterface
                 }
             }
 
-            Console.WriteLine("\n" + this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
+            Console.WriteLine("\n" + this.ObjectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
 
             Thread.Sleep(_time);
 
