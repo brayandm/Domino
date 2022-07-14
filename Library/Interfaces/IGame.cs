@@ -7,6 +7,6 @@ class ClassicGame : IGame
 {
     public Event GetGame()
     {
-        return new Events.ClassicGame();
+        return new Events.ClassicGameEvent();
     }
 }

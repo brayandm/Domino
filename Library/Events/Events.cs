@@ -86,9 +86,9 @@ class Events
         }
     }
 
-    public class ClassicRoundGame : ComplexEvent
+    public class ClassicRoundGameEvent : ComplexEvent
     {
-        public ClassicRoundGame()
+        public ClassicRoundGameEvent()
         {
             Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
@@ -112,9 +112,9 @@ class Events
         }
     }
 
-    public class PlayWhilePossibleRoundGame : ComplexEvent
+    public class PlayWhilePossibleRoundGameEvent : ComplexEvent
     {
-        public PlayWhilePossibleRoundGame()
+        public PlayWhilePossibleRoundGameEvent()
         {
             Event newRoundGame = new NewRoundGame();
             Event distributeTokens = new DistributeTokens();
@@ -139,12 +139,12 @@ class Events
         }
     }
 
-    public class ClassicGame : ComplexEvent
+    public class ClassicGameEvent : ComplexEvent
     {
-        public ClassicGame()
+        public ClassicGameEvent()
         {
             Event newGame = new NewGame();
-            Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundGame));
+            Event roundGame = (DependencyContainerRegister.Getter.GetInstance(typeof(IRoundGame))).GetRoundGame();
             Event gameOver = new GameOver();
 
             this.Origin = newGame;

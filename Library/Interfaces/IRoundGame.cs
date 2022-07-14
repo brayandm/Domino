@@ -7,7 +7,7 @@ class ClassicRoundGame : IRoundGame
 {
     public Event GetRoundGame()
     {
-        return new Events.ClassicRoundGame();
+        return new Events.ClassicRoundGameEvent();
     }
 }
 
@@ -15,6 +15,6 @@ class PlayWhilePossibleRoundGame : IRoundGame
 {
     public Event GetRoundGame()
     {
-        return new Events.PlayWhilePossibleRoundGame();
+        return new Events.PlayWhilePossibleRoundGameEvent();
     }
 }
