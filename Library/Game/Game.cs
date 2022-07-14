@@ -112,12 +112,12 @@ class Game
             if(joinable.IsJoinable(this, token, this._table.LeftToken))
             {
                 tokens.Add(token);
-                break;
+                continue;
             }
             if(joinable.IsJoinable(this, this._table.RightToken, token))
             {
                 tokens.Add(token);
-                break;
+                continue;
             }
 
             token.Rotate();
@@ -125,12 +125,12 @@ class Game
             if(joinable.IsJoinable(this, token, this._table.LeftToken))
             {
                 tokens.Add(token);
-                break;
+                continue;
             }
             if(joinable.IsJoinable(this, this._table.RightToken, token))
             {
                 tokens.Add(token);
-                break;
+                continue;
             }
         }
 
