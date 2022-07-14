@@ -10,6 +10,7 @@ interface IGraphicinterface : IBaseInterface
     void UpdateGame(Game game);
     void UpdateTournament(Tournament game);
     string GetEntry(string id, string message, Func<string,bool> validator);
+    string SendMessage(string id, string message);
 }
 
 class ConsoleInterface : IGraphicinterface
@@ -44,6 +45,18 @@ class ConsoleInterface : IGraphicinterface
 
                 Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
             }
+        }
+
+        Debug.Assert(false);
+
+        return "";
+    }
+
+    public string SendMessage(string id, string message)
+    {
+        if(id == "HumanSelection")
+        {
+            Console.WriteLine(message + "\n\n\n\n");
         }
 
         Debug.Assert(false);
