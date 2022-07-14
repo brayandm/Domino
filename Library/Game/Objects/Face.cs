@@ -14,6 +14,12 @@ struct IntFace : IFace
         this.Id = value.ToString();
         this.Value = value;
     }
+
+    public IntFace()
+    {
+        this.Id = "";
+        this.Value = 0;
+    }
 }
 
 struct ColorFace : IFace
@@ -25,5 +31,11 @@ struct ColorFace : IFace
     {
         this.Id = color;
         this.Value = 1;
+    }
+
+    public ColorFace()
+    {
+        this.Id = "";
+        this.Value = 0;
     }
 }
