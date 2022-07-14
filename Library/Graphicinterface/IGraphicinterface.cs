@@ -116,7 +116,6 @@ class ConsoleInterface : IGraphicinterface
 
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicNoDraw));
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameWinnerRule), typeof(OnlyOneWinnerRuleMin));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IIdJoinable), typeof(ClassicIdJoinable));
