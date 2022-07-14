@@ -21,7 +21,7 @@ class DependencyGetter
             return;
         }
 
-        dynamic instance = DependencyContainerRegister.Getter.GetInstance(type);
+        dynamic instance = DependencyContainerRegister.Register.Organizer.CreateInstance(type);
 
         this._instances.Add(type, instance);
     }
