@@ -30,4 +30,18 @@ public static class Utils
     {
         return (int)keyInfo.Key - 48;
     }
+
+    public static bool IsEvenNumber(string cad)
+    {
+        try
+        {
+            int value = int.Parse(cad);
+
+            return value % 2 == 0;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }

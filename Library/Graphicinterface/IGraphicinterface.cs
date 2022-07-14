@@ -114,7 +114,7 @@ class ConsoleInterface : IGraphicinterface
 
             Console.WriteLine("The Domino tournament will be set with default configuration\n\n");
 
-            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
+            DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGeneratorWithPowerEvenFacesPassTurn));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicNoDraw));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGame), typeof(Events.ClassicGame));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));

@@ -25,6 +25,28 @@ class ClassicTenBoxGenerator : IBoxGenerator
     }
 }
 
+class ClassicTenBoxGeneratorWithPowerEvenFacesPassTurn : IBoxGenerator
+{
+    public List<ProtectedToken> Generate()
+    {
+        IFaceGenerator faceGenerator = new IntFacesGenerator();
+        ITokenGenerator tokenGenerator = new TwoEvenFacesPassTurnPowerClassicTokenGenerator();
+        IFilterTokenRule filterTokenRule = new NonFilterBoxRules();
+
+        List<Token> tokens = tokenGenerator.Generate(faceGenerator.GetFaces());
+        tokens.RemoveAll(x => !filterTokenRule.Apply(x));
+
+        List<ProtectedToken> protectedTokens = new List<ProtectedToken>();
+        
+        foreach(Token token in tokens)
+        {
+            protectedTokens.Add(new ProtectedToken(token));
+        }
+
+        return protectedTokens;
+    }
+}
+
 class ClassicSevenBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
