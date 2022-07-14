@@ -20,7 +20,7 @@ class HumanSelection : IStrategy
             {
                 int value = int.Parse(entry);
                 
-                return 0 <= value && value < playableTokens.Count;
+                return 1 <= value && value <= playableTokens.Count;
             }
             catch
             {
@@ -32,9 +32,9 @@ class HumanSelection : IStrategy
 
         Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoard(playableTokens));
 
-        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [0, " + (playableTokens.Count-1) + "])", Func);
+        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokens.Count + "])", Func);
     
-        return int.Parse(entry);
+        return int.Parse(entry) - 1;
     }
 }
 
