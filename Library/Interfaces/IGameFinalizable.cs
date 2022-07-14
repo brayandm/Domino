@@ -11,7 +11,7 @@ class ClassicTenRoundGameFinalizable : IGameFinalizable
     {
         Debug.Assert(game.GetNumberOfRounds() <= 10);
         
-        return game.GetNumberOfRounds() == 10 || game.IsGameEnded();
+        return game.GetNumberOfRounds() == 10;
     }
 }
 
@@ -21,7 +21,7 @@ class ThreeRoundGameFinalizable : IGameFinalizable
     {
         Debug.Assert(game.GetNumberOfRounds() <= 3);
         
-        return game.GetNumberOfRounds() == 3 || game.IsGameEnded();
+        return game.GetNumberOfRounds() == 3;
     }
 }
 
@@ -31,7 +31,7 @@ class OneRoundGameFinalizable : IGameFinalizable
     {
         Debug.Assert(game.GetNumberOfRounds() <= 1);
         
-        return game.GetNumberOfRounds() == 1 || game.IsGameEnded();
+        return game.GetNumberOfRounds() == 1;
     }
 }
 
@@ -39,11 +39,6 @@ class HundredPointsGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
     {
-        if(game.IsGameEnded())
-        {
-            return true;
-        }
-        
         foreach(Team team in game.GetAllTeams())
         {
             if(game.GetTeamAllRoundScore(team) >= 100)
