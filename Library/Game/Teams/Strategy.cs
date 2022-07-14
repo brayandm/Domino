@@ -3,6 +3,41 @@ interface IStrategy : IBaseInterface
     int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens);
 }
 
+class HumanSelection : IStrategy
+{
+    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    {
+        if(playableTokens.Count == 0)
+        {
+            Graphics.graphicinterface.SendMessage("HumanSelection", "There is not token to play");
+            
+            return -1;
+        }
+
+        bool Validador(string entry)
+        {
+            try
+            {
+                int value = int.Parse(entry);
+                
+                return 0 <= value && value < playableTokens.Count;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        Func<string, bool> Func = Validador;
+
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoard(playableTokens));
+
+        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [0, " + (playableTokens.Count-1) + "])", Func);
+    
+        return int.Parse(entry);
+    }
+}
+
 class GreedyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
