@@ -144,7 +144,7 @@ class Events
         public ClassicGame()
         {
             Event newGame = new NewGame();
-            Event roundGame = (Event)DependencyContainerRegister.Getter.GetInstance(typeof(IRoundGame));
+            Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundGame));
             Event gameOver = new GameOver();
 
             this.Origin = newGame;

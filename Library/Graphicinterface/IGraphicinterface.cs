@@ -134,8 +134,6 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenVisibility), typeof(ClassicIndividualTokenVisibility));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentGenerator), typeof(GetEliminationTournamentFourTeams));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentWinnerRule), typeof(ClassicTournamentMaxGamesWon));
-        
-            DependencyContainerRegister.Getter.InitializeAll();
         }
         else
         {
@@ -186,6 +184,8 @@ class ConsoleInterface : IGraphicinterface
                 DependencyContainerRegister.Getter.Initialize(gameInterface);
             }
         }
+
+        DependencyContainerRegister.Getter.InitializeAll();
         
         this.ConsoleClear();
 
