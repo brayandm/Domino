@@ -211,12 +211,7 @@ class Game
 
     public void PlayToken(ProtectedToken token, Position position)
     {
-        Power? tokenPower = token.GetTokenWithoutVisibility().Power;
-        
-        if(tokenPower != null)
-        {
-            this.PowerHandler.AddPower(tokenPower);
-        }
+        this.PowerHandler.AddPowers(token.GetTokenWithoutVisibility().Powers);
 
         this.WatchAllPlayers(token);
         

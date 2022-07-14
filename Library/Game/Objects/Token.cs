@@ -1,6 +1,6 @@
 struct Token : IComparable
 {
-    public Power? Power = null;
+    public List<Power> Powers = new List<Power>();
 
     public Tuple<IFace, IFace> Faces;
 
@@ -11,7 +11,12 @@ struct Token : IComparable
 
     public Token(IFace a, IFace b, Power power) : this(a, b)
     {
-        this.Power = power;
+        this.Powers = new List<Power>(){power};
+    } 
+
+    public Token(IFace a, IFace b, List<Power> powers) : this(a, b)
+    {
+        this.Powers = powers;
     } 
 
     public new string ToString()

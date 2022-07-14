@@ -7,6 +7,14 @@ class PowerHandler
         this._powers.Add(power);
     }
 
+    public void AddPowers(List<Power> powers)
+    {
+        foreach(Power power in powers)
+        {
+            this.AddPower(power);
+        }
+    }
+
     public bool GetActivity(string powerId)
     {
         bool activity = false;
