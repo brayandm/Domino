@@ -7,7 +7,7 @@ class ClassicFinalizationRule : IRoundFinalizationRule
 {
     public bool IsRoundGameOver(Game game) 
     {
-        return game.CurrentPlayerPlayedAllTokens() || game.GetNumberOfContiguousPassedTurns() == game.GetNumberOfPlayers();
+        return game.CurrentPlayerPlayedAllTokens() || game.GetNumberOfContiguousPassedTurns() == game.GetNumberOfPlayers() || game.IsCurrentRoundEnded();
     }
 }
 
@@ -15,7 +15,7 @@ class DoubleFinalizationRule : IRoundFinalizationRule
 {
     public bool IsRoundGameOver(Game game) 
     {
-        if(game.CurrentPlayerPlayedAllTokens())
+        if(game.CurrentPlayerPlayedAllTokens() || game.IsCurrentRoundEnded())
         {
             return true;
         }
