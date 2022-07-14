@@ -89,3 +89,31 @@ class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
         return tokens;
     }
 }
+
+class DoubleZeroEndRoundPowerClassicTokenGenerator : ITokenGenerator
+{
+    public List<Token> Generate(List<IFace> faces)
+    {
+        List<Token> tokens = new List<Token>();
+
+        for(int i = 0 ; i < faces.Count ; i++)
+        {
+            for(int j = i ; j < faces.Count ; j++)
+            {
+                IFace faceA = faces[i];
+                IFace faceB = faces[j];
+
+                if(faceA.Id == "0" && faceB.Id == "0")
+                {
+                    tokens.Add(new Token(faceA, faceB, new EndRoundPower()));
+                }
+                else
+                {
+                    tokens.Add(new Token(faceA, faceB));
+                }
+            }
+        }
+
+        return tokens;
+    }
+}
