@@ -4,8 +4,17 @@ class DependencyGetter
 {
     private Dictionary<Type, dynamic> _instances = new Dictionary<Type, dynamic>();
 
-    public void Update()
+    private bool _isInitialized = false;
+
+    public void Initialize()
     {
+        if(this._isInitialized)
+        {
+            return;
+        }
+
+        this._isInitialized = true;
+
         List<Type> types = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(IBaseInterface));
 
         foreach(Type type in types)
