@@ -53,6 +53,11 @@ class Events
     {
         public override void Action(Game game)
         {
+            if(game.PowerHandler.GetActivity("PassNextPlayerTurnPower"))
+            {
+                return;
+            }
+
             game.ProcessCurrentTurn();
         }
     }
