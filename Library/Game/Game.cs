@@ -2,6 +2,8 @@ using System.Diagnostics;
 
 class Game
 {
+    public PowerHandler PowerHandler = new PowerHandler();
+
     private TeamInfo _teamInfo;
 
     private List<Board> _boards = new List<Board>();
@@ -209,6 +211,13 @@ class Game
 
     public void PlayToken(ProtectedToken token, Position position)
     {
+        Power? tokenPower = token.GetTokenWithoutVisibility().Power;
+        
+        if(tokenPower != null)
+        {
+            this.PowerHandler.AddPower(tokenPower);
+        }
+
         this.WatchAllPlayers(token);
         
         foreach(Board board in _boards)
