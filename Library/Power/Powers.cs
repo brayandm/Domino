@@ -3,7 +3,17 @@ class PassNextPlayerTurnPower : Power
     public PassNextPlayerTurnPower() : base("PassNextPlayerTurnPower", 1, new List<bool>(){true}) {}
 }
 
-class PlayCurrentPlayerAgainPower : Power
+class PlayAgainCurrentPlayerPower : Power
 {
-    public PlayCurrentPlayerAgainPower() : base("PlayCurrentPlayerAgainPower", 1, new List<bool>(){true}) {}
+    public PlayAgainCurrentPlayerPower() : base("PlayAgainCurrentPlayerPower", 1, new List<bool>(){true}) {}
+}
+
+class EndRoundPower : Power
+{
+    public EndRoundPower() : base("EndRoundPower", 1, new List<bool>(){true}) {}
+}
+
+class EndGamePower : Power
+{
+    public EndGamePower() : base("EndGamePower", 1, new List<bool>(){true}) {}
 }
