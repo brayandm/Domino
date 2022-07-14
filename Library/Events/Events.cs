@@ -161,7 +161,7 @@ class Events
     {
         public MainEvent()
         {
-            Event game = (Event)DependencyContainerRegister.Getter.GetInstance(typeof(IGame));
+            Event game = ((IGame)DependencyContainerRegister.Getter.GetInstance(typeof(IGame))).GetGame();
 
             this.Origin = game;
         }
