@@ -86,7 +86,7 @@ class Events
         }
     }
 
-    public class ClassicRoundGame : ComplexEvent, IRoundGame
+    public class ClassicRoundGame : ComplexEvent
     {
         public ClassicRoundGame()
         {
@@ -112,7 +112,7 @@ class Events
         }
     }
 
-    public class PlayWhilePossibleRoundGame : ComplexEvent, IRoundGame
+    public class PlayWhilePossibleRoundGame : ComplexEvent
     {
         public PlayWhilePossibleRoundGame()
         {
@@ -139,7 +139,7 @@ class Events
         }
     }
 
-    public class ClassicGame : ComplexEvent, IGame
+    public class ClassicGame : ComplexEvent
     {
         public ClassicGame()
         {
