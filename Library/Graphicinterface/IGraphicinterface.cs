@@ -57,6 +57,8 @@ class ConsoleInterface : IGraphicinterface
         if(id == "HumanSelection")
         {
             Console.WriteLine(message + "\n\n\n\n");
+
+            this.Skip();
         }
 
         Debug.Assert(false);
