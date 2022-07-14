@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 interface IGraphicinterface : IBaseInterface
 {
     void Main();
@@ -7,6 +9,7 @@ interface IGraphicinterface : IBaseInterface
     void TournamentOver(Tournament game);
     void UpdateGame(Game game);
     void UpdateTournament(Tournament game);
+    string GetEntry(string id, string message, Func<string,bool> validator);
 }
 
 class ConsoleInterface : IGraphicinterface
@@ -19,6 +22,34 @@ class ConsoleInterface : IGraphicinterface
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
     private bool _consoleClearable = false; 
     private bool _skip = false;  
+
+    public string GetEntry(string id, string message, Func<string, bool> validator)
+    {
+        if(id == "GameRule")
+        {
+            while(true)
+            {
+                Console.WriteLine(message + "\n\n\n\n");
+                
+                string? read = Console.ReadLine();
+
+                string entry = (read == null) ? "" : read;
+
+                if(validator(entry))
+                {   
+                    Console.WriteLine("\n\n\n\n");
+
+                    return entry;
+                }
+
+                Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
+            }
+        }
+
+        Debug.Assert(false);
+
+        return "";
+    }
 
     private void ClearGame()
     {

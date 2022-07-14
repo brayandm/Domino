@@ -9,39 +9,25 @@ class VariableIntFacesBoxGenerator : IBoxGenerator
 
     public VariableIntFacesBoxGenerator()
     {
-        while(true)
+        bool Validador(string entry)
         {
-            Console.WriteLine("Insert the number of different faces to generate (must be greater than zero):\n\n\n\n");
-            
-            string? entry = Console.ReadLine();
-
-            if(entry is string)
+            try
             {
-                try
-                {
-                    this._numberOfDifferentFaces = int.Parse(entry);
-                    
-                    if(this._numberOfDifferentFaces <= 0)
-                    {
-                        Console.WriteLine("\n\n\n\nThe inserted number is incorrect, repeat it again\n\n");
-                        
-                        continue;
-                    }
-
-                    break;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("\n\n\n\nThe inserted number is incorrect, repeat it again\n\n");
-                }
+                int value = int.Parse(entry);
+                
+                return value > 0;
             }
-            else
+            catch
             {
-                Console.WriteLine("\n\n\n\nThe inserted number is incorrect, repeat it again\n\n");
+                return false;
             }
         }
 
-        Console.WriteLine("\n\n\n\n");
+        Func<string, bool> Func = Validador;
+
+        string entry = Graphics.graphicinterface.GetEntry("GameRule", "Insert the number of different faces to generate (must be greater than zero):", Func);
+    
+        this._numberOfDifferentFaces = int.Parse(entry);
     }
 
     public List<ProtectedToken> Generate()
