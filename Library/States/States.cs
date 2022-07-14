@@ -27,6 +27,11 @@ class States
 
     public static bool IsRoundGameOver(Game game)
     {
+        if(game.PowerHandler.GetActivity("EndRoundPower"))
+        {
+            return true;
+        }
+
         IRoundFinalizationRule roundFinalizationRule = (IRoundFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundFinalizationRule));
         
         return roundFinalizationRule.IsRoundGameOver(game);
@@ -34,6 +39,11 @@ class States
 
     public static bool IsGameOver(Game game)
     {
+        if(game.PowerHandler.GetActivity("EndGamePower"))
+        {
+            return true;
+        }
+
         IGameFinalizable gameFinalizable = (IGameFinalizable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameFinalizable));
         
         return gameFinalizable.IsGameFinalizable(game);
