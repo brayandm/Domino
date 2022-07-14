@@ -35,7 +35,7 @@ class DependencyContainer
         return type.Assembly.GetTypes().Where(subType => !subType.Equals(type) && subType.IsAssignableTo(type)).ToList();
     }
 
-    public object GetInstance(Type type, params object?[]? list)
+    public object CreateInstance(Type type, params object?[]? list)
     {
         object? obj = Activator.CreateInstance(type, list);
 
@@ -44,7 +44,7 @@ class DependencyContainer
         return obj;
     }
 
-    public object GetInstanceFromDefault(Type type, params object?[]? list)
+    public object CreateInstanceFromDefault(Type type, params object?[]? list)
     {
         object? obj = Activator.CreateInstance(this.GetDefault(type), list);
 

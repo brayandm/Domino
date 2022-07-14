@@ -207,7 +207,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.WriteLine("The Domino tournament has finished\n\n");
 
-        ITournamentWinnerRule tournamentWinnerRule = (ITournamentWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITournamentWinnerRule));
+        ITournamentWinnerRule tournamentWinnerRule = (ITournamentWinnerRule)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITournamentWinnerRule));
 
         List<Team> winners = tournamentWinnerRule.GetTournamentWinners(tournament);
 

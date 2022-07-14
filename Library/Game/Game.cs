@@ -41,18 +41,18 @@ class Game
 
     public Game()
     {
-        this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IBoxGenerator));
-        this._teamsGenerator = (ITeamsGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamsGenerator));
-        this._teamOrder = (ITeamOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITeamOrder));
-        this._tokenVisibility = (ITokenVisibility)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenVisibility));
-        this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IJoinable));
-        this._idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IIdJoinable));
-        this._orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IOrderPlayerSequence));
-        this._roundScoreTeam = (IRoundScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundScoreTeam));
-        this._roundScorePlayer = (IRoundScorePlayer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundScorePlayer));
-        this._roundWinnerRule = (IRoundWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundWinnerRule));
-        this._scoreTeam = (IScoreTeam)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IScoreTeam));
-        this._gameWinnerRule = (IGameWinnerRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameWinnerRule));
+        this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IBoxGenerator));
+        this._teamsGenerator = (ITeamsGenerator)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITeamsGenerator));
+        this._teamOrder = (ITeamOrder)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITeamOrder));
+        this._tokenVisibility = (ITokenVisibility)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITokenVisibility));
+        this._joinable = (IJoinable)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IJoinable));
+        this._idJoinable = (IIdJoinable)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IIdJoinable));
+        this._orderPlayerSequence = (IOrderPlayerSequence)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IOrderPlayerSequence));
+        this._roundScoreTeam = (IRoundScoreTeam)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundScoreTeam));
+        this._roundScorePlayer = (IRoundScorePlayer)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundScorePlayer));
+        this._roundWinnerRule = (IRoundWinnerRule)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundWinnerRule));
+        this._scoreTeam = (IScoreTeam)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IScoreTeam));
+        this._gameWinnerRule = (IGameWinnerRule)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IGameWinnerRule));
         
         List<Team> teams = this._teamsGenerator.GetTeams();
 

@@ -32,7 +32,7 @@ class States
             return true;
         }
 
-        IRoundFinalizationRule roundFinalizationRule = (IRoundFinalizationRule)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundFinalizationRule));
+        IRoundFinalizationRule roundFinalizationRule = (IRoundFinalizationRule)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundFinalizationRule));
         
         return roundFinalizationRule.IsRoundGameOver(game);
     }
@@ -44,21 +44,21 @@ class States
             return true;
         }
 
-        IGameFinalizable gameFinalizable = (IGameFinalizable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGameFinalizable));
+        IGameFinalizable gameFinalizable = (IGameFinalizable)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IGameFinalizable));
         
         return gameFinalizable.IsGameFinalizable(game);
     }
 
     public static bool IsConditionMetToReverse(Game game)
     {
-        IReversePlayerOrder reversePlayerOrder = (IReversePlayerOrder)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IReversePlayerOrder));
+        IReversePlayerOrder reversePlayerOrder = (IReversePlayerOrder)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IReversePlayerOrder));
         
         return reversePlayerOrder.IsConditionMet(game);
     }
 
     public static bool IsDrawable(Game game)
     {
-        IDrawable drawable = (IDrawable)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IDrawable));
+        IDrawable drawable = (IDrawable)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IDrawable));
 
         return drawable.IsDrawable(game);
     }

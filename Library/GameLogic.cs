@@ -10,7 +10,7 @@ class GameLogic
             {
                 Graphics.graphicinterface.NewTournament();
 
-                ITournamentGenerator tournamentGenerator = (ITournamentGenerator)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITournamentGenerator));
+                ITournamentGenerator tournamentGenerator = (ITournamentGenerator)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITournamentGenerator));
 
                 Tournament tournament = tournamentGenerator.GetTournament();
 

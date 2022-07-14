@@ -43,7 +43,7 @@ class Events
     {
         public override void Action(Game game)
         {
-            ITokenDealer tokenDealer = (ITokenDealer)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenDealer));
+            ITokenDealer tokenDealer = (ITokenDealer)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITokenDealer));
 
             game.DistributeTokens(tokenDealer);
         }
@@ -144,7 +144,7 @@ class Events
         public ClassicGame()
         {
             Event newGame = new NewGame();
-            Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IRoundGame));
+            Event roundGame = (Event)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IRoundGame));
             Event gameOver = new GameOver();
 
             this.Origin = newGame;
@@ -161,7 +161,7 @@ class Events
     {
         public MainEvent()
         {
-            Event game = (Event)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(IGame));
+            Event game = (Event)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(IGame));
 
             this.Origin = game;
         }

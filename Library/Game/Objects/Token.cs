@@ -31,7 +31,7 @@ struct Token : IComparable
 
     public int GetValue()
     {
-        ITokenValue tokenValue = (ITokenValue)DependencyContainerRegister.Register.Organizer.GetInstanceFromDefault(typeof(ITokenValue));
+        ITokenValue tokenValue = (ITokenValue)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITokenValue));
         return tokenValue.GetValue(this);
     }
 
