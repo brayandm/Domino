@@ -27,8 +27,8 @@ class GetEliminationTournamentFourTeams : ITournamentGenerator
 {
     public Tournament GetTournament()
     {
-        List<Team> teamsA = (new ClassicTwoGreedyTeams()).GetTeams();
-        List<Team> teamsB = (new ClassicTwoGreedyTeams()).GetTeams();
+        List<Team> teamsA = (new GreedyAndRandomTeams()).GetTeams();
+        List<Team> teamsB = (new FrequencyAndTableFrequencyTeams()).GetTeams();
 
         Match semifinalA = new Match();
         Match semifinalB = new Match();

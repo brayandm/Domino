@@ -18,3 +18,19 @@ class ClassicRandomPlayer : IPlayerGenerator
         return new Player(id, name, new RandomStrategy());
     }
 }
+
+class ClassicFrequencyPlayer : IPlayerGenerator
+{
+    public Player GetPlayer(string id, string name)
+    {
+        return new Player(id, name, new FrequencyStrategy());
+    }
+}
+
+class ClassicTableFrequencyPlayer : IPlayerGenerator
+{
+    public Player GetPlayer(string id, string name)
+    {
+        return new Player(id, name, new TableFrequencyStrategy());
+    }
+}

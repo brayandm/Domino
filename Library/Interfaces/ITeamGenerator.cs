@@ -23,6 +23,26 @@ class ClassicRandomTeamTwoPlayers : ITeamGenerator
     }
 }
 
+class ClassicFrequencyTeamTwoPlayers : ITeamGenerator
+{
+    public Team GetTeam(string id, string name)
+    {
+        List<Player> players = (new TwoFrequencyPlayers()).GetPlayers();
+
+        return new Team(id, name, players);
+    }
+}
+
+class ClassicTableFrequencyTeamTwoPlayers : ITeamGenerator
+{
+    public Team GetTeam(string id, string name)
+    {
+        List<Player> players = (new TwoTableFrequencyPlayers()).GetPlayers();
+
+        return new Team(id, name, players);
+    }
+}
+
 class ClassicGreedyTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)

@@ -14,6 +14,28 @@ class ClassicTwoGreedyTeams : ITeamsGenerator
     }
 }
 
+class GreedyAndRandomTeams : ITeamsGenerator
+{
+    public List<Team> GetTeams()
+    {
+        Team teamA = (new ClassicGreedyTeamTwoPlayers()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamB = (new ClassicRandomTeamTwoPlayers()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+
+        return new List<Team>(){teamA, teamB};
+    }
+}
+
+class FrequencyAndTableFrequencyTeams : ITeamsGenerator
+{
+    public List<Team> GetTeams()
+    {
+        Team teamA = (new ClassicFrequencyTeamTwoPlayers()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamB = (new ClassicTableFrequencyTeamTwoPlayers()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+
+        return new List<Team>(){teamA, teamB};
+    }
+}
+
 class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
