@@ -6,7 +6,7 @@ class DependencyGetter
 
     public void InitializeAll()
     {
-        List<Type> types = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(ISelector));
+        List<Type> types = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(IBaseInterface));
 
         foreach(Type type in types)
         {
