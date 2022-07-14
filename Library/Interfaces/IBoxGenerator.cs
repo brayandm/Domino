@@ -25,12 +25,12 @@ class ClassicTenBoxGenerator : IBoxGenerator
     }
 }
 
-class ClassicTenBoxGeneratorWithPowerEvenFacesPassTurn : IBoxGenerator
+class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
     {
         IFaceGenerator faceGenerator = new IntFacesGenerator();
-        ITokenGenerator tokenGenerator = new TwoEvenFacesPassTurnPowerClassicTokenGenerator();
+        ITokenGenerator tokenGenerator = new DoubleFacesPassTurnPowerClassicTokenGenerator();
         IFilterTokenRule filterTokenRule = new NonFilterBoxRules();
 
         List<Token> tokens = tokenGenerator.Generate(faceGenerator.GetFaces());

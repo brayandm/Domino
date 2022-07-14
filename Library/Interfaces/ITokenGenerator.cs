@@ -62,7 +62,7 @@ class CycleTokenGenerator : ITokenGenerator
     }
 }
 
-class TwoEvenFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
+class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
     {
@@ -75,7 +75,7 @@ class TwoEvenFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
                 IFace faceA = faces[i];
                 IFace faceB = faces[j];
 
-                if(Utils.IsEvenNumber(faceA.Id) && Utils.IsEvenNumber(faceB.Id))
+                if(faceA.Id == faceB.Id)
                 {
                     tokens.Add(new Token(faceA, faceB, new PassNextPlayerTurnPower()));
                 }
