@@ -134,6 +134,8 @@ class ConsoleInterface : IGraphicinterface
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITokenVisibility), typeof(ClassicIndividualTokenVisibility));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentGenerator), typeof(GetEliminationTournamentFourTeams));
             DependencyContainerRegister.Register.Organizer.SetDefault(typeof(ITournamentWinnerRule), typeof(ClassicTournamentMaxGamesWon));
+        
+            DependencyContainerRegister.Getter.InitializeAll();
         }
         else
         {
@@ -180,6 +182,8 @@ class ConsoleInterface : IGraphicinterface
                         Thread.Sleep(_time);
                     }
                 }
+
+                DependencyContainerRegister.Getter.Initialize(gameInterface);
             }
         }
         
@@ -207,7 +211,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.WriteLine("The Domino tournament has finished\n\n");
 
-        ITournamentWinnerRule tournamentWinnerRule = (ITournamentWinnerRule)DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(typeof(ITournamentWinnerRule));
+        ITournamentWinnerRule tournamentWinnerRule = (ITournamentWinnerRule)DependencyContainerRegister.Getter.GetInstance(typeof(ITournamentWinnerRule));
 
         List<Team> winners = tournamentWinnerRule.GetTournamentWinners(tournament);
 
