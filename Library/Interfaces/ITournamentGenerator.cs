@@ -23,6 +23,24 @@ class GetTournamentOneClassicMatch : ITournamentGenerator
     }
 }
 
+class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
+{
+    public Tournament GetTournament()
+    {
+        List<Team> teams = (new ClassicRandomAndHumanTeamsWithOnlyOnePlayer()).GetTeams();
+
+        Match principal = new Match();
+
+        principal.AddTeams(teams);
+
+        List<Match> matches = new List<Match>(){principal};
+
+        Dictionary<Match, List<Match>> Graph = new Dictionary<Match, List<Match>>();
+
+        return new Tournament(matches, Graph);
+    }
+}
+
 class GetEliminationTournamentFourTeams : ITournamentGenerator
 {
     public Tournament GetTournament()

@@ -3,6 +3,14 @@ interface IPlayerGenerator : IBaseInterface
     Player GetPlayer(string id, string name);
 }
 
+class ClassicHumanPlayer : IPlayerGenerator
+{
+    public Player GetPlayer(string id, string name)
+    {
+        return new Player(id, name, new HumanSelection());
+    }
+}
+
 class ClassicGreddyPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)

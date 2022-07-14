@@ -59,3 +59,14 @@ class TwoRandomTeamsWithOnlyOnePlayer : ITeamsGenerator
         return new List<Team>(){teamA, teamB};
     }
 }
+
+class ClassicRandomAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
+{
+    public List<Team> GetTeams()
+    {
+        Team teamA = (new ClassicRandomTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamB = (new ClassicHumanTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+
+        return new List<Team>(){teamA, teamB};
+    }
+}

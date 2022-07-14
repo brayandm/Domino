@@ -62,3 +62,13 @@ class ClassicRandomTeamOnePlayer : ITeamGenerator
         return new Team(id, name, players);
     }
 }
+
+class ClassicHumanTeamOnePlayer : ITeamGenerator
+{
+    public Team GetTeam(string id, string name)
+    {
+        List<Player> players = new List<Player>(){(new ClassicHumanPlayer()).GetPlayer(Names.namer.GetPlayerId(), Names.namer.GetPlayerName())};
+
+        return new Team(id, name, players);
+    }
+}
