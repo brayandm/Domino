@@ -6,7 +6,7 @@ class DependencyGetter
 
     public void InitializeAll()
     {
-        List<Type> types = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(IBaseInterface));
+        List<Type> types = DependencyContainerRegister.Register.Organizer.GetSubInterfaces(typeof(ISelector));
 
         foreach(Type type in types)
         {
@@ -21,7 +21,7 @@ class DependencyGetter
             return;
         }
 
-        dynamic instance = DependencyContainerRegister.Register.Organizer.CreateInstance(type);
+        dynamic instance = DependencyContainerRegister.Register.Organizer.CreateInstanceFromDefault(type);
 
         this._instances.Add(type, instance);
     }
