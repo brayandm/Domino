@@ -16,8 +16,8 @@ public class Namer
 
     public Namer()
     {
-        this._playerNames = this.ReadLines("..\\ClassLibrary\\Namer\\PlayerNameDatabase.txt");
-        this._teamNames = this.ReadLines("..\\ClassLibrary\\Namer\\TeamNameDatabase.txt");
+        this._playerNames = this.ReadLines("ClassLibrary\\Namer\\PlayerNameDatabase.txt");
+        this._teamNames = this.ReadLines("ClassLibrary\\Namer\\TeamNameDatabase.txt");
 
         Random random = new Random();
 
