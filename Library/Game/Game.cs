@@ -506,7 +506,7 @@ class Game
 
         if(protectedToken is ProtectedToken)
         {
-            List<ProtectedToken> protectedTokens = this._table.GetTokens();
+            List<ProtectedToken> protectedTokens = this._table.GetProtectedTokens();
 
             for(int i = 0 ; i < protectedTokens.Count ; i++)
             {
