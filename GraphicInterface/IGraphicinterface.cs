@@ -95,6 +95,10 @@ public class ConsoleInterface : IGraphicInterface
         {
             Console.WriteLine(message);
         }
+        else if(id == "Exception")
+        {
+            Console.WriteLine(message);
+        }
         else
         {
             Debug.Assert(false);

@@ -20,7 +20,7 @@ public class GameLogic
             }
             catch (TokenDealerUnavailabilityException)
             {
-                Console.WriteLine("The number of tokens in the box is insufficient to start the game\n\n");
+                ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).SendMessage("Exception", "The number of tokens in the box is insufficient to start the game\n\n");
             }
         }
     }
