@@ -52,7 +52,7 @@ class Namer
 
         Func<string, bool> Func = Validador;
 
-        string name = ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).GetEntry("GetHumanName", "Insert the name of the human player:", Func);
+        string name = ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).GetEntry("GetHumanName", "Insert the name of the human player:", Func);
 
         return name;
     }

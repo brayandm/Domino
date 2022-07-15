@@ -25,7 +25,7 @@ class VariableIntFacesBoxGenerator : IBoxGenerator
 
         Func<string, bool> Func = Validador;
 
-        string entry = ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).GetEntry("GameRule", "Insert the number of different faces to generate (must be greater than zero):", Func);
+        string entry = ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).GetEntry("GameRule", "Insert the number of different faces to generate (must be greater than zero):", Func);
     
         this._numberOfDifferentFaces = int.Parse(entry);
     }

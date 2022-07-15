@@ -180,7 +180,7 @@ class Tournament
 
             this._tournamentHistory.AddMatch();
 
-            ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).UpdateTournament(this);
+            ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).UpdateTournament(this);
 
             Game? currentGame = match.GetGame();
 

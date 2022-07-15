@@ -36,7 +36,7 @@ abstract class Event
 {
     public abstract void Action(Game game);
 
-    public virtual void Start(Game game, IGraphicinterface graphicinterface)
+    public virtual void Start(Game game, IGraphicInterface graphicinterface)
     {
         Action(game);
 
@@ -62,7 +62,7 @@ abstract class ComplexEvent : Event
         this.AdyList[eventA].Add(new Tuple<Event, Func<Game, bool>>(eventB, function));
     }
 
-    private bool StartAt(Event eventFather, Game game, IGraphicinterface graphicinterface)
+    private bool StartAt(Event eventFather, Game game, IGraphicInterface graphicinterface)
     {
         eventFather.Start(game, graphicinterface);
 
@@ -90,7 +90,7 @@ abstract class ComplexEvent : Event
 
     public override void Action(Game game){}
 
-    public override void Start(Game game, IGraphicinterface graphicinterface)
+    public override void Start(Game game, IGraphicInterface graphicinterface)
     {
         if(this.Origin is Event)
         {
