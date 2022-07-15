@@ -2,12 +2,6 @@ public class GameLogic
 {
     public GameLogic()
     {
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGraphicInterface), typeof(ConsoleInterface));
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IObjectsGraphic), typeof(ObjectsGraphic));
-
-        DependencyContainerRegister.Getter.Initialize(typeof(IGraphicInterface));
-        DependencyContainerRegister.Getter.Initialize(typeof(IObjectsGraphic));
-
         ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).Main();
 
         while(true)
