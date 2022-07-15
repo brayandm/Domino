@@ -151,6 +151,21 @@ class ConsoleInterface : IGraphicinterface
 
         Thread.Sleep(_time);
 
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want the console to be clearable (Y/N)?\n\n");
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._consoleClearable = true;
+        }
+
+        Console.Write("\n");
+
         while(true)
         {
             this.ConsoleClear();
@@ -186,6 +201,36 @@ class ConsoleInterface : IGraphicinterface
                 Thread.Sleep(_time);
             }
         }
+
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want to skip the waitings (Y/N)?\n\n");
+
+        keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._skip = true;
+        }
+
+        Console.Write("\n");
+
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want to show only visible tokens for current player (Y/N)?\n\n");
+
+        keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._showOnlyVisibleTokensForCurrentPlayer = true;
+        }
+
+        Console.Write("\n");
     }
 
     public void NewTournament()
