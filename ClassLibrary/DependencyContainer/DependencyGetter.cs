@@ -26,6 +26,16 @@ public class DependencyGetter
         this._instances.Add(type, instance);
     }
 
+    public void Initialize(Type type, dynamic instance)
+    {
+        if(this._instances.ContainsKey(type))
+        {
+            return;
+        }
+
+        this._instances.Add(type, instance);
+    }
+
     public dynamic GetInstance(Type type)
     {
         Debug.Assert(_instances.ContainsKey(type));

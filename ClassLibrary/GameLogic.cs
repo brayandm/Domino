@@ -1,7 +1,9 @@
 public class GameLogic
 {
-    public GameLogic()
+    public GameLogic(IGraphicInterface graphicInterface)
     {
+        DependencyContainerRegister.Getter.Initialize(typeof(IGraphicInterface), graphicInterface);
+
         ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).Main();
 
         while(true)

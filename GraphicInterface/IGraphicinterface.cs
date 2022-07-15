@@ -607,8 +607,3 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 }
-
-public class Graphics
-{
-    public static ConsoleInterface graphicinterface = new ConsoleInterface();
-}
