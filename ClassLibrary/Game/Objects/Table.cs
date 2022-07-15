@@ -78,6 +78,7 @@ public class Table
         return text;
     }
 
+    // Esta funcion crea una mesa vacia.
     public Table()
     {
         this._tokens = new LinkedList<ProtectedToken>();
@@ -108,6 +109,8 @@ public class Table
         return this._tokens.ToList();
     }
 
+    // Esta funcion devuelve el conjunto de fichas sobre la mesa
+    //en forma de lista.
     public List<Token> GetTokensWithoutProtection()
     {
         List<Token> tokens = new List<Token>();

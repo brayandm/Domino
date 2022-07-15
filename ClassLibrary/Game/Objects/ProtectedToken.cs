@@ -6,6 +6,8 @@ public class ProtectedToken : IComparable
 
     private HashSet<Player> _visibles = new HashSet<Player>();
 
+    // Esta funcion crea un ProtectedToken 
+    //el cual proteje a la ficha token.
     public ProtectedToken(Token token)
     {
         this._token = token;
@@ -52,7 +54,7 @@ public class ProtectedToken : IComparable
     }
     
     // Esta propiedad comprueba si el jugador "player"
-    //puede acceder al Token de este onjeto y devuelve true
+    //puede acceder al Token de este onjeto, devuelve true
     //en caso afirmativo, y false en caso contrario.
     public bool IsVisible(Player player)
     {

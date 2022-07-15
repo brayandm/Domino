@@ -5,11 +5,14 @@ public class Board
 
     public int Count { get { return this._tokens.Count; } }
 
+    // Esta funcion crea una nueva mano vacia.
     public Board()
     {
         this._tokens = new List<ProtectedToken>();
     }
 
+    // Esta funcion crea una nueva mano con los elementos
+    //de la lista tokens.
     public Board(List<ProtectedToken> tokens)
     {
         this._tokens = tokens;

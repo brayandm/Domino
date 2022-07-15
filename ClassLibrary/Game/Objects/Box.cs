@@ -8,6 +8,7 @@ public class Box
 
     public int Count { get { return this._tokens.Count; } }
 
+    // Esta funcion crea una nueva caja vacia.
     public Box()
     {
         this._tokens = new List<ProtectedToken>();
