@@ -3,7 +3,7 @@ public interface IFaceGenerator : IBaseInterface
     List<IFace> GetFaces();
 }
 
-static public class FaceColors
+public static class FaceColors
 {
     public static List<string> Colors = new List<string>{"Red", "Green", "Blue", "Yellow", "Orange", "Purple"};
 
@@ -20,7 +20,7 @@ static public class FaceColors
     }
 }
 
-static public class FaceInts
+public static class FaceInts
 {
     public static List<IFace> IntFaces(int n)
     {

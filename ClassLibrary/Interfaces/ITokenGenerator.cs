@@ -8,7 +8,7 @@ public interface ITokenGenerator : IBaseInterface
     }
 }
 
-static public class TokenGeneration
+public static class TokenGeneration
 {
     public static List<Token> KTimesTokens(List<Token> tokens, int k)
     {

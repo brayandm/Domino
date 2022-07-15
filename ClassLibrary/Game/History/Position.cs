@@ -1,4 +1,4 @@
-enum Position 
+public enum Position 
 {
     Left,
     Middle,

@@ -1,4 +1,4 @@
-struct Token : IComparable
+public struct Token : IComparable
 {
     public List<Power> Powers = new List<Power>();
 

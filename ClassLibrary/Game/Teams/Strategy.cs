@@ -1,4 +1,4 @@
-interface IStrategy : IBaseInterface
+public interface IStrategy : IBaseInterface
 {
     int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center);
 }
