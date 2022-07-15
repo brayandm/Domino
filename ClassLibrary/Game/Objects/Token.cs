@@ -1,3 +1,4 @@
+// Esta clase representa una ficha del juego
 public struct Token : IComparable
 {
     public List<Power> Powers = new List<Power>();

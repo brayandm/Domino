@@ -3,6 +3,7 @@ public class Board
 {
     private List<ProtectedToken> _tokens;
 
+    // Esta funcion retorna la cantidad de tokens
     public int Count { get { return this._tokens.Count; } }
 
     // Esta funcion crea una nueva mano vacia.
@@ -18,6 +19,7 @@ public class Board
         this._tokens = tokens;
     }
 
+    // Esta funcion retorna un string del objeto
     public new string ToString()
     { 
         string text = "";

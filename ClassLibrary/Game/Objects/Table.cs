@@ -61,6 +61,7 @@ public class Table
         this._tokens.Clear();
     }
 
+    // Esta funcion retorna un string del objeto
     public new string ToString()
     { 
         string text = "";

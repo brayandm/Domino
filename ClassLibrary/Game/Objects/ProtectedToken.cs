@@ -1,3 +1,6 @@
+// Esta clase representa un token protegido el 
+//cual le agrega una capa de proteccion al token
+//y un propietario
 public class ProtectedToken : IComparable
 {
     private Token _token;
