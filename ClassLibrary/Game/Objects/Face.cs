@@ -2,7 +2,9 @@
 //de una ficha de domino.
 public interface IFace : IBaseInterface
 {
+    // Esto representa el Id de la cara
     string Id {get;}
+    // Esto representa el valor de la cara
     int Value {get;}
 }
 

@@ -1,8 +1,10 @@
 // Esta clase representa una ficha del juego
 public struct Token : IComparable
 {
+    // Aqui se almacenan los poderes del token
     public List<Power> Powers = new List<Power>();
 
+    // Aqui se almacenan las caras del token
     public Tuple<IFace, IFace> Faces;
 
     // Esta funcion crea un Token de la forma 

@@ -4,8 +4,10 @@ public class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 
+    // Esta funcion retorna la cantidad de tokens
     public int Count { get { return this._tokens.Count; } }
 
+    // Esta funcion indica si no hay tokens en la mesa
     public bool Empty { get { return this._tokens.Count == 0; } }
 
     // Esta funcion devuelve los elementos(ProtectedToken) 
