@@ -101,50 +101,60 @@ class Game
         return visibleTokens;
     }
 
-    public List<ProtectedToken> GetPlayerTokensPlayable(Player player, IJoinable joinable)
+    public List<Tuple<ProtectedToken, Position>> GetPlayerTokensPlayableAndPosition(Player player, IJoinable joinable)
     {
         Board board = this._teamInfo.PlayerBoard[player];
         
-        List<ProtectedToken> tokens = new List<ProtectedToken>();
+        List<Tuple<ProtectedToken, Position>> tokens = new List<Tuple<ProtectedToken, Position>>();
 
         foreach(ProtectedToken token in GetBoardTokensVisibleForPlayer(player, board))
         {
+            if(this._table.Count == 0)
+            {
+                tokens.Add(new Tuple<ProtectedToken, Position>(token, Position.Middle));
+
+                continue;
+            }
+
+            bool left = false;
+            bool right = false;
+
             if(joinable.IsJoinable(this, token, this._table.LeftToken))
             {
-                tokens.Add(token);
-                continue;
+                tokens.Add(new Tuple<ProtectedToken, Position>(token, Position.Left));
+
+                left = true;
             }
             if(joinable.IsJoinable(this, this._table.RightToken, token))
             {
-                tokens.Add(token);
-                continue;
+                tokens.Add(new Tuple<ProtectedToken, Position>(token, Position.Right));
+
+                right = true;
             }
 
             token.Rotate();
 
-            if(joinable.IsJoinable(this, token, this._table.LeftToken))
+            if(!left && joinable.IsJoinable(this, token, this._table.LeftToken))
             {
-                tokens.Add(token);
-                continue;
+                tokens.Add(new Tuple<ProtectedToken, Position>(token, Position.Left));
             }
-            if(joinable.IsJoinable(this, this._table.RightToken, token))
+            if(!right && joinable.IsJoinable(this, this._table.RightToken, token))
             {
-                tokens.Add(token);
-                continue;
+                tokens.Add(new Tuple<ProtectedToken, Position>(token, Position.Right));
             }
         }
 
         return tokens;
     }
 
-    public List<ProtectedToken> GetCurrentPlayerTokensPlayable(IJoinable joinable)
+    public List<Tuple<ProtectedToken, Position>> GetCurrentPlayerTokensPlayableAndPosition(IJoinable joinable)
     {
-        return this.GetPlayerTokensPlayable(this._teamInfo.OrderPlayer.CurrentPlayer(), joinable);
+        return this.GetPlayerTokensPlayableAndPosition(this._teamInfo.OrderPlayer.CurrentPlayer(), joinable);
     }
 
     public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove(IJoinable joinable)
     {
-        List<ProtectedToken> protectedTokens = this.GetCurrentPlayerTokensPlayable(joinable);
+        List<Tuple<ProtectedToken, Position>> protectedTokens = this.GetCurrentPlayerTokensPlayableAndPosition(joinable);
 
         if(protectedTokens.Count == 0)
         {
@@ -153,44 +163,20 @@ class Game
 
         Player player = this._teamInfo.OrderPlayer.CurrentPlayer();
 
-        List<Token> tokens = new List<Token>();
+        List<Tuple<Token, Position>> tokens = new List<Tuple<Token, Position>>();
 
-        foreach(ProtectedToken protectedToken in protectedTokens)
+        foreach(Tuple<ProtectedToken, Position> protectedToken in protectedTokens)
         {
-            Debug.Assert(protectedToken.IsVisible(player));
+            Debug.Assert(protectedToken.Item1.IsVisible(player));
 
-            tokens.Add(protectedToken.GetTokenWithoutVisibility());
+            tokens.Add(new Tuple<Token, Position>(protectedToken.Item1.GetTokenWithoutVisibility(), protectedToken.Item2));
         }
 
         Debug.Assert(tokens.Count > 0);
 
         int index = player.Strategy.ChooseTokenIndex(tokens, player, this._teamInfo.Teams, this.GetPlayersAndBoardTokensVisibleByPlayer(player), this._table.GetTokensWithoutProtection());
 
-        ProtectedToken tokenToPlay = protectedTokens[index];
-
-        if(!this._table.Empty && joinable.IsJoinable(this, tokenToPlay, this._table.LeftToken))
-        {
-            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Left);
-        }
-
-        if(!this._table.Empty && joinable.IsJoinable(this, this._table.RightToken, tokenToPlay))
-        {
-            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Right);
-        }
-
-        tokenToPlay.Rotate();
-
-        if(!this._table.Empty && joinable.IsJoinable(this, tokenToPlay, this._table.LeftToken))
-        {
-            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Left);
-        }
-
-        if(!this._table.Empty && joinable.IsJoinable(this, this._table.RightToken, tokenToPlay))
-        {
-            return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Right);
-        }
-        
-        return new Tuple<ProtectedToken?, Position>(tokenToPlay, Position.Middle);
+        return new Tuple<ProtectedToken?, Position>(protectedTokens[index].Item1, protectedTokens[index].Item2);
     }
 
     public void WatchAllPlayers(ProtectedToken token)

@@ -1,12 +1,19 @@
 interface IStrategy : IBaseInterface
 {
-    int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens);
+    int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens);
 }
 
 class HumanSelection : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
+        List<Token> playableTokens = new List<Token>();
+
+        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
+        {
+            playableTokens.Add(playableToken.Item1);
+        }
+        
         if(playableTokens.Count == 0)
         {
             Graphics.graphicinterface.SendMessage("HumanSelection", "There is not token to play");
@@ -40,8 +47,15 @@ class HumanSelection : IStrategy
 
 class GreedyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
+        List<Token> playableTokens = new List<Token>();
+
+        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
+        {
+            playableTokens.Add(playableToken.Item1);
+        }
+
         if(playableTokens.Count == 0)return -1;
      
         Token token = playableTokens[0];
@@ -62,8 +76,15 @@ class GreedyStrategy : IStrategy
 
 class RandomStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
+        List<Token> playableTokens = new List<Token>();
+
+        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
+        {
+            playableTokens.Add(playableToken.Item1);
+        }
+
         if(playableTokens.Count == 0)return -1;
 
         return new Random().Next(playableTokens.Count);
@@ -72,8 +93,15 @@ class RandomStrategy : IStrategy
 
 class FrequencyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
+        List<Token> playableTokens = new List<Token>();
+
+        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
+        {
+            playableTokens.Add(playableToken.Item1);
+        }
+
         if(playableTokens.Count == 0)return -1;
 
         Dictionary<string, int> idFrequency = new Dictionary<string, int>();
@@ -149,8 +177,15 @@ class FrequencyStrategy : IStrategy
 
 class TableFrequencyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Token> playableTokens, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
+        List<Token> playableTokens = new List<Token>();
+
+        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
+        {
+            playableTokens.Add(playableToken.Item1);
+        }
+        
         if(playableTokens.Count == 0)return -1;
 
         Dictionary<string, int> idFrequency = new Dictionary<string, int>();
