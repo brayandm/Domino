@@ -274,4 +274,42 @@ class ObjectsGraphic
 
         return this.GetStringFromMatrix(matrix);
     }
+
+    public string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens)
+    {
+        List<List<string>> matrix = this.GetMatrix(5, tokens.Count*4 - 1);
+
+        for(int i = 0 ; i < tokens.Count ; i++)
+        {
+            matrix[0][i*4] = "[";
+            matrix[0][i*4+1] = tokens[i].Item1.Faces.Item1.Id;
+            matrix[0][i*4+2] = "]";
+            matrix[1][i*4] = "|";
+            matrix[1][i*4+1] = ":";
+            matrix[1][i*4+2] = "|";
+            matrix[2][i*4] = "[";
+            matrix[2][i*4+1] = tokens[i].Item1.Faces.Item2.Id;
+            matrix[2][i*4+2] = "]";
+            matrix[3][i*4] = " ";
+            matrix[3][i*4+1] = " ";
+            matrix[3][i*4+2] = " ";
+            matrix[4][i*4] = " ";
+            matrix[4][i*4+2] = " ";
+
+            if(tokens[i].Item2 == Position.Left)
+            {
+                matrix[4][i*4+1] = "L";
+            }
+            else if(tokens[i].Item2 == Position.Right)
+            {
+                matrix[4][i*4+1] = "R";
+            }
+            else if(tokens[i].Item2 == Position.Middle)
+            {
+                matrix[4][i*4+1] = "M";
+            }
+        }
+
+        return this.GetStringFromMatrix(matrix);
+    }
 }

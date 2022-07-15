@@ -156,11 +156,6 @@ class Game
     {
         List<Tuple<ProtectedToken, Position>> protectedTokens = this.GetCurrentPlayerTokensPlayableAndPosition(joinable);
 
-        if(protectedTokens.Count == 0)
-        {
-            return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
-        }
-
         Player player = this._teamInfo.OrderPlayer.CurrentPlayer();
 
         List<Tuple<Token, Position>> tokens = new List<Tuple<Token, Position>>();
@@ -172,9 +167,12 @@ class Game
             tokens.Add(new Tuple<Token, Position>(protectedToken.Item1.GetTokenWithoutVisibility(), protectedToken.Item2));
         }
 
-        Debug.Assert(tokens.Count > 0);
-
         int index = player.Strategy.ChooseTokenIndex(tokens, player, this._teamInfo.Teams, this.GetPlayersAndBoardTokensVisibleByPlayer(player), this._table.GetTokensWithoutProtection());
+
+        if(tokens.Count == 0)
+        {
+            return new Tuple<ProtectedToken?, Position>(null, Position.Pass);
+        }
 
         return new Tuple<ProtectedToken?, Position>(protectedTokens[index].Item1, protectedTokens[index].Item2);
     }

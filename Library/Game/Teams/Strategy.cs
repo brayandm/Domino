@@ -7,14 +7,7 @@ class HumanSelection : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
     {
-        List<Token> playableTokens = new List<Token>();
-
-        foreach(Tuple<Token, Position> playableToken in playableTokensAndPositions)
-        {
-            playableTokens.Add(playableToken.Item1);
-        }
-        
-        if(playableTokens.Count == 0)
+        if(playableTokensAndPositions.Count == 0)
         {
             Graphics.graphicinterface.SendMessage("HumanSelection", "There is not token to play");
             
@@ -27,7 +20,7 @@ class HumanSelection : IStrategy
             {
                 int value = int.Parse(entry);
                 
-                return 1 <= value && value <= playableTokens.Count;
+                return 1 <= value && value <= playableTokensAndPositions.Count;
             }
             catch
             {
@@ -37,9 +30,9 @@ class HumanSelection : IStrategy
 
         Func<string, bool> Func = Validador;
 
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoard(playableTokens));
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoardAndPositions(playableTokensAndPositions));
 
-        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokens.Count + "])", Func);
+        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokensAndPositions.Count + "])", Func);
     
         return int.Parse(entry) - 1;
     }
