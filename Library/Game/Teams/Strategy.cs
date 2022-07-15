@@ -30,7 +30,7 @@ class HumanSelection : IStrategy
 
         Func<string, bool> Func = Validador;
 
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Board:\n\n");
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", player.Name + " Board:\n\n");
         Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicNullableBoard(playerBoard[player]));
         Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
         Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Table:\n\n");
