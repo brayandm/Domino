@@ -24,7 +24,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMatches = 0; 
     private bool _consoleClearable = false; 
     private bool _skip = false;  
-    private bool _showOnlyVisibleTokensForCurrentPlayer = false;
+    private bool _showOnlyVisibleTokensForCurrentPlayer = true;
 
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
@@ -84,7 +84,7 @@ class ConsoleInterface : IGraphicinterface
         }
         else if(id == "ShowPlayableTokens")
         {
-            Console.WriteLine(message + "\n\n\n\n");
+            Console.WriteLine(message);
         }
         else
         {

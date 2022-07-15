@@ -1,11 +1,11 @@
 interface IStrategy : IBaseInterface
 {
-    int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens);
+    int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center);
 }
 
 class HumanSelection : IStrategy
 {
-    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
         if(playableTokensAndPositions.Count == 0)
         {
@@ -30,7 +30,15 @@ class HumanSelection : IStrategy
 
         Func<string, bool> Func = Validador;
 
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Board:\n\n");
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicNullableBoard(playerBoard[player]));
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Table:\n\n");
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicTable(tableTokens, center));
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Playable Tokens:\n\n");
         Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoardAndPositions(playableTokensAndPositions));
+        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
 
         string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokensAndPositions.Count + "])", Func);
     
@@ -40,7 +48,7 @@ class HumanSelection : IStrategy
 
 class GreedyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
         List<Token> playableTokens = new List<Token>();
 
@@ -69,7 +77,7 @@ class GreedyStrategy : IStrategy
 
 class RandomStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
         List<Token> playableTokens = new List<Token>();
 
@@ -86,7 +94,7 @@ class RandomStrategy : IStrategy
 
 class FrequencyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
         List<Token> playableTokens = new List<Token>();
 
@@ -170,7 +178,7 @@ class FrequencyStrategy : IStrategy
 
 class TableFrequencyStrategy : IStrategy
 {
-    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens)
+    public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
         List<Token> playableTokens = new List<Token>();
 
