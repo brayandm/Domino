@@ -30,6 +30,7 @@ public class HumanSelection : IStrategy
 
         Func<string, bool> Func = Validador;
 
+        ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).Action("ConsoleClear");
         ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).SendMessage("ShowPlayableTokens", player.Name + " Board:\n\n");
         ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).SendMessage("ShowPlayableTokens", ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).ObjectsGraphic.GraphicNullableBoard(playerBoard[player]));
         ((IGraphicInterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicInterface))).SendMessage("ShowPlayableTokens", "\n\n");

@@ -105,6 +105,18 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 
+    public void Action(string id)
+    {
+        if(id == "ConsoleClear")
+        {
+            this.ConsoleClear();
+        }
+        else
+        {
+            Debug.Assert(false);
+        }
+    }
+
     private void ClearGame()
     {
         this._numberOfMoves = 0;

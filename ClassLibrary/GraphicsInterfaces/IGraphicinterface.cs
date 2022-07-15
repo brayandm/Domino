@@ -1,6 +1,9 @@
 public interface IGraphicInterface : IGraphics
 {
     IObjectsGraphic ObjectsGraphic {get;}
+    string GetEntry(string id, string message, Func<string,bool> validator);
+    void SendMessage(string id, string message);
+    void Action(string id);
     void Main();
     void NewGame();
     void NewTournament();
@@ -8,6 +11,4 @@ public interface IGraphicInterface : IGraphics
     void TournamentOver(Tournament game);
     void UpdateGame(Game game);
     void UpdateTournament(Tournament game);
-    string GetEntry(string id, string message, Func<string,bool> validator);
-    void SendMessage(string id, string message);
 }
