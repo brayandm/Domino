@@ -4,8 +4,6 @@ public class ConsoleInterface : IGraphicInterface
 {
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
 
-    public IObjectsGraphic ObjectsGraphic {get { return this._objectsGraphic; }}
-    
     private int _time = 1000;
     private int _numberOfMoves = 0;
     private int _numberOfRounds = 0;
@@ -14,6 +12,26 @@ public class ConsoleInterface : IGraphicInterface
     private bool _consoleClearable = false; 
     private bool _skip = false;  
     private bool _showOnlyVisibleTokensForCurrentPlayer = false;
+
+    public string GraphicTable(List<Token> tokens, int center)
+    {
+        return this._objectsGraphic.GraphicTable(tokens, center);
+    }
+
+    public string GraphicBoard(List<Token> tokens)
+    {
+        return this._objectsGraphic.GraphicBoard(tokens);
+    }
+
+    public string GraphicNullableBoard(List<Token?> tokens)
+    {
+        return this._objectsGraphic.GraphicNullableBoard(tokens);
+    }
+
+    public string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens)
+    {
+        return this._objectsGraphic.GraphicBoardAndPositions(tokens);
+    }
 
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
@@ -546,22 +564,22 @@ public class ConsoleInterface : IGraphicInterface
                 {
                     if(player == game.GetCurrentPlayer() && lastMove != null)
                     {
-                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
                     }
                     else
                     {
-                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this._objectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
                     }
                 }
                 else
                 {
                     if(player == game.GetCurrentPlayer() && lastMove != null)
                     {
-                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                     }
                     else
                     {
-                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this._objectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
                     }
                 }
             }         
@@ -596,7 +614,7 @@ public class ConsoleInterface : IGraphicInterface
                 }
             }
 
-            Console.WriteLine("\n" + this.ObjectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
+            Console.WriteLine("\n" + this._objectsGraphic.GraphicTable(game.GetTabletokens(), game.GetPositionMiddle()));
 
             Thread.Sleep(_time);
 

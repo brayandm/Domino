@@ -1,6 +1,9 @@
 public interface IGraphicInterface : IGraphics
 {
-    IObjectsGraphic ObjectsGraphic {get;}
+    string GraphicTable(List<Token> tokens, int center);
+    string GraphicBoard(List<Token> tokens);
+    string GraphicNullableBoard(List<Token?> tokens);
+    string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens);
     string GetEntry(string id, string message, Func<string,bool> validator);
     void SendMessage(string id, string message);
     void Action(string id);

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-public class ObjectsGraphic : IObjectsGraphic
+public class ObjectsGraphic
 {
     private const int _width = 6;
     private const int _height = 8;
