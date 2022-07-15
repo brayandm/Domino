@@ -32,7 +32,7 @@ public class <ComplexEventName> : ComplexEvent
 }
 */
 
-abstract public class Event
+public abstract class Event
 {
     public abstract void Action(Game game);
 
@@ -44,7 +44,7 @@ abstract public class Event
     }
 }
 
-abstract public class ComplexEvent : Event
+public abstract class ComplexEvent : Event
 {
     protected Event? Origin = null;
     

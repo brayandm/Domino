@@ -1,4 +1,4 @@
-public interface IObjectsGraphic
+public interface IObjectsGraphic : IGraphics
 {
     string GraphicTable(List<Token> tokens, int center);
     string GraphicBoard(List<Token> tokens);
