@@ -24,6 +24,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMatches = 0; 
     private bool _consoleClearable = false; 
     private bool _skip = false;  
+    private bool _showOnlyVisibleTokensForCurrentPlayer = false;
 
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
@@ -67,6 +68,26 @@ class ConsoleInterface : IGraphicinterface
                 Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
             }
         }
+        else if(id == "GetHumanName")
+        {
+            while(true)
+            {
+                Console.WriteLine(message + "\n\n\n\n");
+                
+                string? read = Console.ReadLine();
+
+                string entry = (read == null) ? "" : read;
+
+                if(validator(entry))
+                {   
+                    Console.WriteLine("\n\n\n\n");
+
+                    return entry;
+                }
+
+                Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
+            }
+        }
 
         Debug.Assert(false);
 
@@ -83,7 +104,7 @@ class ConsoleInterface : IGraphicinterface
         }
         else if(id == "ShowPlayableTokens")
         {
-            Console.WriteLine(message + "\n\n\n\n");
+            Console.WriteLine(message);
         }
         else
         {
@@ -130,6 +151,21 @@ class ConsoleInterface : IGraphicinterface
 
         Thread.Sleep(_time);
 
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want the console to be clearable (Y/N)?\n\n");
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._consoleClearable = true;
+        }
+
+        Console.Write("\n");
+
         while(true)
         {
             this.ConsoleClear();
@@ -165,6 +201,36 @@ class ConsoleInterface : IGraphicinterface
                 Thread.Sleep(_time);
             }
         }
+
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want to skip the waitings (Y/N)?\n\n");
+
+        keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._skip = true;
+        }
+
+        Console.Write("\n");
+
+        this.ConsoleClear();
+
+        Console.WriteLine("Do you want to show only visible tokens for current player (Y/N)?\n\n");
+
+        keyInfo = Console.ReadKey();
+
+        Console.Write("\n\n");
+
+        if(keyInfo.Key == ConsoleKey.Y)
+        {
+            this._showOnlyVisibleTokensForCurrentPlayer = true;
+        }
+
+        Console.Write("\n");
     }
 
     public void NewTournament()
@@ -179,7 +245,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.Write("\n\n");
 
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn));
+        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicNoDraw));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameWinnerRule), typeof(OnlyOneWinnerRuleMin));
@@ -469,13 +535,29 @@ class ConsoleInterface : IGraphicinterface
 
             foreach(Player player in players)
             {
-                if(player == game.GetCurrentPlayer() && lastMove != null)
+                Player currentPlayer = game.GetCurrentPlayer();
+
+                if(this._showOnlyVisibleTokensForCurrentPlayer)
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    if(player == game.GetCurrentPlayer() && lastMove != null)
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    if(player == game.GetCurrentPlayer() && lastMove != null)
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    }
                 }
             }         
 
@@ -513,8 +595,6 @@ class ConsoleInterface : IGraphicinterface
 
             Thread.Sleep(_time);
 
-            Console.Write("\n");
-            Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");

@@ -85,6 +85,3 @@ class ProtectedToken : IComparable
         return this._token.CompareTo(((ProtectedToken)obj)._token);
     }
 }
-
-
-

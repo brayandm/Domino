@@ -28,7 +28,7 @@ class Game
     public void NewRoundGame()
     {
         this.PowerHandler.Clear();
-        
+
         this._teamInfo.OrderPlayer.RestartOrder();
 
         foreach(Board board in this._boards)
@@ -86,7 +86,28 @@ class Game
         this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
     }
 
-    public List<ProtectedToken> GetBoardTokensVisibleForPlayer(Player player, Board board)
+    public List<Token?> GetBoardNullableTokensVisibleForPlayer(Player player, Board board)
+    {
+        List<ProtectedToken> tokens = board.GetTokens();
+
+        List<Token?> visibleTokens = new List<Token?>();
+
+        foreach(ProtectedToken token in tokens)
+        {
+            if(token.IsVisible(player))
+            {
+                visibleTokens.Add(token.GetTokenWithoutVisibility());
+            }
+            else
+            {
+                visibleTokens.Add(null);
+            }
+        }
+
+        return visibleTokens;
+    }
+
+    public List<ProtectedToken> GetBoardProtectedTokensVisibleForPlayer(Player player, Board board)
     {
         List<ProtectedToken> tokens = board.GetTokens();
 
@@ -109,7 +130,7 @@ class Game
         
         List<Tuple<ProtectedToken, Position>> tokens = new List<Tuple<ProtectedToken, Position>>();
 
-        foreach(ProtectedToken token in GetBoardTokensVisibleForPlayer(player, board))
+        foreach(ProtectedToken token in GetBoardProtectedTokensVisibleForPlayer(player, board))
         {
             if(this._table.Count == 0)
             {
@@ -169,7 +190,7 @@ class Game
             tokens.Add(new Tuple<Token, Position>(protectedToken.Item1.GetTokenWithoutVisibility(), protectedToken.Item2));
         }
 
-        int index = player.Strategy.ChooseTokenIndex(tokens, player, this._teamInfo.Teams, this.GetPlayersAndBoardTokensVisibleByPlayer(player), this._table.GetTokensWithoutProtection());
+        int index = player.Strategy.ChooseTokenIndex(tokens, player, this._teamInfo.Teams, this.GetPlayersAndBoardTokensVisibleByPlayer(player), this._table.GetTokensWithoutProtection(), this.GetPositionMiddle());
 
         if(tokens.Count == 0)
         {

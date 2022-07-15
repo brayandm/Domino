@@ -70,3 +70,16 @@ class ClassicRandomAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
         return new List<Team>(){teamA, teamB};
     }
 }
+
+class ClassicThreeGreedyAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
+{
+    public List<Team> GetTeams()
+    {
+        Team teamA = (new ClassicGreedyTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamB = (new ClassicGreedyTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamC = (new ClassicGreedyTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+        Team teamD = (new ClassicHumanTeamOnePlayer()).GetTeam(Names.namer.GetTeamId(), Names.namer.GetTeamName());
+
+        return new List<Team>(){teamA, teamB, teamC, teamD};
+    }
+}
