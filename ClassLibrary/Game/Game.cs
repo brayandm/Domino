@@ -1,5 +1,7 @@
 using System.Diagnostics;
 
+// Esta clase almacena la informacion de una partida
+//y permite modificarla.
 public class Game
 {
     public PowerHandler PowerHandler = new PowerHandler();
@@ -25,6 +27,7 @@ public class Game
     private IScoreTeam _scoreTeam;
     private IGameWinnerRule _gameWinnerRule;
 
+    // Esta funcion crea una nueva ronda.
     public void NewRoundGame()
     {
         this.PowerHandler.Clear();
@@ -41,6 +44,7 @@ public class Game
         this._history.NewHistoryRound();
     }
 
+    // Esta funcion crea una nueva partida 
     public Game()
     {
         this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Getter.GetInstance(typeof(IBoxGenerator));
@@ -70,6 +74,8 @@ public class Game
         this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
     }
 
+    // Esta funcion crea una nueva partida 
+    //entre los teams.
     public Game(List<Team> teams) : this()
     {
         Debug.Assert(teams.Count > 0);
@@ -86,6 +92,9 @@ public class Game
         this._teamInfo = new TeamInfo(teams, players, _boards, this._orderPlayerSequence);   
     }
 
+    // Esta funcion devuelve las fichas de la mano
+    //board si las mismas son visibles para el jugador player
+    //y de no serlo devuelve null en su posicion.
     public List<Token?> GetBoardNullableTokensVisibleForPlayer(Player player, Board board)
     {
         List<ProtectedToken> tokens = board.GetTokens();
@@ -107,6 +116,8 @@ public class Game
         return visibleTokens;
     }
 
+    // Esta funcion devuelve las fichas de la mano
+    //board, las cuales son visibles para el jugador player.
     public List<ProtectedToken> GetBoardProtectedTokensVisibleForPlayer(Player player, Board board)
     {
         List<ProtectedToken> tokens = board.GetTokens();
@@ -124,6 +135,9 @@ public class Game
         return visibleTokens;
     }
 
+    // Esta funcion devuelve una lista con las posibles jugadas
+    //de un jugador con su mano en una mesa dada
+    //en forma de ficha, posicion.
     public List<Tuple<ProtectedToken, Position>> GetPlayerTokensPlayableAndPosition(Player player, IJoinable joinable)
     {
         Board board = this._teamInfo.PlayerBoard[player];
@@ -170,11 +184,15 @@ public class Game
         return tokens;
     }
 
+    // Esta funcion devuelve una lista con las posibles jugadas
+    //de el jugador en turno con su mano en una mesa dada
+    //en forma de ficha, posicion.
     public List<Tuple<ProtectedToken, Position>> GetCurrentPlayerTokensPlayableAndPosition(IJoinable joinable)
     {
         return this.GetPlayerTokensPlayableAndPosition(this._teamInfo.OrderPlayer.CurrentPlayer(), joinable);
     }
 
+    // Esta funcion devuelve la jugada escojida por el jugador en turno.
     public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove(IJoinable joinable)
     {
         List<Tuple<ProtectedToken, Position>> protectedTokens = this.GetCurrentPlayerTokensPlayableAndPosition(joinable);
@@ -200,6 +218,7 @@ public class Game
         return new Tuple<ProtectedToken?, Position>(protectedTokens[index].Item1, protectedTokens[index].Item2);
     }
 
+    // Esta funcion hace a token visible para todos los jugadores.
     public void WatchAllPlayers(ProtectedToken token)
     {
         foreach(Player player in this._teamInfo.Players)
@@ -208,6 +227,7 @@ public class Game
         }
     }
 
+    // Esta funcion hace a token visible para los jugadores de player.
     public void WatchThesePlayers(ProtectedToken token, List<Player> players)
     {
         foreach(Player player in players)
@@ -216,6 +236,8 @@ public class Game
         }
     }
 
+    // Esta funcion toma la ficha token y la mueve de
+    //la mano donde se encuentra a la mesa.
     public void PlayToken(ProtectedToken token, Position position)
     {
         this.PowerHandler.AddPowers(token.GetTokenWithoutVisibility().Powers);
@@ -266,6 +288,8 @@ public class Game
         }
     }
 
+    // Esta funcion se encarga de desarrollar un turno 
+    //del juego de domino.
     public void ProcessCurrentTurn()
     {
         Tuple<ProtectedToken?, Position> playerMove = this.SelectCurrentPlayerMove(this._joinable);
@@ -285,6 +309,8 @@ public class Game
         this._history.GetCurrentHistoryRound().PlayMove(move);
     }
 
+    // Esta funcion reparte de las fichas
+    //de la caja entre los jugadores.
     public void DistributeTokens(ITokenDealer tokenDealer)
     {
         this._history.GetCurrentHistoryRound().Distributed();
@@ -308,66 +334,87 @@ public class Game
         }
     }
 
+    // Esta funcion devuelve la cantidad de pases consecutivos hasta el momento.
     public int GetNumberOfContiguousPassedTurns()
     {
         return this._history.GetCurrentHistoryRound().GetContiguousPassedTurns();
     }
 
+    // Esta funcion devuelce la cantidad de jugadores
+    //en el juego actual.
     public int GetNumberOfPlayers()
     {
         return this._teamInfo.Players.Count;
     }
 
+    // Esta funcion devuelve el siguiente jugador en turno.
     public void NextPlayer()
     {
         this._teamInfo.OrderPlayer.NextPlayer();
     }
 
+    // Esta funcion comprueba si el jugador player jugo todas sus fichas.
+    //Es decir, devuelve true si la mano de player esta vacia false
+    //en caso contrario.
     public bool PlayerPlayedAllTokens(Player player)
     {
         return this._teamInfo.PlayerBoard[player].Count == 0;
     }
 
+    // Esta funcion comprueba si el jugador en turno jugo todas sus fichas.
+    //Es decir, devuelve true si la mano de player esta vacia false
+    //en caso contrario.
     public bool CurrentPlayerPlayedAllTokens()
     {
         return this.PlayerPlayedAllTokens(this._teamInfo.OrderPlayer.CurrentPlayer());
     }
 
+    // Esta funcion devuelve el numero de jugadas
+    //en la partida actual.
     public int GetNumberOfMoves()
     {
         return this._history.GetCurrentHistoryRound().GetNumberOfMoves();
     }
 
+    // Esta funcion devuelve una cadena en representacion de la mesa.
     public string GetTableString()
     {
         return this._table.ToString();
     }
 
+    // Esta funcion devuelve una cadena en representacion de la mano board.
     public string GetBoardString(Board board)
     {
         return board.ToString();
     }
 
+    // Esta funcion devuelve el jugador en turno.
     public Player GetCurrentPlayer()
     {
         return this._teamInfo.OrderPlayer.CurrentPlayer();
     }
 
+    // Esta funcion devuelve todos los jugadores en la partida.
     public List<Player> GetAllPlayers()
     {
         return this._teamInfo.Players;
     }
 
+    // Esta funcion devuelve la mano asociada al jugador player.
     public Board GetPlayerBoard(Player player)
     {
         return this._teamInfo.PlayerBoard[player];
     }
 
+    // Esta funcion devuelve una cadena en representacion de la mano 
+    //del jugador en turno.
     public string GetCurrentPlayerBoardString()
     {
         return GetBoardString(this.GetPlayerBoard(this.GetCurrentPlayer()));
     }
 
+    // Esta funcion devuelve el total de veces que se ha pasado
+    //el jugador player a lo largo de la partida.
     public int GetPlayerTotalPassedTurns(Player player)
     {
         return this._history.GetCurrentHistoryRound().GetPlayerTotalPassedTurns(player);
@@ -378,21 +425,26 @@ public class Game
         return this._history.GetCurrentHistoryRound().IsDistributed();
     }
 
+    // Esta funcion devuelve la ultima jugada realizada
+    //en la partida actual.
     public Move? GetLastMove()
     {
         return this._history.GetCurrentHistoryRound().GetLastMove();
     }
 
+    // Esta funcion invierte el sentido del juego.
     public void ReversePlayerOrder()
     {
         this._teamInfo.OrderPlayer.Reverse();
     }
 
+    // devuelve todos los equipos en el juego actual.
     public List<Team> GetAllTeams()
     {
         return this._teamInfo.Teams;
     }
 
+    // Esta funcion devuelve el equipo al que pertenece player.
     public Team GetPlayerTeam(Player player)
     {
         return this._teamInfo.PlayerTeam[player];
@@ -403,21 +455,26 @@ public class Game
         return this._idJoinable.IsIdJoinable(idA, idB);
     }
 
+    // Esta funcion regresa la puntuacion de player en la ronda acttual.
     public int GetRoundPlayerScore(Player player)
     {
         return this._roundScorePlayer.GetScore(this, player);
     }
 
+    // Esta funcion regresa la puntuacion de team en la ronda acttual.
     public int GetRoundTeamScore(Team team)
     {
         return this._roundScoreTeam.GetScore(this, team);
     }
 
+    // Esta funcion regresa el jugador ganador de la ronda acttual.
     public List<Team> GetRoundWinners()
     {
         return this._roundWinnerRule.GetWinners(this);
     }
 
+    // Esta funcion guarda en la historia del juego los
+    //resultados de la partida o ronda actua.
     public void SaveRoundGameResults()
     {
         foreach(Team team in this.GetAllTeams())
@@ -428,6 +485,7 @@ public class Game
         this._history.GetCurrentHistoryRound().SetWinners(this.GetRoundWinners());
     }
 
+    // Esta funcion regresa la puntuacion de teamS en cada ronda o partida.
     public List<int> GetTeamAllRoundScores(Team team)
     {
         List<int> scores = new List<int>();
@@ -440,32 +498,39 @@ public class Game
         return scores;
     }
 
+    // Esta funcion regresa la puntuacion total de team.
     public int GetTeamAllRoundScore(Team team)
     {
         return this._scoreTeam.GetScore(this, team);
     }
 
+    // Esta funcion regresa los equipos ganadores de cada ronda.
     public List<Team> GetWinnersAllRound()
     {
         return this._gameWinnerRule.GetWinners(this);
     }
 
+    // Esta funcion regresa el numero de la ronda actual.
     public int GetNumberOfRounds()
     {
         return this._history.GetNumberOfRounds();
     }
 
+    // Esta funcion guarda los datos de la partida actual
+    //luego de terminada.
     public void EndRoundGame()
     {
         this._history.GetCurrentHistoryRound().EndRound();
         this.SaveRoundGameResults();
     }
 
+    // Esta funcion chequea si el turno actual ya culmino.
     public bool IsCurrentRoundEnded()
     {
         return this._history.GetCurrentHistoryRound().IsRoundEnded();
     }
 
+    // 
     public List<Token> GetBoardTokens(Board board)
     {
         List<ProtectedToken> protectedTokens = board.GetTokens();
