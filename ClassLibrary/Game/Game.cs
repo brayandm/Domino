@@ -530,7 +530,8 @@ public class Game
         return this._history.GetCurrentHistoryRound().IsRoundEnded();
     }
 
-    // 
+    // Esta funcion devuelve todas las fichas del board,
+    //de forma visible
     public List<Token> GetBoardTokens(Board board)
     {
         List<ProtectedToken> protectedTokens = board.GetTokens();
@@ -545,6 +546,8 @@ public class Game
         return tokens;
     }
 
+    // Esta funcion devuelve todas las fichas de la mesa
+    //sin restricciones de visibilidad.
     public List<Token> GetTabletokens()
     {
         return this._table.GetTokensWithoutProtection();
@@ -645,6 +648,8 @@ public class Game
         this._history.SetGameToEnded();
     }
 
+    // Esta funcion devuelve true si finalizo la partida,
+    //y false en caso contrario.
     public bool IsGameEnded()
     {
         return this._history.IsGameEnded();
