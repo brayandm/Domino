@@ -1,9 +1,14 @@
+// Esta interface representa una cara
+//de una ficha de domino.
 interface IFace : IBaseInterface
 {
     string Id {get;}
     int Value {get;}
 }
 
+// Esta estructura representa una cara
+//numerica de domino, es decir, que esta
+//representada por un numero.
 struct IntFace : IFace
 {
     public string Id {get;}
@@ -22,6 +27,9 @@ struct IntFace : IFace
     }
 }
 
+// Esta estructura representa una cara
+//coloreada de domino, es decir, que esta
+//representada por un color.
 struct ColorFace : IFace
 {
     public string Id {get;}

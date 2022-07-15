@@ -1,4 +1,6 @@
-﻿class Table
+﻿// Esta funcion representa una mesa de domino como
+//el conjunto defichas organizadas que se encuentran sobre la mesa.
+class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 
@@ -6,7 +8,8 @@
 
     public bool Empty { get { return this._tokens.Count == 0; } }
 
-
+    // Esta funcion devuelve los elementos(ProtectedToken) 
+    //que se encuentran en los extremos de la mesa.
     public Tuple<ProtectedToken, ProtectedToken>? AvailableTokens
     { 
         get 
@@ -23,6 +26,8 @@
         }
     }
 
+    // Esta funcion devuelve el elemento(ProtectedToken) 
+    //que se encuentran en el extremo izquierdo de la mesa.
     public ProtectedToken? LeftToken
     {
         get 
@@ -35,6 +40,8 @@
         }
     }
 
+    // Esta funcion devuelve el elemento(ProtectedToken) 
+    //que se encuentran en el extremo derecho de la mesa.
     public ProtectedToken? RightToken
     {
         get 
@@ -47,6 +54,8 @@
         }
     }
 
+    // Esta funcion elimina todos los elementos(ProtectedToken)
+    //que se encuentran sobre la mesa, dejando a la misma vacia.
     public void Clear()
     {
         this._tokens.Clear();
@@ -74,6 +83,8 @@
         this._tokens = new LinkedList<ProtectedToken>();
     }
 
+    // Esta funcion coloca un objeto(ProtectedToken) 
+    //sobre la mesa, en el extremo deseado.
     public void Put(ProtectedToken token, bool atLast)
     {
         if(this.AvailableTokens == null)
@@ -90,6 +101,8 @@
         } 
     }
 
+    // Esta funcion devuelve el conjunto de objetos(ProtectedToken)
+    //que se encuentran sobre la mesa ordenados en forma de lista. 
     public List<ProtectedToken> GetProtectedTokens()
     {
         return this._tokens.ToList();
