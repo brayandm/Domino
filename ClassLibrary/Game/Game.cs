@@ -4,6 +4,7 @@ using System.Diagnostics;
 //y permite modificarla.
 public class Game
 {
+    // Este campo representa el manejador de poderes del juego
     public PowerHandler PowerHandler = new PowerHandler();
 
     private TeamInfo _teamInfo;
@@ -44,7 +45,7 @@ public class Game
         this._history.NewHistoryRound();
     }
 
-    // Esta funcion crea una nueva partida 
+    // Esta funcion crea un juego 
     public Game()
     {
         this._boxGenerator = (IBoxGenerator)DependencyContainerRegister.Getter.GetInstance(typeof(IBoxGenerator));
@@ -192,7 +193,7 @@ public class Game
         return this.GetPlayerTokensPlayableAndPosition(this._teamInfo.OrderPlayer.CurrentPlayer(), joinable);
     }
 
-    // Esta funcion devuelve la jugada escojida por el jugador en turno.
+    // Esta funcion devuelve la jugada escogida por el jugador en turno.
     public Tuple<ProtectedToken?, Position> SelectCurrentPlayerMove(IJoinable joinable)
     {
         List<Tuple<ProtectedToken, Position>> protectedTokens = this.GetCurrentPlayerTokensPlayableAndPosition(joinable);
@@ -227,7 +228,7 @@ public class Game
         }
     }
 
-    // Esta funcion hace a token visible para los jugadores de player.
+    // Esta funcion hace a token visible para los jugadores de players.
     public void WatchThesePlayers(ProtectedToken token, List<Player> players)
     {
         foreach(Player player in players)
@@ -340,7 +341,7 @@ public class Game
         return this._history.GetCurrentHistoryRound().GetContiguousPassedTurns();
     }
 
-    // Esta funcion devuelce la cantidad de jugadores
+    // Esta funcion devuelve la cantidad de jugadores
     //en el juego actual.
     public int GetNumberOfPlayers()
     {
@@ -420,6 +421,8 @@ public class Game
         return this._history.GetCurrentHistoryRound().GetPlayerTotalPassedTurns(player);
     }
 
+    // Esta funcion indica si ya se repartieron las fichas al principio
+    //del juego
     public bool IsDistributed()
     {
         return this._history.GetCurrentHistoryRound().IsDistributed();
@@ -450,6 +453,7 @@ public class Game
         return this._teamInfo.PlayerTeam[player];
     }
 
+    // Esta funcion indica si dos caras se pueden unir
     public bool IsIdJoinable(string idA, string idB)
     {
         return this._idJoinable.IsIdJoinable(idA, idB);
@@ -553,6 +557,8 @@ public class Game
         return this._table.GetTokensWithoutProtection();
     }
 
+    // Esta funcion devuelve el token jugado inicialmente
+    //en la mesa
     public ProtectedToken? GetTokenPositionMiddle()
     {
         List<Move> moves = this._history.GetCurrentHistoryRound().GetMoves();
@@ -568,6 +574,8 @@ public class Game
         return null;
     }
 
+    // Esta funcion devuelve la posicion del token jugado inicialmente
+    //con respecto a los demas tokens de la mesa
     public int GetPositionMiddle()
     {   
         ProtectedToken? protectedToken = this.GetTokenPositionMiddle();
@@ -588,6 +596,8 @@ public class Game
         return -1;
     }
 
+    // Esta funcion hace que el jugador player robe una ficha de la
+    //caja y la inserte en su mano
     public void DrawTokenPlayer(Player player)
     {
         try
@@ -607,16 +617,21 @@ public class Game
         }
     }
 
+    // Esta funcion hace que el jugador actual robe una ficha de la
+    //caja y la inserte en su mano
     public void DrawTokenCurrentPlayer()
     {
         this.DrawTokenPlayer(this.GetCurrentPlayer());
     }
 
+    // Esta funcion indica si el ultimo movimiento fue robar una ficha de la caja
     public bool LastMoveWasDraw()
     {
         return this._history.GetCurrentHistoryRound().LastMoveWasDraw();
     }
 
+    //Esta funcion devuelve los tokens de las manos de los demas jugadores que
+    //son visibles por el jugador player
     public Dictionary<Player, List<Token?>> GetPlayersAndBoardTokensVisibleByPlayer(Player player)
     {
         Dictionary<Player, List<Token?>> playerBoard = new Dictionary<Player, List<Token?>>();
@@ -643,6 +658,7 @@ public class Game
         return playerBoard;
     }
 
+    // Esta funcion termina el juego
     public void SetGameToEnded()
     {
         this._history.SetGameToEnded();
