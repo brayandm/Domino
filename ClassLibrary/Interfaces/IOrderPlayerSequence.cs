@@ -1,4 +1,4 @@
-interface IOrderPlayerSequence : IBaseInterface, ISelector
+public interface IOrderPlayerSequence : IBaseInterface, ISelector
 {
     List<Player> GetOrderPlayersequence(List<Player> players);
 }

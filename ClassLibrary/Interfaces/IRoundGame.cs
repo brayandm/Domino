@@ -1,4 +1,4 @@
-interface IRoundGame : IBaseInterface, ISelector
+public interface IRoundGame : IBaseInterface, ISelector
 {
     Event GetRoundGame();
 }

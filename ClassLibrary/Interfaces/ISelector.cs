@@ -1,4 +1,4 @@
-interface ISelector
+public interface ISelector
 {
     
 }

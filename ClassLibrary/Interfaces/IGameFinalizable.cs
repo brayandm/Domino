@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface IGameFinalizable : IBaseInterface, ISelector
+public interface IGameFinalizable : IBaseInterface, ISelector
 {
     bool IsGameFinalizable(Game game);
 }

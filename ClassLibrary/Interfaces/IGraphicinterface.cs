@@ -1,4 +1,4 @@
-interface IGraphicInterface : IBaseInterface
+public interface IGraphicInterface : IBaseInterface
 {
     IObjectsGraphic ObjectsGraphic {get;}
     void Main();

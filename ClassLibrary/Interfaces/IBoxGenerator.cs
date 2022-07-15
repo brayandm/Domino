@@ -1,4 +1,4 @@
-interface IBoxGenerator : IBaseInterface, ISelector
+public interface IBoxGenerator : IBaseInterface, ISelector
 {
     List<ProtectedToken> Generate();
 }

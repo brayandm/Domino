@@ -1,4 +1,4 @@
-interface IReversePlayerOrder : IBaseInterface, ISelector
+public interface IReversePlayerOrder : IBaseInterface, ISelector
 {
     bool IsConditionMet(Game game);
 }

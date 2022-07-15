@@ -1,4 +1,4 @@
-interface IFilterTokenRule : IBaseInterface
+public interface IFilterTokenRule : IBaseInterface
 {
     bool Apply(Token token);
 }

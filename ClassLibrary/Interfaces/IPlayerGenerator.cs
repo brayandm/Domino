@@ -1,4 +1,4 @@
-interface IPlayerGenerator : IBaseInterface
+public interface IPlayerGenerator : IBaseInterface
 {
     Player GetPlayer(string id, string name);
 }

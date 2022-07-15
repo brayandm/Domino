@@ -1,4 +1,4 @@
-interface IGame : IBaseInterface
+public interface IGame : IBaseInterface
 {
     Event GetGame();
 }

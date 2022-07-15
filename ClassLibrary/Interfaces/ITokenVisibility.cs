@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface ITokenVisibility : IBaseInterface, ISelector
+public interface ITokenVisibility : IBaseInterface, ISelector
 {
     List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams);
 }

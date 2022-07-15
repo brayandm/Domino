@@ -1,4 +1,4 @@
-interface IRoundScorePlayer : IBaseInterface, ISelector
+public interface IRoundScorePlayer : IBaseInterface, ISelector
 {
     int GetScore(Game game, Player player);
 }

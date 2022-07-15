@@ -1,4 +1,4 @@
-interface ITeamGenerator : IBaseInterface
+public interface ITeamGenerator : IBaseInterface
 {
     Team GetTeam(string id, string name);
 }

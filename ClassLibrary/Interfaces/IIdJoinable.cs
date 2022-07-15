@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface IIdJoinable : IBaseInterface, ISelector
+public interface IIdJoinable : IBaseInterface, ISelector
 {
     bool IsIdJoinable(string idA, string idB);
 }

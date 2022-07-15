@@ -1,4 +1,4 @@
-interface ITeamOrder : IBaseInterface, ISelector
+public interface ITeamOrder : IBaseInterface, ISelector
 {
     List<Player> GetTeamOrder(List<Team> teams);
 }

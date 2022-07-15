@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface IJoinable : IBaseInterface, ISelector
+public interface IJoinable : IBaseInterface, ISelector
 {
     bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB);
 }

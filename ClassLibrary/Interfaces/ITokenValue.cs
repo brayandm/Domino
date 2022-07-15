@@ -1,4 +1,4 @@
-interface ITokenValue : IBaseInterface, ISelector
+public interface ITokenValue : IBaseInterface, ISelector
 {
     int GetValue(Token token);
 }

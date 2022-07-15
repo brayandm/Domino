@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface IRoundWinnerRule : IBaseInterface, ISelector
+public interface IRoundWinnerRule : IBaseInterface, ISelector
 {
     List<Team> GetWinners(Game game);
 }

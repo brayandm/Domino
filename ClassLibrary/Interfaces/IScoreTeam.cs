@@ -1,4 +1,4 @@
-interface IScoreTeam : IBaseInterface, ISelector
+public interface IScoreTeam : IBaseInterface, ISelector
 {
     int GetScore(Game game, Team team);
 }

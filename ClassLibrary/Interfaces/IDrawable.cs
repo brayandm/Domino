@@ -1,4 +1,4 @@
-interface IDrawable : IBaseInterface, ISelector
+public interface IDrawable : IBaseInterface, ISelector
 {
     bool IsDrawable(Game game);
 }

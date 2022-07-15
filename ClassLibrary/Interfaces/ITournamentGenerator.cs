@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface ITournamentGenerator : IBaseInterface, ISelector
+public interface ITournamentGenerator : IBaseInterface, ISelector
 {
     Tournament GetTournament();
 }

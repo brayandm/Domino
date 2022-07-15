@@ -1,4 +1,4 @@
-interface ITokenGenerator : IBaseInterface
+public interface ITokenGenerator : IBaseInterface
 {
     List<Token> Generate(List<IFace> faces);
 

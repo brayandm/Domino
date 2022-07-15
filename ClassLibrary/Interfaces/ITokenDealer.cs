@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-interface ITokenDealer : IBaseInterface, ISelector
+public interface ITokenDealer : IBaseInterface, ISelector
 {
     void Distribute(Box box, List<Board> boards);
 }

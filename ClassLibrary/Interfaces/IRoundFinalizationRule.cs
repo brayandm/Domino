@@ -1,4 +1,4 @@
-interface IRoundFinalizationRule : IBaseInterface, ISelector
+public interface IRoundFinalizationRule : IBaseInterface, ISelector
 {
     bool IsRoundGameOver(Game game);
 }
