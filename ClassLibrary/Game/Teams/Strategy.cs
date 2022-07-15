@@ -3,7 +3,7 @@ interface IStrategy : IBaseInterface
     int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center);
 }
 
-class HumanSelection : IStrategy
+public class HumanSelection : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
@@ -46,7 +46,7 @@ class HumanSelection : IStrategy
     }
 }
 
-class GreedyStrategy : IStrategy
+public class GreedyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
@@ -75,7 +75,7 @@ class GreedyStrategy : IStrategy
     }
 }
 
-class RandomStrategy : IStrategy
+public class RandomStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
@@ -92,7 +92,7 @@ class RandomStrategy : IStrategy
     }
 }
 
-class FrequencyStrategy : IStrategy
+public class FrequencyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {
@@ -176,7 +176,7 @@ class FrequencyStrategy : IStrategy
     }
 }
 
-class TableFrequencyStrategy : IStrategy
+public class TableFrequencyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
     {

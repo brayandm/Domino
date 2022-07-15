@@ -1,4 +1,4 @@
-class TournamentHistory
+public class TournamentHistory
 {
     private Dictionary<Team, int> _teamMatchesWon = new Dictionary<Team, int>();
     private Dictionary<Team, int> _teamTotalScore = new Dictionary<Team, int>();

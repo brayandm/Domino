@@ -1,4 +1,4 @@
-class PowerHandler
+public class PowerHandler
 {
     private List<Power> _powers = new List<Power>();
 

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class History
+public class History
 {
     private List<HistoryRound> _historyRounds = new List<HistoryRound>();
 

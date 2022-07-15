@@ -3,7 +3,7 @@ public interface IBoxGenerator : IBaseInterface, ISelector
     List<ProtectedToken> Generate();
 }
 
-class VariableIntFacesBoxGenerator : IBoxGenerator
+public class VariableIntFacesBoxGenerator : IBoxGenerator
 {
     private int _numberOfDifferentFaces = 0;
 
@@ -50,7 +50,7 @@ class VariableIntFacesBoxGenerator : IBoxGenerator
     }
 }
 
-class ClassicTenBoxGenerator : IBoxGenerator
+public class ClassicTenBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
     {
@@ -72,7 +72,7 @@ class ClassicTenBoxGenerator : IBoxGenerator
     }
 }
 
-class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
+public class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
     {
@@ -94,7 +94,7 @@ class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
     }
 }
 
-class ClassicSevenBoxGenerator : IBoxGenerator
+public class ClassicSevenBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
     {
@@ -116,7 +116,7 @@ class ClassicSevenBoxGenerator : IBoxGenerator
     }
 }
 
-class ClassicSevenWithoutDoublesBoxGenerator : IBoxGenerator
+public class ClassicSevenWithoutDoublesBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
     {

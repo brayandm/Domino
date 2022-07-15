@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-public static class IO
+public static public class IO
 {
     public static void cout<T>(T x)
     {

@@ -1,4 +1,4 @@
-class Namer
+public class Namer
 {
     List<string> _playerNames = new List<string>();
     List<string> _teamNames = new List<string>();
@@ -76,7 +76,7 @@ class Namer
     }
 }
 
-class Names
+public class Names
 {
     public static Namer namer = new Namer();
 }

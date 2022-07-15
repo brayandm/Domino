@@ -1,4 +1,4 @@
-class TokenDealerUnavailabilityException : Exception
+public class TokenDealerUnavailabilityException : Exception
 {
 
 }

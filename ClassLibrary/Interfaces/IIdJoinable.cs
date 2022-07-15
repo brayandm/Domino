@@ -5,7 +5,7 @@ public interface IIdJoinable : IBaseInterface, ISelector
     bool IsIdJoinable(string idA, string idB);
 }
 
-class ClassicIdJoinable : IIdJoinable
+public class ClassicIdJoinable : IIdJoinable
 {
     public bool IsIdJoinable(string idA, string idB)
     {
@@ -13,7 +13,7 @@ class ClassicIdJoinable : IIdJoinable
     }
 }
 
-class DivisibilityIdJoinable : IIdJoinable
+public class DivisibilityIdJoinable : IIdJoinable
 {
     public bool IsIdJoinable(string idA, string idB)
     {

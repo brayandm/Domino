@@ -1,5 +1,5 @@
 /*
-class <EventName> : Event
+public class <EventName> : Event
 {
     public override void Action(Game game)
     {
@@ -7,7 +7,7 @@ class <EventName> : Event
     }
 }
 
-class <ComplexEventName> : ComplexEvent
+public class <ComplexEventName> : ComplexEvent
 {
     public <ComplexEventName>()
     {
@@ -32,7 +32,7 @@ class <ComplexEventName> : ComplexEvent
 }
 */
 
-abstract class Event
+abstract public class Event
 {
     public abstract void Action(Game game);
 
@@ -44,7 +44,7 @@ abstract class Event
     }
 }
 
-abstract class ComplexEvent : Event
+abstract public class ComplexEvent : Event
 {
     protected Event? Origin = null;
     

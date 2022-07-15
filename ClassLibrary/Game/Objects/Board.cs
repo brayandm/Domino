@@ -1,5 +1,5 @@
 // Esta clase representa la mano del jugador.
-class Board
+public class Board
 {
     private List<ProtectedToken> _tokens;
 

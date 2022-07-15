@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class DependencyContainerOrganizer
+public class DependencyContainerOrganizer
 {
     public DependencyContainer Organizer;
 

@@ -1,4 +1,4 @@
-class TournamentIsNotDirectedAcyclicGraph : Exception
+public class TournamentIsNotDirectedAcyclicGraph : Exception
 {
     
 }

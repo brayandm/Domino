@@ -8,7 +8,7 @@ public interface ITokenGenerator : IBaseInterface
     }
 }
 
-static class TokenGeneration
+static public class TokenGeneration
 {
     public static List<Token> KTimesTokens(List<Token> tokens, int k)
     {
@@ -23,7 +23,7 @@ static class TokenGeneration
     }
 }
 
-class ClassicTokenGenerator : ITokenGenerator
+public class ClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
     {
@@ -44,7 +44,7 @@ class ClassicTokenGenerator : ITokenGenerator
     }
 }
 
-class CycleTokenGenerator : ITokenGenerator
+public class CycleTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
     {
@@ -62,7 +62,7 @@ class CycleTokenGenerator : ITokenGenerator
     }
 }
 
-class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
+public class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
     {
@@ -90,7 +90,7 @@ class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
     }
 }
 
-class DoubleZeroEndRoundPowerClassicTokenGenerator : ITokenGenerator
+public class DoubleZeroEndRoundPowerClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
     {

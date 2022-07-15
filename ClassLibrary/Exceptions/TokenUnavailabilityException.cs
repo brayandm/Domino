@@ -1,4 +1,4 @@
-class TokenUnavailabilityException : Exception
+public class TokenUnavailabilityException : Exception
 {
 
 }

@@ -3,7 +3,7 @@ public interface IRoundScorePlayer : IBaseInterface, ISelector
     int GetScore(Game game, Player player);
 }
 
-class RoundScorePlayerSumRule : IRoundScorePlayer
+public class RoundScorePlayerSumRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 
     {
@@ -18,7 +18,7 @@ class RoundScorePlayerSumRule : IRoundScorePlayer
     }
 }
 
-class RoundScorePlayerMaxRule : IRoundScorePlayer
+public class RoundScorePlayerMaxRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player)
     {
@@ -35,7 +35,7 @@ class RoundScorePlayerMaxRule : IRoundScorePlayer
     }
 }
 
-class RoundPassesScorePlayer : IRoundScorePlayer
+public class RoundPassesScorePlayer : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 
     {

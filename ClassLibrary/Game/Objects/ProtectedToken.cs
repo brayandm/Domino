@@ -1,4 +1,4 @@
-class ProtectedToken : IComparable
+public class ProtectedToken : IComparable
 {
     private Token _token;
 

@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 // Esta clase representa la caja, donde se guardan
 //todas las piezas(ProtectedToken) al inicio del juego.
-class Box
+public class Box
 {
     private List<ProtectedToken> _tokens = new List<ProtectedToken>();
 

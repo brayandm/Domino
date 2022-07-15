@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class ObjectsGraphic
+public class ObjectsGraphic
 {
     private const int _width = 6;
     private const int _height = 8;
@@ -10,7 +10,7 @@ class ObjectsGraphic
     private int _zeroX = 0;
     private int _zeroY = 0;
 
-    class Point
+    public class Point
     {
         public int x = 0;
         public int y = 0;

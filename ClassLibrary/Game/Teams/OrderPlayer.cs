@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class OrderPlayer
+public class OrderPlayer
 {
     private List<Player> _playerSequence = new List<Player>();
 

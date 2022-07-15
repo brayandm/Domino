@@ -3,7 +3,7 @@ public interface ITokenValue : IBaseInterface, ISelector
     int GetValue(Token token);
 }
 
-class ClassicSumTokenValue : ITokenValue
+public class ClassicSumTokenValue : ITokenValue
 {
     public int GetValue(Token token)
     {
@@ -11,7 +11,7 @@ class ClassicSumTokenValue : ITokenValue
     }
 }
 
-class MultiplicationTokenValue : ITokenValue
+public class MultiplicationTokenValue : ITokenValue
 {
     public int GetValue(Token token)
     {

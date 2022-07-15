@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class TeamInfo
+public class TeamInfo
 {
     public List<Team> Teams;
     public List<Player> Players;

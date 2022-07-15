@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class Match
+public class Match
 {
     private Game? _game;
 

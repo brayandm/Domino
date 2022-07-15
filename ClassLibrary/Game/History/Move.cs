@@ -1,4 +1,4 @@
-class Move
+public class Move
 {
     public readonly Player Player;
     public readonly ProtectedToken? Token;

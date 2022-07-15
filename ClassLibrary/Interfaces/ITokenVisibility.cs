@@ -5,7 +5,7 @@ public interface ITokenVisibility : IBaseInterface, ISelector
     List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams);
 }
 
-class ClassicIndividualTokenVisibility : ITokenVisibility
+public class ClassicIndividualTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)
     {
@@ -13,7 +13,7 @@ class ClassicIndividualTokenVisibility : ITokenVisibility
     }
 }
 
-class TeamTokenVisibility : ITokenVisibility
+public class TeamTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)
     {
@@ -29,7 +29,7 @@ class TeamTokenVisibility : ITokenVisibility
     }
 }
 
-class EverybodyTokenVisibility : ITokenVisibility
+public class EverybodyTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)
     {

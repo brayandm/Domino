@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class DependencyContainer
+public class DependencyContainer
 {
     private Dictionary<Type, Type> _default = new Dictionary<Type, Type>();
 

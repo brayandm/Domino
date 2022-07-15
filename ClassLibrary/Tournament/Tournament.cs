@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class Tournament
+public class Tournament
 {
     private List<Match> _matches;
 

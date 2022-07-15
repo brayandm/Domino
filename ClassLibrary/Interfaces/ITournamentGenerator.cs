@@ -5,7 +5,7 @@ public interface ITournamentGenerator : IBaseInterface, ISelector
     Tournament GetTournament();
 }
 
-class GetTournamentOneClassicMatch : ITournamentGenerator
+public class GetTournamentOneClassicMatch : ITournamentGenerator
 {
     public Tournament GetTournament()
     {
@@ -23,7 +23,7 @@ class GetTournamentOneClassicMatch : ITournamentGenerator
     }
 }
 
-class GetTournamentOneMatchThreeGreedyAndHumanPlayers : ITournamentGenerator
+public class GetTournamentOneMatchThreeGreedyAndHumanPlayers : ITournamentGenerator
 {
     public Tournament GetTournament()
     {
@@ -41,7 +41,7 @@ class GetTournamentOneMatchThreeGreedyAndHumanPlayers : ITournamentGenerator
     }
 }
 
-class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
+public class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
 {
     public Tournament GetTournament()
     {
@@ -59,7 +59,7 @@ class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
     }
 }
 
-class GetEliminationTournamentFourTeams : ITournamentGenerator
+public class GetEliminationTournamentFourTeams : ITournamentGenerator
 {
     public Tournament GetTournament()
     {

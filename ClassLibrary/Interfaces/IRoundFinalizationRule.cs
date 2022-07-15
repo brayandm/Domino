@@ -3,7 +3,7 @@ public interface IRoundFinalizationRule : IBaseInterface, ISelector
     bool IsRoundGameOver(Game game);
 }
 
-class ClassicFinalizationRule : IRoundFinalizationRule 
+public class ClassicFinalizationRule : IRoundFinalizationRule 
 {
     public bool IsRoundGameOver(Game game) 
     {
@@ -11,7 +11,7 @@ class ClassicFinalizationRule : IRoundFinalizationRule
     }
 }
 
-class DoubleFinalizationRule : IRoundFinalizationRule 
+public class DoubleFinalizationRule : IRoundFinalizationRule 
 {
     public bool IsRoundGameOver(Game game) 
     {

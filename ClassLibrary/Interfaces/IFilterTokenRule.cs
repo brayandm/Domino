@@ -3,7 +3,7 @@ public interface IFilterTokenRule : IBaseInterface
     bool Apply(Token token);
 }
 
-class WithoutDoblesFilterBoxRules : IFilterTokenRule
+public class WithoutDoblesFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)
     {
@@ -11,7 +11,7 @@ class WithoutDoblesFilterBoxRules : IFilterTokenRule
     }
 }
 
-class NonFilterBoxRules : IFilterTokenRule
+public class NonFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)
     {

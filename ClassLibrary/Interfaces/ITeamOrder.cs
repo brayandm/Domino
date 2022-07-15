@@ -3,7 +3,7 @@ public interface ITeamOrder : IBaseInterface, ISelector
     List<Player> GetTeamOrder(List<Team> teams);
 }
 
-class AlternateTeamOrder : ITeamOrder
+public class AlternateTeamOrder : ITeamOrder
 {
     public List<Player> GetTeamOrder(List<Team> teams)
     {
@@ -47,7 +47,7 @@ class AlternateTeamOrder : ITeamOrder
     }
 }
 
-class adjacentTeamOrder : ITeamOrder
+public class adjacentTeamOrder : ITeamOrder
 {
     public List<Player> GetTeamOrder(List<Team> teams)
     {

@@ -3,7 +3,7 @@ public interface IGame : IBaseInterface
     Event GetGame();
 }
 
-class ClassicGame : IGame
+public class ClassicGame : IGame
 {
     public Event GetGame()
     {

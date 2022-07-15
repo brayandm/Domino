@@ -3,7 +3,7 @@ public interface IRoundGame : IBaseInterface, ISelector
     Event GetRoundGame();
 }
 
-class ClassicRoundGame : IRoundGame
+public class ClassicRoundGame : IRoundGame
 {
     public Event GetRoundGame()
     {
@@ -11,7 +11,7 @@ class ClassicRoundGame : IRoundGame
     }
 }
 
-class PlayWhilePossibleRoundGame : IRoundGame
+public class PlayWhilePossibleRoundGame : IRoundGame
 {
     public Event GetRoundGame()
     {

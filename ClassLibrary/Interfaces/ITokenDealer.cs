@@ -5,7 +5,7 @@ public interface ITokenDealer : IBaseInterface, ISelector
     void Distribute(Box box, List<Board> boards);
 }
 
-class VariableTokensDistribution : ITokenDealer
+public class VariableTokensDistribution : ITokenDealer
 {
     private int _tokensToDeal = 0;
 
@@ -41,7 +41,7 @@ class VariableTokensDistribution : ITokenDealer
     }
 }
 
-class ClassicTenTokensDistribution : ITokenDealer
+public class ClassicTenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
     {
@@ -52,7 +52,7 @@ class ClassicTenTokensDistribution : ITokenDealer
     }
 }
 
-class ClassicSevenTokensDistribution : ITokenDealer
+public class ClassicSevenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
     {
@@ -63,7 +63,7 @@ class ClassicSevenTokensDistribution : ITokenDealer
     }
 }
 
-class RandomMaxTenTokensDistribution : ITokenDealer
+public class RandomMaxTenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
     {

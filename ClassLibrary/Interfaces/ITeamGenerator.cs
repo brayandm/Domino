@@ -3,7 +3,7 @@ public interface ITeamGenerator : IBaseInterface
     Team GetTeam(string id, string name);
 }
 
-class ClassicGreedyTeamTwoPlayers : ITeamGenerator
+public class ClassicGreedyTeamTwoPlayers : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -13,7 +13,7 @@ class ClassicGreedyTeamTwoPlayers : ITeamGenerator
     }
 }
 
-class ClassicRandomTeamTwoPlayers : ITeamGenerator
+public class ClassicRandomTeamTwoPlayers : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -23,7 +23,7 @@ class ClassicRandomTeamTwoPlayers : ITeamGenerator
     }
 }
 
-class ClassicFrequencyTeamTwoPlayers : ITeamGenerator
+public class ClassicFrequencyTeamTwoPlayers : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -33,7 +33,7 @@ class ClassicFrequencyTeamTwoPlayers : ITeamGenerator
     }
 }
 
-class ClassicTableFrequencyTeamTwoPlayers : ITeamGenerator
+public class ClassicTableFrequencyTeamTwoPlayers : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -43,7 +43,7 @@ class ClassicTableFrequencyTeamTwoPlayers : ITeamGenerator
     }
 }
 
-class ClassicGreedyTeamOnePlayer : ITeamGenerator
+public class ClassicGreedyTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -53,7 +53,7 @@ class ClassicGreedyTeamOnePlayer : ITeamGenerator
     }
 }
 
-class ClassicRandomTeamOnePlayer : ITeamGenerator
+public class ClassicRandomTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {
@@ -63,7 +63,7 @@ class ClassicRandomTeamOnePlayer : ITeamGenerator
     }
 }
 
-class ClassicHumanTeamOnePlayer : ITeamGenerator
+public class ClassicHumanTeamOnePlayer : ITeamGenerator
 {
     public Team GetTeam(string id, string name)
     {

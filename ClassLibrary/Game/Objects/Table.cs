@@ -1,6 +1,6 @@
 ﻿// Esta funcion representa una mesa de domino como
 //el conjunto defichas organizadas que se encuentran sobre la mesa.
-class Table
+public class Table
 {
     private LinkedList<ProtectedToken> _tokens;
 

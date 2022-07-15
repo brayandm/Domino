@@ -13,7 +13,7 @@ interface IGraphicinterface : IBaseInterface
     void SendMessage(string id, string message);
 }
 
-class ConsoleInterface : IGraphicinterface
+public class ConsoleInterface : IGraphicinterface
 {
     public ObjectsGraphic ObjectsGraphic = new ObjectsGraphic();
     
@@ -603,7 +603,7 @@ class ConsoleInterface : IGraphicinterface
     }
 }
 
-class Graphics
+public class Graphics
 {
     public static ConsoleInterface graphicinterface = new ConsoleInterface();
 }

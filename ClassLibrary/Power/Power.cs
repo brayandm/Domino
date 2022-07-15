@@ -1,4 +1,4 @@
-class Power
+public class Power
 {
     private string _id = "";
     private int _times = 0;

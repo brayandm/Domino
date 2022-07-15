@@ -3,7 +3,7 @@ public interface IOrderPlayerSequence : IBaseInterface, ISelector
     List<Player> GetOrderPlayersequence(List<Player> players);
 }
 
-class ClassicOrderPlayersequence : IOrderPlayerSequence
+public class ClassicOrderPlayersequence : IOrderPlayerSequence
 {
     public List<Player> GetOrderPlayersequence(List<Player> players)
     {
@@ -11,7 +11,7 @@ class ClassicOrderPlayersequence : IOrderPlayerSequence
     }
 }
 
-class TwoTurnsOrderPlayersequence : IOrderPlayerSequence
+public class TwoTurnsOrderPlayersequence : IOrderPlayerSequence
 {
     public List<Player> GetOrderPlayersequence(List<Player> players)
     {

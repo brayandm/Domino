@@ -3,7 +3,7 @@ public interface IReversePlayerOrder : IBaseInterface, ISelector
     bool IsConditionMet(Game game);
 }
 
-class ReverseWithPass : IReversePlayerOrder
+public class ReverseWithPass : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)
     {
@@ -18,7 +18,7 @@ class ReverseWithPass : IReversePlayerOrder
     }
 }
 
-class ReverseWithDoubles : IReversePlayerOrder
+public class ReverseWithDoubles : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)
     {
@@ -33,7 +33,7 @@ class ReverseWithDoubles : IReversePlayerOrder
     }
 }
 
-class NoReverse : IReversePlayerOrder
+public class NoReverse : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)
     {

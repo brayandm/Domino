@@ -1,4 +1,4 @@
-class Events
+public class Events
 {
     public class DoNothing : Event
     {

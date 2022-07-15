@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class DependencyGetter
+public class DependencyGetter
 {
     private Dictionary<Type, dynamic> _instances = new Dictionary<Type, dynamic>();
 

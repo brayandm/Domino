@@ -3,7 +3,7 @@ public interface IDrawable : IBaseInterface, ISelector
     bool IsDrawable(Game game);
 }
 
-class ClassicNoDraw : IDrawable
+public class ClassicNoDraw : IDrawable
 {
     public bool IsDrawable(Game game)
     {
@@ -11,7 +11,7 @@ class ClassicNoDraw : IDrawable
     }
 }
 
-class ClassicPassTurnDraw : IDrawable
+public class ClassicPassTurnDraw : IDrawable
 {
     public bool IsDrawable(Game game)
     {

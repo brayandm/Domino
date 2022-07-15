@@ -1,4 +1,4 @@
-class Team
+public class Team
 {
     public string Id;
     public string Name;

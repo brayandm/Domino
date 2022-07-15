@@ -5,7 +5,7 @@ public interface ITournamentWinnerRule : IBaseInterface, ISelector
     List<Team> GetTournamentWinners(Tournament tournament);
 }
 
-class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
+public class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
 {
     public List<Team> GetTournamentWinners(Tournament tournament)
     {
@@ -38,7 +38,7 @@ class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
     }
 }
 
-class ClassicTournamentMinScore : ITournamentWinnerRule
+public class ClassicTournamentMinScore : ITournamentWinnerRule
 {
     public List<Team> GetTournamentWinners(Tournament tournament)
     {

@@ -3,7 +3,7 @@ public interface IPlayersGenerator : IBaseInterface
     List<Player> GetPlayers();
 }
 
-class ClassicFourGreedyPlayers : IPlayersGenerator
+public class ClassicFourGreedyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
     {
@@ -18,7 +18,7 @@ class ClassicFourGreedyPlayers : IPlayersGenerator
     }
 }
 
-class TwoRandomPlayers : IPlayersGenerator
+public class TwoRandomPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
     {
@@ -31,7 +31,7 @@ class TwoRandomPlayers : IPlayersGenerator
     }
 }
 
-class TwoGreedyPlayers : IPlayersGenerator
+public class TwoGreedyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
     {
@@ -44,7 +44,7 @@ class TwoGreedyPlayers : IPlayersGenerator
     }
 }
 
-class TwoFrequencyPlayers : IPlayersGenerator
+public class TwoFrequencyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
     {
@@ -57,7 +57,7 @@ class TwoFrequencyPlayers : IPlayersGenerator
     }
 }
 
-class TwoTableFrequencyPlayers : IPlayersGenerator
+public class TwoTableFrequencyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
     {

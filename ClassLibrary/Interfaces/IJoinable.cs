@@ -5,7 +5,7 @@ public interface IJoinable : IBaseInterface, ISelector
     bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB);
 }
 
-class ClassicJoinById : IJoinable
+public class ClassicJoinById : IJoinable
 {
     public bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB)
     {
@@ -21,7 +21,7 @@ class ClassicJoinById : IJoinable
     }
 }
 
-class JoinByIdAndDifferentTeam : IJoinable
+public class JoinByIdAndDifferentTeam : IJoinable
 {
     public bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB)
     {

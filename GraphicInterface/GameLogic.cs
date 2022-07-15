@@ -1,4 +1,4 @@
-class GameLogic
+public class GameLogic
 {
     public GameLogic()
     {

@@ -3,7 +3,7 @@ public interface ITeamsGenerator : IBaseInterface
     List<Team> GetTeams();
 }
 
-class ClassicTwoGreedyTeams : ITeamsGenerator
+public class ClassicTwoGreedyTeams : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -14,7 +14,7 @@ class ClassicTwoGreedyTeams : ITeamsGenerator
     }
 }
 
-class GreedyAndRandomTeams : ITeamsGenerator
+public class GreedyAndRandomTeams : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -25,7 +25,7 @@ class GreedyAndRandomTeams : ITeamsGenerator
     }
 }
 
-class FrequencyAndTableFrequencyTeams : ITeamsGenerator
+public class FrequencyAndTableFrequencyTeams : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -36,7 +36,7 @@ class FrequencyAndTableFrequencyTeams : ITeamsGenerator
     }
 }
 
-class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamsGenerator
+public class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -49,7 +49,7 @@ class ClassicFourGreedyTeamsWithOnlyOnePlayer : ITeamsGenerator
     }
 }
 
-class TwoRandomTeamsWithOnlyOnePlayer : ITeamsGenerator
+public class TwoRandomTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -60,7 +60,7 @@ class TwoRandomTeamsWithOnlyOnePlayer : ITeamsGenerator
     }
 }
 
-class ClassicRandomAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
+public class ClassicRandomAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {
@@ -71,7 +71,7 @@ class ClassicRandomAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
     }
 }
 
-class ClassicThreeGreedyAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
+public class ClassicThreeGreedyAndHumanTeamsWithOnlyOnePlayer : ITeamsGenerator
 {
     public List<Team> GetTeams()
     {

@@ -3,7 +3,7 @@ public interface IPlayerGenerator : IBaseInterface
     Player GetPlayer(string id, string name);
 }
 
-class ClassicHumanPlayer : IPlayerGenerator
+public class ClassicHumanPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)
     {
@@ -11,7 +11,7 @@ class ClassicHumanPlayer : IPlayerGenerator
     }
 }
 
-class ClassicGreddyPlayer : IPlayerGenerator
+public class ClassicGreddyPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)
     {
@@ -19,7 +19,7 @@ class ClassicGreddyPlayer : IPlayerGenerator
     }
 }
 
-class ClassicRandomPlayer : IPlayerGenerator
+public class ClassicRandomPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)
     {
@@ -27,7 +27,7 @@ class ClassicRandomPlayer : IPlayerGenerator
     }
 }
 
-class ClassicFrequencyPlayer : IPlayerGenerator
+public class ClassicFrequencyPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)
     {
@@ -35,7 +35,7 @@ class ClassicFrequencyPlayer : IPlayerGenerator
     }
 }
 
-class ClassicTableFrequencyPlayer : IPlayerGenerator
+public class ClassicTableFrequencyPlayer : IPlayerGenerator
 {
     public Player GetPlayer(string id, string name)
     {

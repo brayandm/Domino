@@ -5,7 +5,7 @@ public interface IGameFinalizable : IBaseInterface, ISelector
     bool IsGameFinalizable(Game game);
 }
 
-class ClassicTenRoundGameFinalizable : IGameFinalizable
+public class ClassicTenRoundGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
     {
@@ -15,7 +15,7 @@ class ClassicTenRoundGameFinalizable : IGameFinalizable
     }
 }
 
-class ThreeRoundGameFinalizable : IGameFinalizable
+public class ThreeRoundGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
     {
@@ -25,7 +25,7 @@ class ThreeRoundGameFinalizable : IGameFinalizable
     }
 }
 
-class OneRoundGameFinalizable : IGameFinalizable
+public class OneRoundGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
     {
@@ -35,7 +35,7 @@ class OneRoundGameFinalizable : IGameFinalizable
     }
 }
 
-class HundredPointsGameFinalizable : IGameFinalizable
+public class HundredPointsGameFinalizable : IGameFinalizable
 {
     public bool IsGameFinalizable(Game game)
     {

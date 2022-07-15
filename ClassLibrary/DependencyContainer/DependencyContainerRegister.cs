@@ -1,4 +1,4 @@
-class DependencyContainerRegister
+public class DependencyContainerRegister
 {
     public static DependencyContainerOrganizer Register = new DependencyContainerOrganizer();
 

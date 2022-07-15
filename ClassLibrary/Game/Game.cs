@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class Game
+public class Game
 {
     public PowerHandler PowerHandler = new PowerHandler();
 

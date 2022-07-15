@@ -1,4 +1,4 @@
-class States
+public class States
 {
     public static bool Identity(Game game)
     {
