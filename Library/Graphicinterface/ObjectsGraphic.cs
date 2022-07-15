@@ -275,6 +275,43 @@ class ObjectsGraphic
         return this.GetStringFromMatrix(matrix);
     }
 
+    public string GraphicNullableBoard(List<Token?> tokens)
+    {
+        List<List<string>> matrix = this.GetMatrix(3, tokens.Count*4 - 1);
+
+        for(int i = 0 ; i < tokens.Count ; i++)
+        {
+            Token? token = tokens[i];
+
+            if(token is Token)
+            {
+                matrix[0][i*4] = "[";
+                matrix[0][i*4+1] = ((Token)token).Faces.Item1.Id;
+                matrix[0][i*4+2] = "]";
+                matrix[1][i*4] = "|";
+                matrix[1][i*4+1] = ":";
+                matrix[1][i*4+2] = "|";
+                matrix[2][i*4] = "[";
+                matrix[2][i*4+1] = ((Token)token).Faces.Item2.Id;
+                matrix[2][i*4+2] = "]";
+            }
+            else
+            {
+                matrix[0][i*4] = "[";
+                matrix[0][i*4+1] = "#";
+                matrix[0][i*4+2] = "]";
+                matrix[1][i*4] = "|";
+                matrix[1][i*4+1] = ":";
+                matrix[1][i*4+2] = "|";
+                matrix[2][i*4] = "[";
+                matrix[2][i*4+1] = "#";
+                matrix[2][i*4+2] = "]";
+            }
+        }
+
+        return this.GetStringFromMatrix(matrix);
+    }
+
     public string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens)
     {
         List<List<string>> matrix = this.GetMatrix(5, tokens.Count*4 - 1);

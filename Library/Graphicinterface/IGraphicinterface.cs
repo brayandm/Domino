@@ -24,6 +24,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMatches = 0; 
     private bool _consoleClearable = false; 
     private bool _skip = false;  
+    private bool _showOnlyVisibleTokensForCurrentPlayer = false;
 
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
@@ -469,13 +470,29 @@ class ConsoleInterface : IGraphicinterface
 
             foreach(Player player in players)
             {
-                if(player == game.GetCurrentPlayer() && lastMove != null)
+                Player currentPlayer = game.GetCurrentPlayer();
+
+                if(this._showOnlyVisibleTokensForCurrentPlayer)
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    if(player == game.GetCurrentPlayer() && lastMove != null)
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicNullableBoard(game.GetBoardNullableTokensVisibleForPlayer(currentPlayer, game.GetPlayerBoard(player))) + "\n");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    if(player == game.GetCurrentPlayer() && lastMove != null)
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ": (In Turn)\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[" + game.GetPlayerTeam(player).Name + "] " + player.Name + ":\n\n" + this.ObjectsGraphic.GraphicBoard(game.GetBoardTokens(game.GetPlayerBoard(player))) + "\n");
+                    }
                 }
             }         
 
@@ -513,8 +530,6 @@ class ConsoleInterface : IGraphicinterface
 
             Thread.Sleep(_time);
 
-            Console.Write("\n");
-            Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
             Console.Write("\n");
