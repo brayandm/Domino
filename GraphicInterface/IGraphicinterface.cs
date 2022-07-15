@@ -1,21 +1,10 @@
 using System.Diagnostics;
 
-interface IGraphicinterface : IBaseInterface
+public class ConsoleInterface : IGraphicInterface
 {
-    void Main();
-    void NewGame();
-    void NewTournament();
-    void GameOver(Game game);
-    void TournamentOver(Tournament game);
-    void UpdateGame(Game game);
-    void UpdateTournament(Tournament game);
-    string GetEntry(string id, string message, Func<string,bool> validator);
-    void SendMessage(string id, string message);
-}
+    private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
 
-public class ConsoleInterface : IGraphicinterface
-{
-    public ObjectsGraphic ObjectsGraphic = new ObjectsGraphic();
+    public IObjectsGraphic ObjectsGraphic {get { return this._objectsGraphic; }}
     
     private int _time = 1000;
     private int _numberOfMoves = 0;
