@@ -9,7 +9,7 @@ class HumanSelection : IStrategy
     {
         if(playableTokensAndPositions.Count == 0)
         {
-            Graphics.graphicinterface.SendMessage("HumanSelection", "There is not token to play");
+            ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("HumanSelection", "There is not token to play");
             
             return -1;
         }
@@ -30,17 +30,17 @@ class HumanSelection : IStrategy
 
         Func<string, bool> Func = Validador;
 
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", player.Name + " Board:\n\n");
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicNullableBoard(playerBoard[player]));
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Table:\n\n");
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicTable(tableTokens, center));
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "Playable Tokens:\n\n");
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", Graphics.graphicinterface.ObjectsGraphic.GraphicBoardAndPositions(playableTokensAndPositions));
-        Graphics.graphicinterface.SendMessage("ShowPlayableTokens", "\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", player.Name + " Board:\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).ObjectsGraphic.GraphicNullableBoard(playerBoard[player]));
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", "\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", "Table:\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).ObjectsGraphic.GraphicTable(tableTokens, center));
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", "\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", "Playable Tokens:\n\n");
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).ObjectsGraphic.GraphicBoardAndPositions(playableTokensAndPositions));
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).SendMessage("ShowPlayableTokens", "\n\n");
 
-        string entry = Graphics.graphicinterface.GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokensAndPositions.Count + "])", Func);
+        string entry = ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).GetEntry("HumanSelection", "Insert the number of the token to play (must be in range [1, " + playableTokensAndPositions.Count + "])", Func);
     
         return int.Parse(entry) - 1;
     }

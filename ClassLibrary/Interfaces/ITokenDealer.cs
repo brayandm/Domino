@@ -27,7 +27,7 @@ class VariableTokensDistribution : ITokenDealer
 
         Func<string, bool> Func = Validador;
 
-        string entry = Graphics.graphicinterface.GetEntry("GameRule", "Insert the number of tokens to deal to each player (must be greater than zero):", Func);
+        string entry = ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).GetEntry("GameRule", "Insert the number of tokens to deal to each player (must be greater than zero):", Func);
     
         this._tokensToDeal = int.Parse(entry);
     }

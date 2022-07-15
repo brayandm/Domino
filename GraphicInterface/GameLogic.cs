@@ -2,13 +2,13 @@ class GameLogic
 {
     public GameLogic()
     {
-        Graphics.graphicinterface.Main();
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).Main();
 
         while(true)
         {
             try
             {
-                Graphics.graphicinterface.NewTournament();
+                ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).NewTournament();
 
                 ITournamentGenerator tournamentGenerator = (ITournamentGenerator)DependencyContainerRegister.Getter.GetInstance(typeof(ITournamentGenerator));
 
@@ -16,7 +16,7 @@ class GameLogic
 
                 tournament.StartTournament();
 
-                Graphics.graphicinterface.TournamentOver(tournament);
+                ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).TournamentOver(tournament);
             }
             catch (TokenDealerUnavailabilityException)
             {

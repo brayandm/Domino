@@ -41,15 +41,15 @@ class Match
     {
         Debug.Assert(this._teams.Count > 0);
 
-        Graphics.graphicinterface.NewGame();
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).NewGame();
 
         this._game = new Game(this._teams);
 
         Events.MainEvent mainEvent = new Events.MainEvent();
 
-        mainEvent.Start(this._game, Graphics.graphicinterface);
+        mainEvent.Start(this._game, ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))));
 
-        Graphics.graphicinterface.GameOver(this._game);
+        ((IGraphicinterface)DependencyContainerRegister.Getter.GetInstance(typeof(IGraphicinterface))).GameOver(this._game);
     }
 
     public List<Team> GetWinners()
