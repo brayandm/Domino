@@ -24,7 +24,7 @@ class ConsoleInterface : IGraphicinterface
     private int _numberOfMatches = 0; 
     private bool _consoleClearable = false; 
     private bool _skip = false;  
-    private bool _showOnlyVisibleTokensForCurrentPlayer = true;
+    private bool _showOnlyVisibleTokensForCurrentPlayer = false;
 
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
@@ -200,7 +200,7 @@ class ConsoleInterface : IGraphicinterface
 
         Console.Write("\n\n");
 
-        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn));
+        DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IBoxGenerator), typeof(ClassicTenBoxGenerator));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IDrawable), typeof(ClassicNoDraw));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameFinalizable), typeof(ThreeRoundGameFinalizable));
         DependencyContainerRegister.Register.Organizer.SetDefault(typeof(IGameWinnerRule), typeof(OnlyOneWinnerRuleMin));
