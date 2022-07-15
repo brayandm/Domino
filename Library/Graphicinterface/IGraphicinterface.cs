@@ -68,6 +68,26 @@ class ConsoleInterface : IGraphicinterface
                 Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
             }
         }
+        else if(id == "GetHumanName")
+        {
+            while(true)
+            {
+                Console.WriteLine(message + "\n\n\n\n");
+                
+                string? read = Console.ReadLine();
+
+                string entry = (read == null) ? "" : read;
+
+                if(validator(entry))
+                {   
+                    Console.WriteLine("\n\n\n\n");
+
+                    return entry;
+                }
+
+                Console.WriteLine("\n\n\n\nThe inserted entry is incorrect, repeat it again\n\n");
+            }
+        }
 
         Debug.Assert(false);
 

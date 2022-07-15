@@ -43,6 +43,20 @@ class Namer
         return name;
     }
 
+    public string GetHumanName()
+    {
+        bool Validador(string entry)
+        {
+            return true;
+        }
+
+        Func<string, bool> Func = Validador;
+
+        string name = Graphics.graphicinterface.GetEntry("GetHumanName", "Insert the name of the human player:", Func);
+
+        return name;
+    }
+
     public string GetTeamId()
     {
         string id = "Team" + this._teamNumber;
