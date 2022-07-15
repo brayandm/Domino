@@ -27,6 +27,8 @@ class Game
 
     public void NewRoundGame()
     {
+        this.PowerHandler.Clear();
+        
         this._teamInfo.OrderPlayer.RestartOrder();
 
         foreach(Board board in this._boards)

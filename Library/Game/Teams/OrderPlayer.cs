@@ -42,6 +42,7 @@ class OrderPlayer
 
     public void RestartOrder()
     {
-        _currentPlayer = 0;
+        this._currentPlayer = 0;
+        this._reversed = false;
     }
 }

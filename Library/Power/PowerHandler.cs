@@ -2,6 +2,11 @@ class PowerHandler
 {
     private List<Power> _powers = new List<Power>();
 
+    public void Clear()
+    {
+        this._powers.Clear();
+    }
+
     public void AddPower(Power power)
     {
         this._powers.Add(power);
