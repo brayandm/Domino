@@ -13,6 +13,11 @@ public class ConsoleInterface : IGraphicInterface
     private bool _skip = false;  
     private bool _showOnlyVisibleTokensForCurrentPlayer = false;
 
+    public static int GetIntFromConsoleKeyInfo(ConsoleKeyInfo keyInfo)
+    {
+        return (int)keyInfo.Key - 48;
+    }
+
     public string GraphicTable(List<Token> tokens, int center)
     {
         return this._objectsGraphic.GraphicTable(tokens, center);
@@ -202,7 +207,7 @@ public class ConsoleInterface : IGraphicInterface
 
             Console.WriteLine("\n");
 
-            int selection = Utils.GetIntFromConsoleKeyInfo(Console.ReadKey());
+            int selection = GetIntFromConsoleKeyInfo(Console.ReadKey());
 
             Console.WriteLine("\n\n");
 
@@ -318,7 +323,7 @@ public class ConsoleInterface : IGraphicInterface
 
                     Console.WriteLine("\n\n");
 
-                    int selection = Utils.GetIntFromConsoleKeyInfo(Console.ReadKey());
+                    int selection = GetIntFromConsoleKeyInfo(Console.ReadKey());
 
                     Console.WriteLine("\n\n");
 
