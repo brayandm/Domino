@@ -1,5 +1,7 @@
+// Esta clase representa la logica del juego
 public class GameLogic
 {
+    // Constructor de la clase
     public GameLogic(IGraphicInterface graphicInterface)
     {
         DependencyContainerRegister.Getter.Initialize(typeof(IGraphicInterface), graphicInterface);

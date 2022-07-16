@@ -1,5 +1,6 @@
 using System.Diagnostics;
 
+// Esta clase representa un torneo
 public class Tournament
 {
     private List<Match> _matches;
@@ -23,6 +24,7 @@ public class Tournament
         }
     }
 
+    // Esta clase retorna la historia del torneo
     public TournamentHistory GetTournamentHistory()
     {
         return this._tournamentHistory;
@@ -109,11 +111,13 @@ public class Tournament
         }
     }  
 
+    // Esta funcion retorna los equipos
     public List<Team> GetTeams()
     {
         return this._teams;
     }
 
+    // Constructor del torneo
     public Tournament(List<Match> matches, Dictionary<Match, List<Match>> nextMatches)
     {
         this._matches = matches;
@@ -137,11 +141,13 @@ public class Tournament
         }
     }
 
+    // Esta funcion retorna el numero de partido jugados
     public int GetNumberOfMatches()
     {
         return this._tournamentHistory.GetNumberOfMatches();
     }
 
+    // Esta funcion ejecuta el proceso del grafo de eventos y estados
     public void StartTournament()
     {
         Dictionary<Match, int> inDegree = new Dictionary<Match, int>();
