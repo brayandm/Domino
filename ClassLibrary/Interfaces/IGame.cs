@@ -1,4 +1,5 @@
 // Esta interfaz representa un juego
+
 public interface IGame : IBaseInterface
 {
     Event GetGame();
