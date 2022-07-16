@@ -1,5 +1,7 @@
+// Esta clase contiene algunos eventos
 public class Events
 {
+    // Este evento no hace nada
     public class DoNothing : Event
     {
         public override void Action(Game game)
@@ -8,6 +10,7 @@ public class Events
         }
     }
 
+    // Este evento crea una nueva ronda
     public class NewRoundGame : Event
     {
         public override void Action(Game game)
@@ -16,6 +19,7 @@ public class Events
         }
     }
 
+    // Este evento finaliza una ronda
     public class RoundGameOver : Event
     {
         public override void Action(Game game)
@@ -24,6 +28,7 @@ public class Events
         }
     }
 
+    // Este evento crea un nuevo juego
     public class NewGame : Event
     {
         public override void Action(Game game)
@@ -31,6 +36,7 @@ public class Events
         }
     }
 
+    // Este evento finaliza un juego
     public class GameOver : Event
     {
         public override void Action(Game game)
@@ -39,6 +45,7 @@ public class Events
         }
     }
 
+    // Este evento reparte los tokens al inicio
     public class DistributeTokens : Event
     {
         public override void Action(Game game)
@@ -49,6 +56,7 @@ public class Events
         }
     }
 
+    // Este evento procesa el turno actual
     public class ProcessCurrentTurn : Event
     {
         public override void Action(Game game)
@@ -62,6 +70,7 @@ public class Events
         }
     }
 
+    // Este evento hace que un jugador robe un token de la caja
     public class DrawTokenCurrentPlayer : Event
     {
         public override void Action(Game game)
@@ -70,6 +79,7 @@ public class Events
         }
     }
 
+    // Este evento hace que se pase al proximo jugador
     public class NextPlayer : Event
     {
         public override void Action(Game game)
@@ -78,6 +88,7 @@ public class Events
         }
     }
 
+    // Este evento invierte el orden de los turnos
     public class ReversePlayerOrder : Event
     {
         public override void Action(Game game)
@@ -86,6 +97,7 @@ public class Events
         }
     }
 
+    // Este evento representa una ronda clasica
     public class ClassicRoundGameEvent : ComplexEvent
     {
         public ClassicRoundGameEvent()
@@ -112,6 +124,8 @@ public class Events
         }
     }
 
+    // Este evento representa una variante de una ronda en donde
+    //se puede jugar siempre que se pueda
     public class PlayWhilePossibleRoundGameEvent : ComplexEvent
     {
         public PlayWhilePossibleRoundGameEvent()
@@ -139,6 +153,7 @@ public class Events
         }
     }
 
+    // Este evento presenta un juego normal por rondas
     public class ClassicGameEvent : ComplexEvent
     {
         public ClassicGameEvent()
@@ -157,6 +172,7 @@ public class Events
         }
     }
 
+    // Este evento es el evento principal
     public class MainEvent : ComplexEvent
     {
         public MainEvent()

@@ -32,10 +32,13 @@ public class <ComplexEventName> : ComplexEvent
 }
 */
 
+// Esta clase representa un evento simple
 public abstract class Event
 {
+    // Esta funcion es la accion a ejecutar
     public abstract void Action(Game game);
 
+    // Esta funcion se usa para ser sobrecargada con los eventos complejos
     public virtual void Start(Game game, IGraphicInterface graphicinterface)
     {
         Action(game);
@@ -44,14 +47,19 @@ public abstract class Event
     }
 }
 
+// Esta clase representa un evento complejo
 public abstract class ComplexEvent : Event
 {
+    // Aqui se almacena el evento inicial a ejecutar
     protected Event? Origin = null;
     
+    // Aqui se almacenan los eventos de finalizacion
     protected HashSet<Event> Ends = new HashSet<Event>();
 
+    // Aqui se almacena la lista de adyacencia
     private Dictionary<Event, List<Tuple<Event, Func<Game, bool>>>> AdyList = new Dictionary<Event, List<Tuple<Event, Func<Game, bool>>>>();
 
+    // Esta funcion agrega una arista al grafo de eventos y estados
     protected void AddEdge(Event eventA, Event eventB, Func<Game, bool> function)
     {
         if(!this.AdyList.ContainsKey(eventA))
@@ -62,6 +70,7 @@ public abstract class ComplexEvent : Event
         this.AdyList[eventA].Add(new Tuple<Event, Func<Game, bool>>(eventB, function));
     }
 
+    // Esta funcion ejecuta recursivamente en pre-orden los nodos del grafo
     private bool StartAt(Event eventFather, Game game, IGraphicInterface graphicinterface)
     {
         eventFather.Start(game, graphicinterface);
@@ -88,8 +97,10 @@ public abstract class ComplexEvent : Event
         return false;
     }
 
+    // Accion del juego complejo
     public override void Action(Game game){}
 
+    // Esta funcion ejecuta el nodo inicial
     public override void Start(Game game, IGraphicInterface graphicinterface)
     {
         if(this.Origin is Event)
