@@ -1,5 +1,6 @@
 using System.Diagnostics;
 
+// Esta funcion representa objetos graficables
 public class ObjectsGraphic
 {
     private const int _width = 6;
@@ -10,13 +11,19 @@ public class ObjectsGraphic
     private int _zeroX = 0;
     private int _zeroY = 0;
 
+    // Esta clase representa un punto y una ubicacion en el plano
     public class Point
     {
+        // Este campo posee coordenada X
         public int x = 0;
+        // Este campo posee coordenada Y
         public int y = 0;
+        // Este campo dice si esta rotada o no la ficha
         public bool rotated = false;
+        // Este campo dice si esta en sentidd correcto
         public bool sense = false;
 
+        // Constructor
         public Point(int x, int y, bool rotated = false, bool sense = false)
         {
             this.x = x;
@@ -223,6 +230,7 @@ public class ObjectsGraphic
         return matrix;
     }
 
+    // Esta funcion grafica la mesa
     public string GraphicTable(List<Token> tokens, int center)
     {
         if(tokens.Count == 0)
@@ -255,6 +263,7 @@ public class ObjectsGraphic
         return this.GetStringFromMatrix(matrix);
     }
 
+    // Esta clase representa la graficacion de un board
     public string GraphicBoard(List<Token> tokens)
     {
         List<List<string>> matrix = this.GetMatrix(3, tokens.Count*4 - 1);
@@ -275,6 +284,7 @@ public class ObjectsGraphic
         return this.GetStringFromMatrix(matrix);
     }
 
+    // Esta clase representa la graficacion de un board con numeros incognita
     public string GraphicNullableBoard(List<Token?> tokens)
     {
         List<List<string>> matrix = this.GetMatrix(3, tokens.Count*4 - 1);
@@ -312,6 +322,7 @@ public class ObjectsGraphic
         return this.GetStringFromMatrix(matrix);
     }
 
+    //  Esta clase representa la graficacion de un board y hacia donde jugar 
     public string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens)
     {
         List<List<string>> matrix = this.GetMatrix(5, tokens.Count*4 - 1);

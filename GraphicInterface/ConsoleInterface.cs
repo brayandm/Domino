@@ -1,5 +1,6 @@
 using System.Diagnostics;
 
+// Esta clase representa la aplicacion visual del proyecto
 public class ConsoleInterface : IGraphicInterface
 {
     private ObjectsGraphic _objectsGraphic = new ObjectsGraphic();
@@ -18,26 +19,31 @@ public class ConsoleInterface : IGraphicInterface
         return (int)keyInfo.Key - 48;
     }
 
+    // Esta funcion grafica la tabla
     public string GraphicTable(List<Token> tokens, int center)
     {
         return this._objectsGraphic.GraphicTable(tokens, center);
     }
 
+    // Esta funcion grafica el board
     public string GraphicBoard(List<Token> tokens)
     {
         return this._objectsGraphic.GraphicBoard(tokens);
     }
 
+    // Esta funcion grafica el board con algunos tokens no visibles
     public string GraphicNullableBoard(List<Token?> tokens)
     {
         return this._objectsGraphic.GraphicNullableBoard(tokens);
     }
 
+    // Esta funcion grafica el board con donde se hace el movimiento
     public string GraphicBoardAndPositions(List<Tuple<Token, Position>> tokens)
     {
         return this._objectsGraphic.GraphicBoardAndPositions(tokens);
     }
 
+    // Esta funcion lee una entrada
     public string GetEntry(string id, string message, Func<string, bool> validator)
     {
         if(id == "GameRule")
@@ -106,6 +112,7 @@ public class ConsoleInterface : IGraphicInterface
         return "";
     }
 
+    // Esta funcion envia un mensaje
     public void SendMessage(string id, string message)
     {
         if(id == "HumanSelection")
@@ -128,6 +135,7 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 
+    // Esta funcion ejecuta una accion
     public void Action(string id)
     {
         if(id == "ConsoleClear")
@@ -171,6 +179,7 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 
+    // Esta funcion empieza un nuevo juego
     public void Main()
     {
         this.ConsoleClear();
@@ -261,6 +270,7 @@ public class ConsoleInterface : IGraphicInterface
         Console.Write("\n");
     }
 
+    // Esta funcion empieza un nuevo torneo
     public void NewTournament()
     {
         this.ConsoleClear();
@@ -359,6 +369,7 @@ public class ConsoleInterface : IGraphicInterface
         Thread.Sleep(_time*2);
     }
 
+    // Esta funcion empieza un nuevo juego
     public void NewGame()
     {
         this.ConsoleClear();
@@ -370,6 +381,7 @@ public class ConsoleInterface : IGraphicInterface
         Thread.Sleep(_time*2);
     }
 
+    // Esta funcion finaliza el torneo
     public void TournamentOver(Tournament tournament)
     {
         this.ConsoleClear();
@@ -424,6 +436,7 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 
+    // Esta funcion finaliza el juego
     public void GameOver(Game game)
     {
         this.ConsoleClear();
@@ -476,6 +489,7 @@ public class ConsoleInterface : IGraphicInterface
         Thread.Sleep(_time);
     }
 
+    // Esta funcion updatea el torneo
     public void UpdateTournament(Tournament tournament)
     {
         if(tournament.GetNumberOfMatches() > this._numberOfMatches)
@@ -490,6 +504,7 @@ public class ConsoleInterface : IGraphicInterface
         }
     }
 
+    // Esta funcion updatea el juego
     public void UpdateGame(Game game)
     {
         if(!this._roundEnded && game.IsCurrentRoundEnded())
