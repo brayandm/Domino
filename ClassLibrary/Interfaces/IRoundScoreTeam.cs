@@ -1,8 +1,11 @@
+// Esta interfaz representa el calculo de score de un equipo en una ronda
 public interface IRoundScoreTeam : IBaseInterface, ISelector
 {
+    // Esta funcion retorna el puntaje del equipo en la ronda
     int GetScore(Game game, Team team);
 }
 
+// Esta clase representa el calculo de puntaje por regla de suma
 public class RoundScoreTeamSumRule : IRoundScoreTeam
 {
     public int GetScore(Game game, Team team)
@@ -18,6 +21,7 @@ public class RoundScoreTeamSumRule : IRoundScoreTeam
     }
 }
 
+// Esta clase representa el calculo de puntaje por regla de maximo
 public class RoundScoreTeamMaxRule : IRoundScoreTeam
 {
     public int GetScore(Game game, Team team)

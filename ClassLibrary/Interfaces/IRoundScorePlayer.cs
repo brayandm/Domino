@@ -1,8 +1,11 @@
+// Esta interfaz representa el score de un jugador en una ronda
 public interface IRoundScorePlayer : IBaseInterface, ISelector
 {
+    // Esta funcion retorna el score de un jugador en la ronda
     int GetScore(Game game, Player player);
 }
 
+// Esta clase representa el calculo de puntaje por regla de suma
 public class RoundScorePlayerSumRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 
@@ -18,6 +21,7 @@ public class RoundScorePlayerSumRule : IRoundScorePlayer
     }
 }
 
+// Esta clase representa el calculo de puntaje por regla de maximo
 public class RoundScorePlayerMaxRule : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player)
@@ -35,6 +39,7 @@ public class RoundScorePlayerMaxRule : IRoundScorePlayer
     }
 }
 
+// Esta clase representa el calculo de puntaje por regla de cantidad de turnos pasados
 public class RoundPassesScorePlayer : IRoundScorePlayer
 {
     public int GetScore(Game game, Player player) 

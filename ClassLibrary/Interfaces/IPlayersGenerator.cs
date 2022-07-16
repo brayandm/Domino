@@ -1,8 +1,11 @@
+// Esta interfaz representa la generacion de una lista de players
 public interface IPlayersGenerator : IBaseInterface
 {
+    // Esta funcion retorna una lista de players
     List<Player> GetPlayers();
 }
 
+// Esta clase representa cuatro greedy players
 public class ClassicFourGreedyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
@@ -18,6 +21,7 @@ public class ClassicFourGreedyPlayers : IPlayersGenerator
     }
 }
 
+// Esta clase representa dos random players
 public class TwoRandomPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
@@ -31,6 +35,7 @@ public class TwoRandomPlayers : IPlayersGenerator
     }
 }
 
+// Esta clase representa dos greedy players
 public class TwoGreedyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
@@ -44,6 +49,7 @@ public class TwoGreedyPlayers : IPlayersGenerator
     }
 }
 
+// Esta clase representa dos frequency players
 public class TwoFrequencyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()
@@ -57,6 +63,7 @@ public class TwoFrequencyPlayers : IPlayersGenerator
     }
 }
 
+// Esta clase representa dos table frequency players
 public class TwoTableFrequencyPlayers : IPlayersGenerator
 {
     public List<Player> GetPlayers()

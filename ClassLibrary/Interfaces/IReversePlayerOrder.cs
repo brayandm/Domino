@@ -1,8 +1,11 @@
+// Esta interfaz representa la condicion de inversion del orden
 public interface IReversePlayerOrder : IBaseInterface, ISelector
 {
+    // Esta funcion indica si se cumple la condicion
     bool IsConditionMet(Game game);
 }
 
+// Esta clase representa que si un jugador se pasa se invierte el orden
 public class ReverseWithPass : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)
@@ -18,6 +21,7 @@ public class ReverseWithPass : IReversePlayerOrder
     }
 }
 
+// Esta clase representa que si un jugador juega un doble se invierte el orden
 public class ReverseWithDoubles : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)
@@ -33,6 +37,7 @@ public class ReverseWithDoubles : IReversePlayerOrder
     }
 }
 
+// Esta clase representa que nunca se invierte el orden
 public class NoReverse : IReversePlayerOrder
 {
     public bool IsConditionMet(Game game)

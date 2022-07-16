@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa la regla de ganadores de una ronda
 public interface IRoundWinnerRule : IBaseInterface, ISelector
 {
+    // Esta funcion retorna los ganadores de una ronda del juego
     List<Team> GetWinners(Game game);
 }
 
+// Esta clase representa el ganadores por regla de maximo
 public class RoundWinnerRuleMax : IRoundWinnerRule
 {
     public List<Team> GetWinners(Game game)
@@ -36,6 +39,7 @@ public class RoundWinnerRuleMax : IRoundWinnerRule
     }
 }
 
+// Esta clase representa el ganadores por regla de minimo
 public class RoundWinnerRuleMin : IRoundWinnerRule
 {
     public List<Team> GetWinners(Game game)
