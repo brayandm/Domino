@@ -1,7 +1,8 @@
+// Esta clase representa el nombrador de equipos y jugadores
 public class Namer
 {
-    List<string> _playerNames = new List<string>();
-    List<string> _teamNames = new List<string>();
+    private List<string> _playerNames = new List<string>();
+    private List<string> _teamNames = new List<string>();
 
     private int _playerNamesPosition = 0;
     private int _teamNamesPosition = 0;
@@ -9,11 +10,12 @@ public class Namer
     private int _playerNumber = 0;
     private int _teamNumber = 0;
 
-    List<string> ReadLines(string dir)
+    private List<string> ReadLines(string dir)
     {
         return System.IO.File.ReadLines(dir).ToList();
     }
 
+    // Constructor del Namer, aqui se cargan las bases de datos
     public Namer()
     {
         this._playerNames = this.ReadLines("ClassLibrary\\Namer\\PlayerNameDatabase.txt");
@@ -25,6 +27,7 @@ public class Namer
         this._teamNames = this._teamNames.OrderBy(_ => random.Next()).ToList();
     }
 
+    // Esta funcion retorna el Id del player solicitado
     public string GetPlayerId()
     {
         string id = "Player" + this._playerNumber;
@@ -34,6 +37,7 @@ public class Namer
         return id;
     }
 
+    // Esta funcion retorna el nombre del player solicitado
     public string GetPlayerName()
     {
         string name = this._playerNames[this._playerNamesPosition % this._playerNames.Count];
@@ -43,6 +47,7 @@ public class Namer
         return name;
     }
 
+    // Esta funcion retorna el nombre del jugador humano solicitado
     public string GetHumanName()
     {
         bool Validador(string entry)
@@ -57,6 +62,7 @@ public class Namer
         return name;
     }
 
+    // Esta funcion retorna el Id del team solicitado
     public string GetTeamId()
     {
         string id = "Team" + this._teamNumber;
@@ -66,6 +72,7 @@ public class Namer
         return id;
     }
 
+    // Esta funcion retorna el nombre del equipo solicitado
     public string GetTeamName()
     {
         string name = this._teamNames[this._teamNamesPosition % this._teamNames.Count];
