@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa la visibilidad de un token
 public interface ITokenVisibility : IBaseInterface, ISelector
 {
+    // Esta funcion retorna los jugadores que pueden ver el token
     List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams);
 }
 
+// Esta clase representa la clasica visibilidad personal
 public class ClassicIndividualTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)
@@ -13,6 +16,7 @@ public class ClassicIndividualTokenVisibility : ITokenVisibility
     }
 }
 
+// Esta clase representa la visibilidad de todo el equipo
 public class TeamTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)
@@ -29,6 +33,7 @@ public class TeamTokenVisibility : ITokenVisibility
     }
 }
 
+// Esta clase representa la visibilidad de todo el mundo
 public class EverybodyTokenVisibility : ITokenVisibility
 {
     public List<Player> GetTokenVisibilityPlayers(Player individualPlayer, List<Team> teams)

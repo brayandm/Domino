@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa la generacion de un torneo
 public interface ITournamentGenerator : IBaseInterface, ISelector
 {
+    // Esta funcion retorna un torneo
     Tournament GetTournament();
 }
 
+// Esta clase representa un torneo de solo un partido con dos equipos greedies
 public class GetTournamentOneClassicMatch : ITournamentGenerator
 {
     public Tournament GetTournament()
@@ -23,6 +26,7 @@ public class GetTournamentOneClassicMatch : ITournamentGenerator
     }
 }
 
+// Esta clase representa un torneo de solo un partido con 3 equipoes greedies y uno humano
 public class GetTournamentOneMatchThreeGreedyAndHumanPlayers : ITournamentGenerator
 {
     public Tournament GetTournament()
@@ -41,6 +45,7 @@ public class GetTournamentOneMatchThreeGreedyAndHumanPlayers : ITournamentGenera
     }
 }
 
+// Esta clase representa un torneo de solo un partido con 3 equipoes random y uno humano
 public class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
 {
     public Tournament GetTournament()
@@ -59,6 +64,7 @@ public class GetTournamentOneMatchRandomAndHumanPlayers : ITournamentGenerator
     }
 }
 
+// Esta clase representa un torneo de eliminacion de 4 equipos
 public class GetEliminationTournamentFourTeams : ITournamentGenerator
 {
     public Tournament GetTournament()

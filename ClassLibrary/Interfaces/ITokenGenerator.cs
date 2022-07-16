@@ -1,13 +1,17 @@
+// Esta interfaz representa generacion de tokens
 public interface ITokenGenerator : IBaseInterface
 {
+    // Esta funcion genera una lista de tokens segun caras
     List<Token> Generate(List<IFace> faces);
 
+    // Esta funcion genera k veces una lista de tokens segun caras
     List<Token> Generate(List<IFace> faces, int k)
     {
         return TokenGeneration.KTimesTokens(this.Generate(faces), k);
     }
 }
 
+// Esta clase multiplica k veces la cantidad de tokens
 public static class TokenGeneration
 {
     public static List<Token> KTimesTokens(List<Token> tokens, int k)
@@ -23,6 +27,7 @@ public static class TokenGeneration
     }
 }
 
+// Esta clase genera tokens de manera tradicional
 public class ClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
@@ -44,6 +49,7 @@ public class ClassicTokenGenerator : ITokenGenerator
     }
 }
 
+// Esta clase genera tokens formando un ciclo
 public class CycleTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
@@ -62,6 +68,7 @@ public class CycleTokenGenerator : ITokenGenerator
     }
 }
 
+// Esta clase genera tokens con poderes de que si son dobles pasan el turno
 public class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)
@@ -90,6 +97,7 @@ public class DoubleFacesPassTurnPowerClassicTokenGenerator : ITokenGenerator
     }
 }
 
+// Esta clase genera tokens con poderes de que si es doble cero termina el juego
 public class DoubleZeroEndRoundPowerClassicTokenGenerator : ITokenGenerator
 {
     public List<Token> Generate(List<IFace> faces)

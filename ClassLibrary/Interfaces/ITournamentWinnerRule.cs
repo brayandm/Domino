@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa la regla de ganador de un torneo
 public interface ITournamentWinnerRule : IBaseInterface, ISelector
 {
+    // Esta funcion retorna los ganadores del torneo
     List<Team> GetTournamentWinners(Tournament tournament);
 }
 
+// Esta clase representa la regla de mayor partidos ganados
 public class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
 {
     public List<Team> GetTournamentWinners(Tournament tournament)
@@ -38,6 +41,7 @@ public class ClassicTournamentMaxGamesWon : ITournamentWinnerRule
     }
 }
 
+// Esta clase representa el calculo de score segun el minimo score
 public class ClassicTournamentMinScore : ITournamentWinnerRule
 {
     public List<Team> GetTournamentWinners(Tournament tournament)

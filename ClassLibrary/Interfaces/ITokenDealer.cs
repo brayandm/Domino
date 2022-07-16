@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa el repartidor de token
 public interface ITokenDealer : IBaseInterface, ISelector
 {
+    // Esta funcion distribuye los tokens de la caja
     void Distribute(Box box, List<Board> boards);
 }
 
+// Esta clase representa una distribucion de tokens variada
 public class VariableTokensDistribution : ITokenDealer
 {
     private int _tokensToDeal = 0;
@@ -41,6 +44,7 @@ public class VariableTokensDistribution : ITokenDealer
     }
 }
 
+// Esta clase representa una distribucion de 10 tokens
 public class ClassicTenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
@@ -52,6 +56,7 @@ public class ClassicTenTokensDistribution : ITokenDealer
     }
 }
 
+// Esta clase representa una distribucion de 7 tokens
 public class ClassicSevenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)
@@ -63,6 +68,7 @@ public class ClassicSevenTokensDistribution : ITokenDealer
     }
 }
 
+// Esta clase representa una distribucion de tokens de manera random y maximo 10
 public class RandomMaxTenTokensDistribution : ITokenDealer
 {
     public void Distribute(Box box, List<Board> boards)

@@ -1,8 +1,11 @@
+// Esta interfaz representa el orden de los jugadores
 public interface ITeamOrder : IBaseInterface, ISelector
 {
+    // Esta funcion retorna el orden de los jugadores
     List<Player> GetTeamOrder(List<Team> teams);
 }
 
+// Esta clase representa un orden alternado
 public class AlternateTeamOrder : ITeamOrder
 {
     public List<Player> GetTeamOrder(List<Team> teams)
@@ -47,6 +50,8 @@ public class AlternateTeamOrder : ITeamOrder
     }
 }
 
+// Esta clase representa un orden en que jugadores de mismos equipos
+//juegan adyacentes
 public class adjacentTeamOrder : ITeamOrder
 {
     public List<Player> GetTeamOrder(List<Team> teams)
