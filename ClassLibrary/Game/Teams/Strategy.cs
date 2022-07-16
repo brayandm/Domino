@@ -1,8 +1,10 @@
+// Esta interfaz representa una estrategia
 public interface IStrategy : IBaseInterface
 {
     int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center);
 }
 
+// Esta clase representa una estrategia de seleccion humana
 public class HumanSelection : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
@@ -47,6 +49,7 @@ public class HumanSelection : IStrategy
     }
 }
 
+// Esta clase representa una estrategia greedy
 public class GreedyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
@@ -76,6 +79,7 @@ public class GreedyStrategy : IStrategy
     }
 }
 
+// Esta clase representa una estrategia random
 public class RandomStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
@@ -93,6 +97,7 @@ public class RandomStrategy : IStrategy
     }
 }
 
+// Esta clase representa una estrategia por frecuencia de caras en el board
 public class FrequencyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
@@ -177,6 +182,7 @@ public class FrequencyStrategy : IStrategy
     }
 }
 
+// Esta clase representa una estrategia greedy por frecuencias de caras en la mesa
 public class TableFrequencyStrategy : IStrategy
 {
     public int ChooseTokenIndex(List<Tuple<Token, Position>> playableTokensAndPositions, Player player, List<Team> teams, Dictionary<Player, List<Token?>> playerBoard, List<Token> tableTokens, int center)
