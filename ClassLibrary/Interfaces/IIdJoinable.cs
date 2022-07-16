@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa el criterio de union de caras
 public interface IIdJoinable : IBaseInterface, ISelector
 {
+    // Esta funcion indica si dos caras son compatibles
     bool IsIdJoinable(string idA, string idB);
 }
 
+// Esta clase representa el clasico comparador de ID
 public class ClassicIdJoinable : IIdJoinable
 {
     public bool IsIdJoinable(string idA, string idB)
@@ -13,6 +16,7 @@ public class ClassicIdJoinable : IIdJoinable
     }
 }
 
+// Esta clase representa comparar ID por divisibilidad
 public class DivisibilityIdJoinable : IIdJoinable
 {
     public bool IsIdJoinable(string idA, string idB)

@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa el criterio de union de tokens
 public interface IJoinable : IBaseInterface, ISelector
 {
+    // Esta funcion indica si dos tokens se pueden unir
     bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB);
 }
 
+// Esta clase representa la clasica union por caras
 public class ClassicJoinById : IJoinable
 {
     public bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB)
@@ -21,6 +24,7 @@ public class ClassicJoinById : IJoinable
     }
 }
 
+// Esta clase representa la union si son tokens de equipos distintos y mismo ID
 public class JoinByIdAndDifferentTeam : IJoinable
 {
     public bool IsJoinable(Game game, ProtectedToken? protectedTokenA, ProtectedToken? protectedTokenB)

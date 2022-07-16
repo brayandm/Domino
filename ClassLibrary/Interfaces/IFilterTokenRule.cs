@@ -1,8 +1,11 @@
+// Esta interfaz representa la regla de filtrado de tokens
 public interface IFilterTokenRule : IBaseInterface
 {
+    // Esta funcion representa si el token cumple la condicion
     bool Apply(Token token);
 }
 
+// Esta clase representa un filtro sin dobles
 public class WithoutDoblesFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)
@@ -11,6 +14,7 @@ public class WithoutDoblesFilterBoxRules : IFilterTokenRule
     }
 }
 
+// Esta clase representa un filtro que todo token siempre cumplira
 public class NonFilterBoxRules : IFilterTokenRule
 {
     public bool Apply(Token token)

@@ -1,8 +1,11 @@
+// Esta interfaz representa la generacion de caras
 public interface IFaceGenerator : IBaseInterface
 {
+    // Esta funcion obtiene las caras generadas
     List<IFace> GetFaces();
 }
 
+// Esta clase representa las caras de colores
 public static class FaceColors
 {
     public static List<string> Colors = new List<string>{"Red", "Green", "Blue", "Yellow", "Orange", "Purple"};
@@ -20,6 +23,7 @@ public static class FaceColors
     }
 }
 
+// Esta clase representa las caras de enteros
 public static class FaceInts
 {
     public static List<IFace> IntFaces(int n)
@@ -35,6 +39,7 @@ public static class FaceInts
     }
 }
 
+// Esta clase representa las caras de colores
 public class ColorFacesGenerator : IFaceGenerator
 {
     public List<IFace> GetFaces() 
@@ -48,6 +53,7 @@ public class ColorFacesGenerator : IFaceGenerator
     }
 }
 
+// Esta clase representa las caras de enteros
 public class IntFacesGenerator : IFaceGenerator
 {
     public List<IFace> GetFaces() 

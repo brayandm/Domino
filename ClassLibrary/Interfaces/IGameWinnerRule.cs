@@ -1,10 +1,13 @@
 using System.Diagnostics;
 
+// Esta interfaz representa la regla del ganador del juego
 public interface IGameWinnerRule : IBaseInterface, ISelector
 {
+    // Esta funcion obtiene los ganadores del juego
     List<Team> GetWinners(Game game);
 }
 
+// Esta clase representa la regla del maximo score
 public class WinnerRuleMax : IGameWinnerRule
 {
     public List<Team> GetWinners(Game game)
@@ -36,6 +39,7 @@ public class WinnerRuleMax : IGameWinnerRule
     }
 }
 
+// Esta clase representa la regla del minimo score
 public class WinnerRuleMin : IGameWinnerRule
 {
     public List<Team> GetWinners(Game game)
@@ -68,6 +72,7 @@ public class WinnerRuleMin : IGameWinnerRule
     }
 }
 
+// Esta clase representa la regla del minimo score y un solo ganador
 public class OnlyOneWinnerRuleMin : IGameWinnerRule
 {
     public List<Team> GetWinners(Game game)

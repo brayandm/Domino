@@ -1,8 +1,11 @@
+// Esta interfaz representa la generacion de los tokens de la caja
 public interface IBoxGenerator : IBaseInterface, ISelector
 {
+    // Esta funcion retorna los tokens generados
     List<ProtectedToken> Generate();
 }
 
+// Esta clase se usa para obtener el numero variable de caras de los tokens
 public class VariableIntFacesBoxGenerator : IBoxGenerator
 {
     private int _numberOfDifferentFaces = 0;
@@ -50,6 +53,7 @@ public class VariableIntFacesBoxGenerator : IBoxGenerator
     }
 }
 
+// Esta clase genera tokens de 10 caras
 public class ClassicTenBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
@@ -72,6 +76,7 @@ public class ClassicTenBoxGenerator : IBoxGenerator
     }
 }
 
+// Esta clase genera tokens de 10 caras con poderes de pasar turno si se juega un doble
 public class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
@@ -94,6 +99,7 @@ public class ClassicTenBoxGeneratorWithPowerDoubleFacesPassTurn : IBoxGenerator
     }
 }
 
+// Esta clase representa un clasico juego de 7 caras
 public class ClassicSevenBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
@@ -116,6 +122,7 @@ public class ClassicSevenBoxGenerator : IBoxGenerator
     }
 }
 
+// Esta clase representa un clasico juego de 7 caras sin dobles
 public class ClassicSevenWithoutDoublesBoxGenerator : IBoxGenerator
 {
     public List<ProtectedToken> Generate()
