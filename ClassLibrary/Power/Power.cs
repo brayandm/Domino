@@ -1,3 +1,4 @@
+// Esta clase representa un poder
 public class Power
 {
     private string _id = "";
@@ -6,8 +7,10 @@ public class Power
 
     private int _position = 0;
 
+    // Este campo representa el id del poder
     public string Id { get { return this._id; } }
 
+    // Constructor de la clase
     public Power(string id, int times, List<bool> actionPattern)
     {
         times = Math.Max(times, -1);
@@ -17,6 +20,7 @@ public class Power
         this._actionPattern = actionPattern;
     }
 
+    // Esta funcion retorna si el poder esta activo o no
     public bool GetActivity()
     {
         if(this._times == 0 || this._actionPattern.Count == 0)
